@@ -213,3 +213,39 @@ tots<-tots %>% mutate(tm=ifelse(tm=="TOT","1TOT",tm)) %>%
 end_seas_teams<-full_join(end_seas_teams,tots) %>% select(-n) %>% arrange(desc(season),type,team_rank)
 
 write_csv(end_seas_teams,"End of Season Teams.csv")
+
+all_stars<-function(season=2020,league="NBA"){
+  url=paste0("https://www.basketball-reference.com/leagues/",league,"_",season,".html")
+  new_season=url %>% read_html %>% html_nodes(xpath = '//comment()') %>%
+    html_text() %>% paste(collapse='') %>% read_html() %>% 
+    html_nodes(xpath=paste0('//*[(@id = "div_all_star_game_rosters")]')) %>% html_nodes("table")
+  team_names=new_season %>% html_nodes("caption") %>% html_text()
+  rosters=new_season %>% html_nodes("tr") %>% html_text() %>% str_trim(.) %>%
+    str_split(.,'\\s{2,100}')
+  all_stars_tibble=tibble(player=character(),team=character(),season=integer(),lg=character())
+  team1=tibble(player=rosters[[1]]) %>% mutate(team=team_names[[1]],lg=league,seas=season)
+  team2=tibble(player=rosters[[2]]) %>% mutate(team=team_names[[2]],lg=league,seas=season)
+  all_stars_tibble=rbind(all_stars_tibble,team1) %>% rbind(.,team2)
+  return(all_stars_tibble)
+}
+
+get_all_all_stars<-function(){
+  a=all_stars()
+  #nba (no game in 1999)
+  sapply(setdiff(2019:1951,1999),function(x){
+    new_seas<-all_stars(x)
+    a<<-rbind(a,new_seas)
+  })
+  #aba
+  sapply(1976:1968,function(x){
+    new_seas<-all_stars(x,"ABA")
+    a<<-rbind(a,new_seas)
+  })
+  return(a)
+}
+all_stars_all_years=get_all_all_stars()
+all_stars_cleaned=all_stars_all_years %>% 
+  mutate(replaced=str_detect(player,"\\("),
+         player=ifelse(replaced==TRUE,substr(player,1,nchar(player)-4),player),
+         hof=str_detect(player,"\\*"),
+         player=ifelse(hof==TRUE,substr(player,1,nchar(player)-1),player))
