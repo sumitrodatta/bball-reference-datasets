@@ -64,6 +64,10 @@ roys<- "https://www.basketball-reference.com/awards/roy.html" %>% read_html %>%
 colnames(roys)<-roys[1,]
 roys<-roys[-1,]
 roys<-roys %>% filter(Voting != "(V)") %>% mutate(Season=as.numeric(substr(Season,0,4))+1)
+#remove asterisks (unofficial recognize)
+roys<-roys %>% mutate(Player=ifelse(str_detect(Player,"\\*"),substr(Player,1,nchar(Player)-2),Player))
+#remove trailing tie in 1952
+roys<-roys %>% mutate(Player=ifelse(str_detect(Player,"(Tie)"),substr(Player,1,nchar(Player)-6),Player))
 roys<-roys %>% select(-c(Lg,Voting,G:`WS/48`)) %>% add_column(Award="nba roy",.before="Player") %>% 
   add_column("First"=NA,"Pts Won"=NA,"Pts Max"=NA,"Share"=NA,"Winner"=TRUE) %>% clean_names()
 roy<-rbind(roy,roys)
@@ -249,3 +253,5 @@ all_stars_cleaned=all_stars_all_years %>%
          player=ifelse(replaced==TRUE,substr(player,1,nchar(player)-4),player),
          hof=str_detect(player,"\\*"),
          player=ifelse(hof==TRUE,substr(player,1,nchar(player)-1),player))
+
+write_csv(all_stars_cleaned,"All-Star Selections.csv")

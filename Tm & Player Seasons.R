@@ -222,38 +222,71 @@ write_excel_csv(per_game,"Player Per Game.csv")
 #players with same name in different seasons (example: Gerald Henderson)
 #players who played seasons in multiple leagues (example: Moses Malone)
 
-#create season ids
-a<-totals %>% select(season:tm) %>% mutate(hof=ifelse(is.na(hof),FALSE,hof)) %>% 
+#for updating past seasons
+totals_info=totals %>% select(season,player:tm) %>% select(-experience) %>%
   arrange(season,player) %>% mutate(seas_id=row_number())
-#create player ids
-b<-a %>% group_by(player,birth_year) %>% 
-  slice(1) %>% arrange(seas_id) %>% ungroup() %>% mutate(player_id=row_number()) %>% 
-  select(player,birth_year,player_id)
-a<-left_join(a %>% select(-player_id),b)
-#add years of experience
-a<-a %>% mutate(tm=ifelse(tm=="TOT","1TOT",tm))
-b<-a %>% group_by(player_id,season) %>% arrange(tm) %>% slice(1) %>% 
-  ungroup() %>% group_by(player_id) %>% mutate(experience=row_number())
-a<-left_join(a %>% select(-experience),b) %>% arrange(player_id,season,tm) %>% 
-  fill(experience) %>% mutate(tm=ifelse(tm=="1TOT","TOT",tm)) %>% arrange(seas_id) %>% 
+players_unique<-totals_info %>% group_by(player,birth_year) %>% 
+  slice(1) %>% arrange(seas_id) %>% ungroup() %>% 
+  mutate(player_id=row_number()) %>% select(player,birth_year,player_id)
+totals_info<-left_join(totals_info,players_unique)
+totals_info<-totals_info %>% mutate(tm=ifelse(tm=="TOT","1TOT",tm))
+removed_mult_same_yr<-totals_info %>% group_by(player_id,season) %>% 
+  arrange(tm) %>% slice(1) %>% ungroup() %>% group_by(player_id) %>% 
+  mutate(experience=row_number())
+totals_info<-left_join(totals_info,removed_mult_same_yr) %>% 
+  arrange(player_id,season,tm) %>% fill(experience) %>% 
+  mutate(tm=ifelse(tm=="1TOT","TOT",tm)) %>% arrange(seas_id) %>% 
   relocate(seas_id,player_id,.after="season")
-write_excel_csv(a,"Player Season Info.csv")
+write_csv(totals_info,"Player Season Info.csv")
 
-# add_new_seas(season=2021,type="totals"){
-#   a<-scrape_stats(season=season,type=type)
-#   a<-a %>% 
-#     mutate(hof=FALSE,birth_year=NA) %>% full_join(.,read_csv("Player Season Info.csv"))
-#   a<-a %>% relocate(seas_id,season,player_id,player,birth_year,hof,pos,age,experience,lg)
-#   a<-a %>% arrange(season,player) %>% 
-#     mutate(seas_id=ifelse(is.na(seas_id),max(seas_id)+cumsum(is.na(seas_id)),seas_id))
-#   b<-a %>% group_by(player,birth_year) %>% 
-#     slice(1) %>% arrange(seas_id) %>% ungroup() %>% 
-#     mutate(player_id=ifelse(is.na(player_id),max(player_id)+cumsum(is.na(player_id)),player_id))
-#   a<-full_join(a,b)
-#   a<-a %>% mutate(tm=ifelse(tm=="TOT","1TOT",tm))
-#   b<-a %>% group_by(player_id,season) %>% arrange(tm) %>% slice(1) %>% 
-#     ungroup() %>% ungroup() %>% group_by(player_id) %>% mutate(experience=row_number())
-#   a<-full_join(a,b) %>% arrange(player_id,season,tm) %>% fill(experience) %>% 
-#     mutate(tm=ifelse(tm=="1TOT","TOT",tm)) %>% arrange(seas_id)
-#   a<-a %>% filter(season == season)
-# }
+add_new_seas<-function(seas=2021,type="totals",update_psi=FALSE){
+  a<-scrape_stats(season=seas,type=type)
+  if (update_psi==TRUE){
+    # no active hall of famers
+    new_player_info=a %>% select(season:tm) %>% mutate(hof=FALSE) %>%
+      arrange(season,player)
+    psi=read_csv("Player Season Info.csv") %>% 
+      select(season,player:tm) %>% 
+      filter(season != seas)
+    updated_psi=psi %>% add_row(new_player_info)
+    #season ids
+    updated_psi=updated_psi %>% mutate(seas_id=row_number())
+    players_unique<-updated_psi %>% group_by(player,birth_year) %>% 
+      slice(1) %>% arrange(seas_id) %>% ungroup() %>% 
+      mutate(player_id=row_number()) %>% select(player,birth_year,player_id)
+    updated_psi<-left_join(updated_psi,players_unique)
+    #add years of experience
+    updated_psi<-updated_psi %>% mutate(tm=ifelse(tm=="TOT","1TOT",tm))
+    removed_mult_same_yr<-updated_psi %>% group_by(player_id,season) %>% 
+      arrange(tm) %>% slice(1) %>% ungroup() %>% group_by(player_id) %>% 
+      mutate(experience=row_number())
+    updated_psi<-left_join(updated_psi,removed_mult_same_yr) %>% 
+      arrange(player_id,season,tm) %>% fill(experience) %>% 
+      mutate(tm=ifelse(tm=="1TOT","TOT",tm)) %>% arrange(seas_id) %>% 
+      relocate(seas_id,player_id,.after="season")
+    write_csv(updated_psi,"Player Season Info.csv")
+  }
+  a<-left_join(a,updated_psi) %>% 
+    relocate(seas_id,season,player_id,player,birth_year,hof,pos,age,experience,lg)
+  View(a)
+  if (type=="totals"){
+    old=read_csv("Player Totals.csv")
+  }
+  else if (type=="advanced"){
+    old=read_csv("Advanced.csv")
+    a<-a %>% select(-c(x,x_2))
+  }
+  else if (type=="per_game"){
+    old=read_csv("Player Per Game.csv")
+    a<-a %>% rename_at(vars(-c(1:13,17,20,23:24,27)),~paste0(.,"_per_game"))
+  }
+  else if (type=="per_minute"){
+    old=read_csv("Per 36 Minutes.csv")
+    a<-a
+  }
+  else if (type=="per_poss"){
+    old=read_csv("Per 100 Poss.csv")
+  }
+}
+
+add_new_seas(update_psi=TRUE)
