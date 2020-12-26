@@ -222,6 +222,7 @@ write_excel_csv(per_game,"Player Per Game.csv")
 #players with same name in different seasons (example: Gerald Henderson)
 #players who played seasons in multiple leagues (example: Moses Malone)
 
+
 #for updating past seasons
 totals_info=totals %>% select(season,player:tm) %>% select(-experience) %>%
   arrange(season,player) %>% mutate(seas_id=row_number())
@@ -266,27 +267,37 @@ add_new_seas<-function(seas=2021,type="totals",update_psi=FALSE){
       relocate(seas_id,player_id,.after="season")
     write_csv(updated_psi,"Player Season Info.csv")
   }
-  a<-left_join(a,updated_psi) %>% 
+  a<-left_join(a,read_csv("Player Season Info.csv")) %>% 
     relocate(seas_id,season,player_id,player,birth_year,hof,pos,age,experience,lg)
-  View(a)
   if (type=="totals"){
     old=read_csv("Player Totals.csv")
+    write_csv(old %>% add_row(a),"Player Totals.csv")
   }
   else if (type=="advanced"){
     old=read_csv("Advanced.csv")
     a<-a %>% select(-c(x,x_2))
+    write_csv(old %>% add_row(a),"Advanced.csv")
   }
   else if (type=="per_game"){
     old=read_csv("Player Per Game.csv")
     a<-a %>% rename_at(vars(-c(1:13,17,20,23:24,27)),~paste0(.,"_per_game"))
+    write_csv(old %>% add_row(a),"Player Per Game.csv")
   }
   else if (type=="per_minute"){
     old=read_csv("Per 36 Minutes.csv")
-    a<-a
+    a<-a %>% rename_at(vars(-c(1:14,17,20,23,26)),~paste0(.,"_per_36_min"))
+    write_csv(old %>% add_row(a),"Per 36 Minutes.csv")
   }
   else if (type=="per_poss"){
     old=read_csv("Per 100 Poss.csv")
+    a<-a %>% select(-x) %>% 
+      rename_at(vars(-c(1:14,17,20,23,26,36:37)),~paste0(.,"_per_100_poss"))
+    write_csv(old %>% add_row(a),"Per 100 Poss.csv")
   }
 }
 
-add_new_seas(update_psi=TRUE)
+add_new_seas(seas=2021,type="totals",update_psi=TRUE)
+add_new_seas(seas=2021,type="advanced",update_psi=FALSE)
+add_new_seas(seas=2021,type="per_game",update_psi=FALSE)
+add_new_seas(seas=2021,type="per_minute",update_psi=FALSE)
+add_new_seas(seas=2021,type="per_poss",update_psi=FALSE)
