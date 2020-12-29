@@ -270,26 +270,26 @@ add_new_seas<-function(seas=2021,type="totals",update_psi=FALSE){
   a<-left_join(a,read_csv("Player Season Info.csv")) %>% 
     relocate(seas_id,season,player_id,player,birth_year,hof,pos,age,experience,lg)
   if (type=="totals"){
-    old=read_csv("Player Totals.csv")
+    old=read_csv("Player Totals.csv") %>% filter(season != seas)
     write_csv(old %>% add_row(a),"Player Totals.csv")
   }
   else if (type=="advanced"){
-    old=read_csv("Advanced.csv")
+    old=read_csv("Advanced.csv") %>% filter(season != seas)
     a<-a %>% select(-c(x,x_2))
     write_csv(old %>% add_row(a),"Advanced.csv")
   }
   else if (type=="per_game"){
-    old=read_csv("Player Per Game.csv")
+    old=read_csv("Player Per Game.csv") %>% filter(season != seas)
     a<-a %>% rename_at(vars(-c(1:13,17,20,23:24,27)),~paste0(.,"_per_game"))
     write_csv(old %>% add_row(a),"Player Per Game.csv")
   }
   else if (type=="per_minute"){
-    old=read_csv("Per 36 Minutes.csv")
+    old=read_csv("Per 36 Minutes.csv") %>% filter(season != seas)
     a<-a %>% rename_at(vars(-c(1:14,17,20,23,26)),~paste0(.,"_per_36_min"))
     write_csv(old %>% add_row(a),"Per 36 Minutes.csv")
   }
   else if (type=="per_poss"){
-    old=read_csv("Per 100 Poss.csv")
+    old=read_csv("Per 100 Poss.csv") %>% filter(season != seas)
     a<-a %>% select(-x) %>% 
       rename_at(vars(-c(1:14,17,20,23,26,36:37)),~paste0(.,"_per_100_poss"))
     write_csv(old %>% add_row(a),"Per 100 Poss.csv")
