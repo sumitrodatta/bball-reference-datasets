@@ -17,8 +17,6 @@ teamStats<-function(season=2020,league="NBA",type="team-stats-base"){
   return(new_season)
 }
 
-abbrev<-read_csv("Team Abbrev.csv")
-
 get_all_team_stats<-function(to_scrape="team-stats-base")
 {
   a<-teamStats(2020,type=to_scrape)
@@ -57,7 +55,7 @@ get_all_team_stats<-function(to_scrape="team-stats-base")
     mutate(playoffs=str_detect(team,"\\*"),
            team=ifelse(playoffs==TRUE,substr(team,1,nchar(team)-1),team)) %>%
     relocate(playoffs,.after="team")
-  a<-full_join(a,abbrev)
+  a<-full_join(a,read_csv("Team Abbrev.csv"))
   a<-a %>% relocate(abbreviation,.after="team")
   return(a)
 }
@@ -100,8 +98,6 @@ misc_stats_scrape<-function(season=2020,league="NBA"){
     mutate(Playoffs=str_detect(Team,"\\*"),
            Team=ifelse(Playoffs==TRUE,substr(Team,1,nchar(Team)-1),Team)) %>%
     relocate(Playoffs,.after="Team") %>% clean_names()
-  new_season<-left_join(new_season,abbrev)
-  new_season<-new_season %>% relocate(abbreviation,.after="team")
   return(new_season)
 }
 
@@ -118,6 +114,8 @@ sapply(1976:1968,function(x){
   new_seas=misc_stats_scrape(x,"ABA")
   tm_summaries<<-rbind(tm_summaries,new_seas)
 })
+tm_summaries=left_join(tm_summaries,read_csv("Team Abbrev.csv")) %>% 
+  relocate(c(abbreviation,playoffs),.after="team")
 
 write_excel_csv(tm_summaries,"Team Summaries.csv")
 write_excel_csv(opp_stats_per_poss,"Opponent Stats Per 100 Poss.csv")
@@ -130,6 +128,77 @@ write_excel_csv(opp_stats_pg,"Opponent Stats Per Game.csv")
 all_team<-left_join(tm_summaries,team_stats_base) %>% 
   left_join(.,team_stats_per_poss) %>% left_join(.,opp_stats_base) %>% 
   left_join(.,opp_stats_per_poss)
+
+add_new_team_seas<-function(seas=2021,type="team-stats-base",update_abbrevs=FALSE){
+  if (type=="misc"){
+    a <-misc_stats_scrape(season=seas)
+  }
+  else {
+    a <- teamStats(season=seas,type=type)
+  }
+  if (update_abbrevs==TRUE){
+    abbrev=read_csv("Team Abbrev.csv") %>% filter (season != seas)
+    new_seas=a %>% select(season:team) %>%
+      mutate(playoffs=str_detect(team,"\\*"),
+             team=ifelse(playoffs==TRUE,substr(team,1,nchar(team)-1),team))
+    previous_seas=abbrev %>% filter (season == seas-1) %>% select(team,abbreviation)
+    new_seas=left_join(new_seas,previous_seas)
+    abbrev=abbrev %>% add_row(new_seas)
+    write_csv(abbrev,"Team Abbrev.csv")
+  }
+  a<-left_join(a,read_csv("Team Abbrev.csv")) %>% 
+    relocate(c(abbreviation,playoffs),.after="team")
+  if (type=="misc"){
+    old=read_csv("Team Summaries.csv") %>% filter(season != seas)
+    a<-a %>% mutate(attend=gsub(",","",attend),attend_g=gsub(",","",attend_g)) %>%
+      mutate(across(c(attend,attend_g),as.numeric))
+    write_csv(old %>% add_row(a),"Team Summaries.csv")
+  }
+  else if (type=="team-stats-base"){
+    old=read_csv("Team Totals.csv") %>% filter(season != seas)
+    write_csv(old %>% add_row(a),"Team Totals.csv")
+  }
+  else if (type=="opponent-stats-base"){
+    old=read_csv("Opponent Totals.csv") %>% filter(season != seas)
+    a<-a %>% rename_at(vars(-c(1:7)),~paste0("opp_",.))
+    write_csv(old %>% add_row(a),"Opponent Totals.csv")
+  }
+  else if (type=="team-stats-per_game"){
+    old=read_csv("Team Stats Per Game.csv") %>% filter(season != seas)
+    a<-a %>%
+      rename_at(vars(-c(1:6,10,13,16,19)),~paste0(.,"_per_game"))
+    write_csv(old %>% add_row(a),"Team Stats Per Game.csv")
+  }
+  else if (type=="opponent-stats-per_game"){
+    old=read_csv("Opponent Stats Per Game.csv") %>% filter(season != seas)
+    a<-a %>%
+      rename_at(vars(-c(1:7)),~paste0("opp_",.)) %>%
+      rename_at(vars(-c(1:6,10,13,16,19)),~paste0(.,"_per_game"))
+    write_csv(old %>% add_row(a),"Opponent Stats Per Game.csv")
+  }
+  else if (type=="team-stats-per_poss"){
+    old=read_csv("Team Stats Per 100 Poss.csv") %>% filter(season != seas)
+    a<-a %>% 
+      rename_at(vars(-c(1:7,10,13,16,19)),~paste0(.,"_per_100_poss"))
+    write_csv(old %>% add_row(a),"Team Stats Per 100 Poss.csv")
+  }
+  else if (type=="opponent-stats-per_poss"){
+    old=read_csv("Opponent Stats Per 100 Poss.csv") %>% filter(season != seas)
+    a<-a %>% 
+      rename_at(vars(-c(1:7)),~paste0("opp_",.)) %>%
+      rename_at(vars(-c(1:7,10,13,16,19)),~paste0(.,"_per_100_poss"))
+    write_csv(old %>% add_row(a),"Opponent Stats Per 100 Poss.csv")
+  }
+}
+
+add_new_team_seas(seas=2021,type="team-stats-base",update_abbrevs = TRUE)
+add_new_team_seas(seas=2021,type="opponent-stats-base",update_abbrevs = FALSE)
+add_new_team_seas(seas=2021,type="team-stats-per_game",update_abbrevs = FALSE)
+add_new_team_seas(seas=2021,type="opponent-stats-per_game",update_abbrevs = FALSE)
+add_new_team_seas(seas=2021,type="team-stats-per_poss",update_abbrevs = FALSE)
+add_new_team_seas(seas=2021,type="opponent-stats-per_poss",update_abbrevs = FALSE)
+add_new_team_seas(seas=2021,type="misc",update_abbrevs = FALSE)
+
 
 scrape_stats <- function(season = 2017,league="NBA",type="totals"){
   #scrape
