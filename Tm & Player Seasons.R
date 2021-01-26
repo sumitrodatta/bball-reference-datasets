@@ -82,11 +82,20 @@ scrape_stats <- function(season = 2017,league="NBA",type="totals"){
   #scrape
   url <- paste0("https://www.basketball-reference.com/leagues/",league,"_",season,"_",type,".html")
   stats_a <- url %>% read_html() %>% html_table() %>% .[[1]]
-  
+  if (type %in% c("shooting","play-by-play")){
+    colnames(stats_a)<-stats_a[1,]
+    stats_a<-stats_a[-1,]
+  }
   #clean
   player_stats_a <- stats_a %>% clean_names() %>% 
-    filter(!player=="Player") %>%
-    mutate_at(vars(-c(player,tm,pos)),as.numeric) %>% 
+    filter(!player=="Player")
+  if (type=="play-by-play"){
+    player_stats_a<-player_stats_a %>% mutate(across(pg_percent:c_percent,~gsub("%","",.)))
+  }
+  else if (type=="shooting"){
+    player_stats_a=player_stats_a %>% select(-starts_with("na"))
+  }
+  player_stats_a <- player_stats_a %>% mutate_at(vars(-c(player,tm,pos)),as.numeric) %>% 
     as_tibble() %>% 
     mutate(rk=season) %>% rename(Season=rk) %>% mutate(Lg=league,.before="tm") %>% clean_names()
   return(player_stats_a)
@@ -106,6 +115,13 @@ get_all<-function(to_scrape="totals")
     #aba
     sapply(1976:1974,function(x){
       new_seas<-scrape_stats(x,"ABA",type=to_scrape)
+      names(new_seas)<-names(a)
+      a<<-rbind(a,new_seas)
+    })
+  }
+  else if (to_scrape %in% c("shooting","play-by-play")){
+    sapply(2019:1997,function(x){
+      new_seas=scrape_stats(x,type=to_scrape)
       names(new_seas)<-names(a)
       a<<-rbind(a,new_seas)
     })

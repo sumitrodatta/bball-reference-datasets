@@ -66,11 +66,31 @@ per_100<-get_all("per_poss")
 per_100<-per_100 %>% select(-x) %>% filter(season>1973)
 per_100<-per_100 %>% rename_at(vars(-c(1:14,17,20,23,26,36:37)),~paste0(.,"_per_100_poss"))
 
+shooting=get_all("shooting")
+shooting=shooting %>% rename(avg_dist_fga=dist) %>% 
+  rename_at(vars(c(16:21)),~paste0("percent_fga_from_",.,"_range")) %>%
+  rename_at(vars(c(22:27)),~paste0("fg_percent_from_",str_sub(.,end=-3),"_range")) %>% 
+  rename_at(vars(c(28:29)),~paste0("percent_assisted_",str_sub(.,end=-3),"_fg")) %>% 
+  rename(percent_dunks_of_fga=percent_fga, num_of_dunks=number,
+         percent_corner_3s_of_3pa=percent_3pa,corner_3_point_percent=x3p_percent,
+         num_heaves_attempted=att,num_heaves_made=number_2)
+
+play_by_play=get_all("play-by-play")
+play_by_play=play_by_play %>% 
+  rename(on_court_plus_minus_per_100_poss=on_court,
+         net_plus_minus_per_100_poss=on_off,bad_pass_turnover=bad_pass,
+         lost_ball_turnover=lost_ball,shooting_foul_committed=shoot,
+         offensive_foul_committed=off,shooting_foul_drawn=shoot_2,
+         offensive_foul_drawn=off_2, points_generated_by_assists=pga,
+         fga_blocked=blkd)
+
 write_excel_csv(advanced,"Advanced.csv")
 write_excel_csv(per_100,"Per 100 Poss.csv")
 write_excel_csv(per_36,"Per 36 Minutes.csv")
 write_excel_csv(totals,"Player Totals.csv")
 write_excel_csv(per_game,"Player Per Game.csv")
+write_excel_csv(play_by_play,"Player Play By Play.csv")
+write_excel_csv(shooting,"Player Shooting.csv")
 
 #player season info starts with season, player, pos, age, tm, league, hof
 #go into excel and add birth years for following player careers:

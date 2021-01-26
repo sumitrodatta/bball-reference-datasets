@@ -120,6 +120,27 @@ add_new_seas<-function(seas=2021,type="totals",update_psi=FALSE){
       rename_at(vars(-c(1:14,17,20,23,26,36:37)),~paste0(.,"_per_100_poss"))
     write_csv(old %>% add_row(a),"Per 100 Poss.csv")
   }
+  else if (type=="shooting"){
+    old=read_csv("Player Shooting.csv") %>% filter(season != seas)
+    a<-a %>% rename(avg_dist_fga=dist) %>% 
+      rename_at(vars(c(16:21)),~paste0("percent_fga_from_",.,"_range")) %>%
+      rename_at(vars(c(22:27)),~paste0("fg_percent_from_",str_sub(.,end=-3),"_range")) %>% 
+      rename_at(vars(c(28:29)),~paste0("percent_assisted_",str_sub(.,end=-3),"_fg")) %>% 
+      rename(percent_dunks_of_fga=percent_fga, num_of_dunks=number,
+             percent_corner_3s_of_3pa=percent_3pa,corner_3_point_percent=x3p_percent,
+             num_heaves_attempted=att,num_heaves_made=number_2)
+    write_csv(old %>% add_row(a),"Player Shooting.csv")
+  }
+  else if (type=="play-by-play"){
+    old=read_csv("Player Play By Play.csv") %>% filter(season != seas)
+    a<-a %>% rename(on_court_plus_minus_per_100_poss=on_court,
+                    net_plus_minus_per_100_poss=on_off,bad_pass_turnover=bad_pass,
+                    lost_ball_turnover=lost_ball,shooting_foul_committed=shoot,
+                    offensive_foul_committed=off,shooting_foul_drawn=shoot_2,
+                    offensive_foul_drawn=off_2, points_generated_by_assists=pga,
+                    fga_blocked=blkd)
+    write_csv(old %>% add_row(a),"Player Play By Play.csv")
+  }
 }
 
 add_new_team_seas(seas=2021,type="team-stats-base",update_abbrevs = TRUE)
@@ -135,5 +156,9 @@ add_new_seas(seas=2021,type="advanced",update_psi=FALSE)
 add_new_seas(seas=2021,type="per_game",update_psi=FALSE)
 add_new_seas(seas=2021,type="per_minute",update_psi=FALSE)
 add_new_seas(seas=2021,type="per_poss",update_psi=FALSE)
+add_new_seas(seas=2021,type="shooting",update_psi=FALSE)
+add_new_seas(seas=2021,type="play-by-play",update_psi=FALSE)
 
-
+#for hometowns, remove
+write_csv(read_csv("Player Per Game.csv") %>% filter(season==2021) %>% group_by(player_id) %>% 
+            slice_head() %>% arrange(player) %>% select(player_id,player),"2021 Players.csv")
