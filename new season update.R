@@ -8,6 +8,21 @@ add_new_team_seas <- function(seas = 2021, type = "team-stats-base", update_abbr
   if (type == "misc") {
     a <- misc_stats_scrape(season = seas)
   }
+  # work around since not updating
+  else if (type=="team-stats-per_game"){
+    a<-paste0("https://www.basketball-reference.com/leagues/NBA_",seas,".html") %>% 
+      read_html() %>% 
+      html_nodes(xpath = "//comment()") %>% 
+      html_text() %>% 
+      paste(collapse = "") %>% 
+      read_html() %>% 
+      html_table() %>%
+      .[[1]] %>%
+      rename(Season = Rk) %>%
+      mutate(Season = seas) %>%
+      add_column(Lg = "NBA", .before = "Team") %>%
+      clean_names()
+  }
   else {
     a <- teamStats(season = seas, type = type)
   }
