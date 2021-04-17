@@ -1,15 +1,18 @@
 library(rvest)
 library(tidyverse)
 library(janitor)
+library(polite)
+
+bbref_bow=bow("https://www.basketball-reference.com/",user_agent = "Sumitro Datta",force=TRUE)
+print(bbref_bow)
 
 # team-stats-base
 # opponent-stats-base
 # team-stats-per_poss from 1974
 # opponent-stats-per_poss from 1974
 teamStats <- function(season = 2020, league = "NBA", type = "team-stats-base") {
-  url <- paste0("https://www.basketball-reference.com/leagues/", league, "_", season, ".html")
-  new_season <- url %>%
-    read_html() %>%
+  session = nod(bbref_bow,path=paste0("leagues/", league, "_", season, ".html"))
+  new_season <- scrape(session) %>%
     html_nodes(xpath = "//comment()") %>%
     html_text() %>%
     paste(collapse = "") %>%
@@ -69,9 +72,8 @@ get_all_team_stats <- function(to_scrape = "team-stats-base") {
 }
 
 misc_stats_scrape <- function(season = 2020, league = "NBA") {
-  url <- paste0("https://www.basketball-reference.com/leagues/", league, "_", season, ".html")
-  new_season <- url %>%
-    read_html() %>%
+  session = nod(bbref_bow,path=paste0("leagues/", league, "_", season, ".html"))
+  new_season <- scrape(session) %>%
     html_nodes(xpath = "//comment()") %>%
     html_text() %>%
     paste(collapse = "") %>%
@@ -99,9 +101,8 @@ misc_stats_scrape <- function(season = 2020, league = "NBA") {
 
 scrape_stats <- function(season = 2017, league = "NBA", type = "totals") {
   # scrape
-  url <- paste0("https://www.basketball-reference.com/leagues/", league, "_", season, "_", type, ".html")
-  stats_a <- url %>%
-    read_html() %>%
+  session = nod(bbref_bow,path=paste0("leagues/", league, "_", season, "_", type, ".html"))
+  stats_a <- scrape(session) %>%
     html_table() %>%
     .[[1]]
   if (type %in% c("shooting", "play-by-play")) {

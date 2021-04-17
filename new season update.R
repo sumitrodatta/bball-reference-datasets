@@ -1,6 +1,7 @@
 library(rvest)
 library(tidyverse)
 library(janitor)
+library(polite)
 
 source("Tm & Player Seasons.R")
 
@@ -10,8 +11,8 @@ add_new_team_seas <- function(seas = 2021, type = "team-stats-base", update_abbr
   }
   # work around since not updating
   else if (type=="team-stats-per_game"){
-    a<-paste0("https://www.basketball-reference.com/leagues/NBA_",seas,".html") %>% 
-      read_html() %>% 
+    session = nod(bbref_bow,path=paste0("leagues/NBA_", seas, ".html"))
+    a<-scrape(session) %>% 
       html_nodes(xpath = "//comment()") %>% 
       html_text() %>% 
       paste(collapse = "") %>% 
