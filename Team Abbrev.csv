@@ -1722,7 +1722,7 @@ season,lg,team,playoffs,abbreviation
 1950,NBA,Waterloo Hawks,FALSE,WAT
 2021,NBA,Atlanta Hawks,FALSE,ATL
 2021,NBA,Boston Celtics,FALSE,BOS
-2021,NBA,Brooklyn Nets,FALSE,BRK
+2021,NBA,Brooklyn Nets,TRUE,BRK
 2021,NBA,Charlotte Hornets,FALSE,CHO
 2021,NBA,Chicago Bulls,FALSE,CHI
 2021,NBA,Cleveland Cavaliers,FALSE,CLE
@@ -1743,11 +1743,11 @@ season,lg,team,playoffs,abbreviation
 2021,NBA,New York Knicks,FALSE,NYK
 2021,NBA,Oklahoma City Thunder,FALSE,OKC
 2021,NBA,Orlando Magic,FALSE,ORL
-2021,NBA,Philadelphia 76ers,FALSE,PHI
-2021,NBA,Phoenix Suns,FALSE,PHO
+2021,NBA,Philadelphia 76ers,TRUE,PHI
+2021,NBA,Phoenix Suns,TRUE,PHO
 2021,NBA,Portland Trail Blazers,FALSE,POR
 2021,NBA,Sacramento Kings,FALSE,SAC
 2021,NBA,San Antonio Spurs,FALSE,SAS
 2021,NBA,Toronto Raptors,FALSE,TOR
-2021,NBA,Utah Jazz,FALSE,UTA
+2021,NBA,Utah Jazz,TRUE,UTA
 2021,NBA,Washington Wizards,FALSE,WAS
