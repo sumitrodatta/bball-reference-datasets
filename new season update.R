@@ -10,20 +10,21 @@ add_new_team_seas <- function(seas = 2021, type = "team-stats-base", update_abbr
     a <- misc_stats_scrape(season = seas)
   }
   # work around since not updating
-  else if (type=="team-stats-per_game"){
-    session = nod(bbref_bow,path=paste0("leagues/NBA_", seas, ".html"))
-    a<-scrape(session) %>% 
-      html_nodes(xpath = "//comment()") %>% 
-      html_text() %>% 
-      paste(collapse = "") %>% 
-      read_html() %>% 
-      html_table() %>%
-      .[[1]] %>%
-      rename(Season = Rk) %>%
-      mutate(Season = seas) %>%
-      add_column(Lg = "NBA", .before = "Team") %>%
-      clean_names()
-  }
+  # note as of may 26, 2021: needed when no playoff series in page
+  # else if (type=="team-stats-per_game"){
+  #   session = nod(bbref_bow,path=paste0("leagues/NBA_", seas, ".html"))
+  #   a<-scrape(session) %>% 
+  #     html_nodes(xpath = "//comment()") %>% 
+  #     html_text() %>% 
+  #     paste(collapse = "") %>% 
+  #     read_html() %>% 
+  #     html_table() %>%
+  #     .[[1]] %>%
+  #     rename(Season = Rk) %>%
+  #     mutate(Season = seas) %>%
+  #     add_column(Lg = "NBA", .before = "Team") %>%
+  #     clean_names()
+  # }
   else {
     a <- teamStats(season = seas, type = type)
   }
@@ -95,7 +96,10 @@ add_new_seas <- function(seas = 2021, type = "totals", update_psi = FALSE) {
     new_player_info <- a %>%
       select(season:tm) %>%
       mutate(hof = FALSE) %>%
-      arrange(season, player)
+      arrange(season, player) %>% 
+      mutate(birth_year=case_when((player=="Mike James" & season>=2018)~1990,
+                                  TRUE~NA_real_))
+    # change above mutate birth year line whenever new player enters league
     psi <- read_csv("Player Season Info.csv") %>%
       select(season, player:tm) %>%
       filter(season != seas)
