@@ -1721,7 +1721,7 @@ season,lg,team,playoffs,abbreviation
 1998,NBA,Washington Wizards,FALSE,WAS
 1950,NBA,Waterloo Hawks,FALSE,WAT
 2021,NBA,Atlanta Hawks,TRUE,ATL
-2021,NBA,Boston Celtics,FALSE,BOS
+2021,NBA,Boston Celtics,TRUE,BOS
 2021,NBA,Brooklyn Nets,TRUE,BRK
 2021,NBA,Charlotte Hornets,FALSE,CHO
 2021,NBA,Chicago Bulls,FALSE,CHI
@@ -1734,8 +1734,8 @@ season,lg,team,playoffs,abbreviation
 2021,NBA,Indiana Pacers,FALSE,IND
 2021,NBA,League Average,FALSE,NA
 2021,NBA,Los Angeles Clippers,TRUE,LAC
-2021,NBA,Los Angeles Lakers,FALSE,LAL
-2021,NBA,Memphis Grizzlies,FALSE,MEM
+2021,NBA,Los Angeles Lakers,TRUE,LAL
+2021,NBA,Memphis Grizzlies,TRUE,MEM
 2021,NBA,Miami Heat,TRUE,MIA
 2021,NBA,Milwaukee Bucks,TRUE,MIL
 2021,NBA,Minnesota Timberwolves,FALSE,MIN
@@ -1750,4 +1750,4 @@ season,lg,team,playoffs,abbreviation
 2021,NBA,San Antonio Spurs,FALSE,SAS
 2021,NBA,Toronto Raptors,FALSE,TOR
 2021,NBA,Utah Jazz,TRUE,UTA
-2021,NBA,Washington Wizards,FALSE,WAS
+2021,NBA,Washington Wizards,TRUE,WAS

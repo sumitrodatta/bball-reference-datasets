@@ -28,14 +28,14 @@ add_new_team_seas <- function(seas = 2021, type = "team-stats-base", update_abbr
   else {
     a <- teamStats(season = seas, type = type)
   }
+  a<-a %>% mutate(
+    playoffs = str_detect(team, "\\*"),
+    team = ifelse(playoffs == TRUE, substr(team, 1, nchar(team) - 1), team)
+  )
   if (update_abbrevs == TRUE) {
     abbrev <- read_csv("Team Abbrev.csv") %>% filter(season != seas)
     new_seas <- a %>%
-      select(season:team) %>%
-      mutate(
-        playoffs = str_detect(team, "\\*"),
-        team = ifelse(playoffs == TRUE, substr(team, 1, nchar(team) - 1), team)
-      )
+      select(season:team,playoffs)
     previous_seas <- abbrev %>%
       filter(season == seas - 1) %>%
       select(team, abbreviation)
