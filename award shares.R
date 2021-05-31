@@ -1,10 +1,14 @@
 library(rvest)
 library(tidyverse)
 library(janitor)
+library(polite)
+
+bbref_bow=bow("https://www.basketball-reference.com/",user_agent = "Sumitro Datta",force=TRUE)
+print(bbref_bow)
 
 # works with mvp, roy
 get_award_pcts_mvp_roy <- function(season = 2020, award = "mvp", lg = "nba") {
-  url <- paste0("https://www.basketball-reference.com/awards/awards_", season, ".html")
+  session=nod(bbref_bow,path=paste0("awards/awards_",season,".html"))
   awarding <- award
   # aba mvp awarded from 1968-1976
   if (award == "mvp") {
@@ -18,8 +22,7 @@ get_award_pcts_mvp_roy <- function(season = 2020, award = "mvp", lg = "nba") {
       awarding <- paste0(lg, "_", award)
     }
   }
-  pcts <- url %>%
-    read_html() %>%
+  pcts <- scrape(session) %>%
     html_nodes(xpath = paste0('//*[(@id = "div_', awarding, '")]')) %>%
     .[[1]] %>%
     html_node("table") %>%
@@ -39,9 +42,8 @@ get_award_pcts_mvp_roy <- function(season = 2020, award = "mvp", lg = "nba") {
 
 # works with dpoy, smoy, mip (all there are nba-only awards)
 get_award_pcts_other <- function(season = 2020, award = "mip") {
-  url <- paste0("https://www.basketball-reference.com/awards/awards_", season, ".html")
-  pcts <- url %>%
-    read_html() %>%
+  session=nod(bbref_bow,path=paste0("awards/awards_",season,".html"))
+  pcts <- scrape(session) %>%
     html_nodes(xpath = "//comment()") %>%
     html_text() %>%
     paste(collapse = "") %>%
@@ -99,9 +101,8 @@ all_lg_scrape <- function() {
 }
 
 all_def_or_all_rookie <- function(type = "all_defense") {
-  url <- paste0("https://www.basketball-reference.com/awards/", type, ".html")
-  alldef <- url %>%
-    read_html() %>%
+  session=nod(bbref_bow,path=paste0("awards/", type, ".html"))
+  alldef <- scrape(session) %>%
     html_nodes(xpath = paste0('//*[(@id = "div_awards_', type, '")]')) %>%
     html_node("table") %>%
     html_table() %>%
@@ -134,9 +135,8 @@ all_def_or_all_rookie <- function(type = "all_defense") {
 }
 
 all_stars <- function(season = 2020, league = "NBA") {
-  url <- paste0("https://www.basketball-reference.com/leagues/", league, "_", season, ".html")
-  new_season <- url %>%
-    read_html() %>%
+  session=nod(bbref_bow,paste0("leagues/", league, "_", season, ".html"))
+  new_season <- scrape(session) %>%
     html_nodes(xpath = "//comment()") %>%
     html_text() %>%
     paste(collapse = "") %>%
@@ -152,8 +152,8 @@ all_stars <- function(season = 2020, league = "NBA") {
     str_trim(.) %>%
     str_split(., "\\s{2,100}")
   all_stars_tibble <- tibble(player = character(), team = character(), season = integer(), lg = character())
-  team1 <- tibble(player = rosters[[1]]) %>% mutate(team = team_names[[1]], lg = league, seas = season)
-  team2 <- tibble(player = rosters[[2]]) %>% mutate(team = team_names[[2]], lg = league, seas = season)
+  team1 <- tibble(player = rosters[[1]]) %>% mutate(team = team_names[[1]], lg = league, season = season)
+  team2 <- tibble(player = rosters[[2]]) %>% mutate(team = team_names[[2]], lg = league, season = season)
   all_stars_tibble <- rbind(all_stars_tibble, team1) %>% rbind(., team2)
   return(all_stars_tibble)
 }

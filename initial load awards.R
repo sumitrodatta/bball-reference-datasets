@@ -1,6 +1,7 @@
 library(rvest)
 library(tidyverse)
 library(janitor)
+library(polite)
 
 source("award shares.R")
 
