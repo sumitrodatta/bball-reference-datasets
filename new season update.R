@@ -95,7 +95,6 @@ add_new_seas <- function(seas = 2021, type = "totals", update_psi = FALSE) {
     # no active hall of famers
     new_player_info <- a %>%
       select(season:tm) %>%
-      mutate(hof = FALSE) %>%
       arrange(season, player) %>% 
       mutate(birth_year=case_when((player=="Mike James" & season>=2018)~1990,
                                   TRUE~NA_real_))
@@ -103,6 +102,8 @@ add_new_seas <- function(seas = 2021, type = "totals", update_psi = FALSE) {
     psi <- read_csv("Player Season Info.csv") %>%
       select(season, player:tm) %>%
       filter(season != seas)
+    pci <- read_csv("Player Career Info.csv") %>% filter(last_seas<seas) %>%
+      select(player_id:hof)
     updated_psi <- psi %>% add_row(new_player_info)
     # season ids
     updated_psi <- updated_psi %>% mutate(seas_id = row_number())
@@ -129,9 +130,15 @@ add_new_seas <- function(seas = 2021, type = "totals", update_psi = FALSE) {
       mutate(tm = ifelse(tm == "1TOT", "TOT", tm)) %>%
       arrange(seas_id) %>%
       relocate(seas_id, player_id, .after = "season")
+    updated_pci <- updated_psi %>% group_by(player_id,player,birth_year) %>% 
+      summarize(num_seasons=max(experience),first_seas=min(season),
+                last_seas=max(season)) %>% 
+      ungroup() %>% group_by(player_id) %>% slice_head(n=1) %>% ungroup() %>%
+      full_join(pci,.) %>% replace_na(list(hof=FALSE))
+    write_csv(updated_pci, "Player Career Info.csv")
     write_csv(updated_psi, "Player Season Info.csv")
   }
-  a <- left_join(a, read_csv("Player Season Info.csv",col_types = "dddcdlcdccd")) %>%
+  a <- left_join(a, read_csv("Player Season Info.csv",col_types = "dddcdcdccd")) %>%
     relocate(seas_id, season, player_id, player, birth_year, hof, pos, age, experience, lg)
   if (type == "totals") {
     old <- read_csv("Player Totals.csv") %>% filter(season != seas)
