@@ -172,11 +172,11 @@ get_all <- function(to_scrape = "totals") {
       a <<- rbind(a, new_seas)
     })
   }
-  # removed asterisk from hall of fame players and add as separate column
+  # removed asterisk from hall of fame players
   a <- a %>%
     mutate(
       hof = str_detect(player, "\\*"),
-      player = ifelse(hof == TRUE, substr(player, 1, nchar(player) - 1), player)
+      player = ifelse(hof, substr(player, 1, nchar(player) - 1), player)
     ) %>%
     left_join(., read_csv("Player Season Info.csv"))
   a <- a %>% relocate(seas_id, season, player_id, player, birth_year, hof, pos, age, experience, lg)

@@ -1166,7 +1166,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 1165,Bingo Smith,NA,FALSE,11,1970,1980
 1166,Bob Arnzen,1947,FALSE,4,1970,1974
 1167,Bob Christian,1946,FALSE,5,1970,1974
-1168,Bob Dandridge,NA,FALSE,13,1970,1982
+1168,Bob Dandridge,NA,TRUE,13,1970,1982
 1169,Bob Greacen,1947,FALSE,3,1970,1972
 1170,Bob Portman,NA,FALSE,4,1970,1973
 1171,Bob Woollard,NA,FALSE,1,1970,1970
@@ -2779,7 +2779,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 2778,Chris Jent,NA,FALSE,2,1994,1997
 2779,Chris King,NA,FALSE,3,1994,1999
 2780,Chris Mills,NA,FALSE,10,1994,2003
-2781,Chris Webber,NA,FALSE,15,1994,2008
+2781,Chris Webber,NA,TRUE,15,1994,2008
 2782,Chris Whitney,NA,FALSE,11,1994,2004
 2783,Corie Blount,NA,FALSE,11,1994,2004
 2784,Darnell Mee,NA,FALSE,2,1994,1995
@@ -2827,7 +2827,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 2826,Skeeter Henry,NA,FALSE,1,1994,1994
 2827,Stanley Jackson,NA,FALSE,1,1994,1994
 2828,Terry Dehere,NA,FALSE,6,1994,1999
-2829,Toni Kukoč,NA,FALSE,13,1994,2006
+2829,Toni Kukoč,NA,TRUE,13,1994,2006
 2830,Vin Baker,NA,FALSE,13,1994,2006
 2831,Warren Kidd,NA,FALSE,1,1994,1994
 2832,Aaron McKie,NA,FALSE,13,1995,2007
@@ -2969,7 +2969,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 2968,Amal McCaskill,NA,FALSE,4,1997,2004
 2969,Antoine Walker,NA,FALSE,12,1997,2008
 2970,Ben Davis,NA,FALSE,4,1997,2000
-2971,Ben Wallace,NA,FALSE,16,1997,2012
+2971,Ben Wallace,NA,TRUE,16,1997,2012
 2972,Brent Scott,NA,FALSE,1,1997,1997
 2973,Brett Szabo,NA,FALSE,1,1997,1997
 2974,Brian Evans,NA,FALSE,3,1997,1999
@@ -3144,7 +3144,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 3143,Nazr Mohammed,NA,FALSE,18,1999,2016
 3144,Pat Garrity,NA,FALSE,10,1999,2008
 3145,Paul Grant,NA,FALSE,2,1999,2004
-3146,Paul Pierce,NA,FALSE,19,1999,2017
+3146,Paul Pierce,NA,TRUE,19,1999,2017
 3147,Peja Stojaković,NA,FALSE,13,1999,2011
 3148,Peter Aluma,NA,FALSE,1,1999,1999
 3149,Raef LaFrentz,NA,FALSE,10,1999,2008
@@ -3434,7 +3434,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 3433,Brian Cook,NA,FALSE,9,2004,2012
 3434,Britton Johnsen,NA,FALSE,2,2004,2005
 3435,Carmelo Anthony,NA,FALSE,18,2004,2021
-3436,Chris Bosh,NA,FALSE,13,2004,2016
+3436,Chris Bosh,NA,TRUE,13,2004,2016
 3437,Chris Kaman,NA,FALSE,13,2004,2016
 3438,Curtis Borchardt,NA,FALSE,2,2004,2005
 3439,Dahntay Jones,NA,FALSE,13,2004,2017
