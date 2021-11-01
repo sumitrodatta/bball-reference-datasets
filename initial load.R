@@ -4,44 +4,33 @@ library(janitor)
 
 source("Tm & Player Seasons.R")
 
-team_stats_base <- get_all_team_stats()
+team_stats_base <- get_all_team_stats("totals-team")
 
-opp_stats_base <- get_all_team_stats("opponent-stats-base")
+opp_stats_base <- get_all_team_stats("totals-opponent")
 opp_stats_base <- opp_stats_base %>% rename_at(vars(-c(1:7)), ~ paste0("opp_", .))
 
-team_stats_pg <- get_all_team_stats("team-stats-per_game")
+team_stats_pg <- get_all_team_stats("per_game-team")
 team_stats_pg <- team_stats_pg %>%
   rename_at(vars(-c(1:6, 10, 13, 16, 19)), ~ paste0(., "_per_game"))
 
-opp_stats_pg <- get_all_team_stats("opponent-stats-per_game")
+opp_stats_pg <- get_all_team_stats("per_game-opponent")
 opp_stats_pg <- opp_stats_pg %>%
   rename_at(vars(-c(1:7)), ~ paste0("opp_", .)) %>%
   rename_at(vars(-c(1:6, 10, 13, 16, 19)), ~ paste0(., "_per_game"))
 
-team_stats_per_poss <- get_all_team_stats("team-stats-per_poss")
+team_stats_per_poss <- get_all_team_stats("per_poss-team")
 team_stats_per_poss <- team_stats_per_poss %>%
   rename_at(vars(-c(1:7, 10, 13, 16, 19)), ~ paste0(., "_per_100_poss"))
 
-opp_stats_per_poss <- get_all_team_stats("opponent-stats-per_poss")
+opp_stats_per_poss <- get_all_team_stats("per_poss-opponent")
 opp_stats_per_poss <- opp_stats_per_poss %>%
   rename_at(vars(-c(1:7)), ~ paste0("opp_", .)) %>%
   rename_at(vars(-c(1:7, 10, 13, 16, 19)), ~ paste0(., "_per_100_poss"))
 
-tm_summaries <- misc_stats_scrape()
-sapply(2019:1950, function(x) {
-  new_seas <- misc_stats_scrape(x)
-  tm_summaries <<- rbind(tm_summaries, new_seas)
-})
-sapply(1949:1947, function(x) {
-  new_seas <- misc_stats_scrape(x, "BAA")
-  tm_summaries <<- rbind(tm_summaries, new_seas)
-})
-sapply(1976:1968, function(x) {
-  new_seas <- misc_stats_scrape(x, "ABA")
-  tm_summaries <<- rbind(tm_summaries, new_seas)
-})
-tm_summaries <- left_join(tm_summaries, read_csv("Team Abbrev.csv")) %>%
-  relocate(c(abbreviation, playoffs), .after = "team")
+tm_summaries <- get_all_team_stats("advanced-team")
+tm_summaries <- tm_summaries %>%
+  mutate(attend = gsub(",", "", attend), attend_g = gsub(",", "", attend_g)) %>%
+  mutate(across(c(attend, attend_g), as.numeric))
 
 write_excel_csv(tm_summaries, "Team Summaries.csv")
 write_excel_csv(opp_stats_per_poss, "Opponent Stats Per 100 Poss.csv")

@@ -113,12 +113,12 @@ add_new_seas <- function(seas = 2021, type = "totals", update_psi = FALSE) {
       summarize(num_seasons=max(experience),first_seas=min(season),
                 last_seas=max(season)) %>% 
       ungroup() %>% group_by(player_id) %>% slice_head(n=1) %>% ungroup() %>%
-      full_join(pci,.) %>% replace_na(list(hof=FALSE))
+      full_join(pci,.) %>% replace_na(list(hof=FALSE)) %>% arrange(player_id)
     write_csv(updated_pci, "Player Career Info.csv")
     write_csv(updated_psi, "Player Season Info.csv")
   }
   a <- left_join(a, read_csv("Player Season Info.csv",col_types = "dddcdcdccd")) %>%
-    relocate(seas_id, season, player_id, player, birth_year, hof, pos, age, experience, lg)
+    relocate(seas_id, season, player_id, player, birth_year, pos, age, experience, lg)
   if (type == "totals") {
     old <- read_csv("Player Totals.csv") %>% filter(season != seas)
     write_csv(old %>% add_row(a) %>% arrange(desc(season),player), "Player Totals.csv")
@@ -130,28 +130,28 @@ add_new_seas <- function(seas = 2021, type = "totals", update_psi = FALSE) {
   }
   else if (type == "per_game") {
     old <- read_csv("Player Per Game.csv") %>% filter(season != seas)
-    a <- a %>% rename_at(vars(-c(1:13, 17, 20, 23:24, 27)), ~ paste0(., "_per_game"))
+    a <- a %>% rename_at(vars(-c(1:12, 16, 19, 22:23, 26)), ~ paste0(., "_per_game"))
     write_csv(old %>% add_row(a) %>% arrange(desc(season),player), "Player Per Game.csv")
   }
   else if (type == "per_minute") {
     old <- read_csv("Per 36 Minutes.csv") %>% filter(season != seas)
-    a <- a %>% rename_at(vars(-c(1:14, 17, 20, 23, 26)), ~ paste0(., "_per_36_min"))
+    a <- a %>% rename_at(vars(-c(1:13, 16, 19, 22, 25)), ~ paste0(., "_per_36_min"))
     write_csv(old %>% add_row(a) %>% arrange(desc(season),player), "Per 36 Minutes.csv")
   }
   else if (type == "per_poss") {
     old <- read_csv("Per 100 Poss.csv") %>% filter(season != seas)
     a <- a %>%
       select(-x) %>%
-      rename_at(vars(-c(1:14, 17, 20, 23, 26, 36:37)), ~ paste0(., "_per_100_poss"))
+      rename_at(vars(-c(1:13, 16, 19, 22, 25, 35:36)), ~ paste0(., "_per_100_poss"))
     write_csv(old %>% add_row(a) %>% arrange(desc(season),player), "Per 100 Poss.csv")
   }
   else if (type == "shooting") {
     old <- read_csv("Player Shooting.csv") %>% filter(season != seas)
     a <- a %>%
       rename(avg_dist_fga = dist) %>%
-      rename_at(vars(c(16:21)), ~ paste0("percent_fga_from_", ., "_range")) %>%
-      rename_at(vars(c(22:27)), ~ paste0("fg_percent_from_", str_sub(., end = -3), "_range")) %>%
-      rename_at(vars(c(28:29)), ~ paste0("percent_assisted_", str_sub(., end = -3), "_fg")) %>%
+      rename_at(vars(c(15:20)), ~ paste0("percent_fga_from_", ., "_range")) %>%
+      rename_at(vars(c(21:26)), ~ paste0("fg_percent_from_", str_sub(., end = -3), "_range")) %>%
+      rename_at(vars(c(27:28)), ~ paste0("percent_assisted_", str_sub(., end = -3), "_fg")) %>%
       rename(
         percent_dunks_of_fga = percent_fga, num_of_dunks = number,
         percent_corner_3s_of_3pa = percent_3pa, corner_3_point_percent = x3p_percent,
@@ -181,13 +181,13 @@ add_new_team_seas(seas = 2022, type = "per_poss-team", update_abbrevs = FALSE)
 add_new_team_seas(seas = 2022, type = "per_poss-opponent", update_abbrevs = FALSE)
 add_new_team_seas(seas = 2022, type = "advanced-team", update_abbrevs = FALSE)
 
-add_new_seas(seas = 2021, type = "totals", update_psi = TRUE)
-add_new_seas(seas = 2021, type = "advanced", update_psi = FALSE)
-add_new_seas(seas = 2021, type = "per_game", update_psi = FALSE)
-add_new_seas(seas = 2021, type = "per_minute", update_psi = FALSE)
-add_new_seas(seas = 2021, type = "per_poss", update_psi = FALSE)
-add_new_seas(seas = 2021, type = "shooting", update_psi = FALSE)
-add_new_seas(seas = 2021, type = "play-by-play", update_psi = FALSE)
+add_new_seas(seas = 2022, type = "totals", update_psi = TRUE)
+add_new_seas(seas = 2022, type = "advanced", update_psi = FALSE)
+add_new_seas(seas = 2022, type = "per_game", update_psi = FALSE)
+add_new_seas(seas = 2022, type = "per_minute", update_psi = FALSE)
+add_new_seas(seas = 2022, type = "per_poss", update_psi = FALSE)
+add_new_seas(seas = 2022, type = "shooting", update_psi = FALSE)
+add_new_seas(seas = 2022, type = "play-by-play", update_psi = FALSE)
 
 file_names=c("Player Totals.csv","Advanced.csv","Player Per Game.csv",
              "Per 36 Minutes.csv","Per 100 Poss.csv","Player Shooting.csv","Player Play By Play.csv")
