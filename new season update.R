@@ -5,29 +5,8 @@ library(polite)
 
 source("Tm & Player Seasons.R")
 
-add_new_team_seas <- function(seas = 2021, type = "team-stats-base", update_abbrevs = FALSE) {
-  if (type == "misc") {
-    a <- misc_stats_scrape(season = seas)
-  }
-  # work around since not updating
-  # note as of may 26, 2021: needed when no playoff series in page
-  # else if (type=="team-stats-per_game"){
-  #   session = nod(bbref_bow,path=paste0("leagues/NBA_", seas, ".html"))
-  #   a<-scrape(session) %>% 
-  #     html_nodes(xpath = "//comment()") %>% 
-  #     html_text() %>% 
-  #     paste(collapse = "") %>% 
-  #     read_html() %>% 
-  #     html_table() %>%
-  #     .[[1]] %>%
-  #     rename(Season = Rk) %>%
-  #     mutate(Season = seas) %>%
-  #     add_column(Lg = "NBA", .before = "Team") %>%
-  #     clean_names()
-  # }
-  else {
-    a <- teamStats(season = seas, type = type)
-  }
+add_new_team_seas <- function(seas = 2021, type = "per_game-team", update_abbrevs = FALSE) {
+  a <- teamStats(season = seas, type = type)
   a<-a %>% mutate(
     playoffs = str_detect(team, "\\*"),
     team = ifelse(playoffs == TRUE, substr(team, 1, nchar(team) - 1), team)
@@ -45,42 +24,42 @@ add_new_team_seas <- function(seas = 2021, type = "team-stats-base", update_abbr
   }
   a <- left_join(a, read_csv("Team Abbrev.csv")) %>%
     relocate(c(abbreviation, playoffs), .after = "team")
-  if (type == "misc") {
+  if (type == "advanced-team") {
     old <- read_csv("Team Summaries.csv") %>% filter(season != seas)
     a <- a %>%
       mutate(attend = gsub(",", "", attend), attend_g = gsub(",", "", attend_g)) %>%
       mutate(across(c(attend, attend_g), as.numeric))
     write_csv(old %>% add_row(a) %>% arrange(desc(season),abbreviation), "Team Summaries.csv")
   }
-  else if (type == "team-stats-base") {
+  else if (type == "totals-team") {
     old <- read_csv("Team Totals.csv") %>% filter(season != seas)
     write_csv(old %>% add_row(a) %>% arrange(desc(season),abbreviation), "Team Totals.csv")
   }
-  else if (type == "opponent-stats-base") {
+  else if (type == "totals-opponent") {
     old <- read_csv("Opponent Totals.csv") %>% filter(season != seas)
     a <- a %>% rename_at(vars(-c(1:7)), ~ paste0("opp_", .))
     write_csv(old %>% add_row(a) %>% arrange(desc(season),abbreviation), "Opponent Totals.csv")
   }
-  else if (type == "team-stats-per_game") {
+  else if (type == "per_game-team") {
     old <- read_csv("Team Stats Per Game.csv") %>% filter(season != seas)
     a <- a %>%
       rename_at(vars(-c(1:6, 10, 13, 16, 19)), ~ paste0(., "_per_game"))
     write_csv(old %>% add_row(a) %>% arrange(desc(season),abbreviation), "Team Stats Per Game.csv")
   }
-  else if (type == "opponent-stats-per_game") {
+  else if (type == "per_game-opponent") {
     old <- read_csv("Opponent Stats Per Game.csv") %>% filter(season != seas)
     a <- a %>%
       rename_at(vars(-c(1:7)), ~ paste0("opp_", .)) %>%
       rename_at(vars(-c(1:6, 10, 13, 16, 19)), ~ paste0(., "_per_game"))
     write_csv(old %>% add_row(a) %>% arrange(desc(season),abbreviation), "Opponent Stats Per Game.csv")
   }
-  else if (type == "team-stats-per_poss") {
+  else if (type == "per_poss-team") {
     old <- read_csv("Team Stats Per 100 Poss.csv") %>% filter(season != seas)
     a <- a %>%
       rename_at(vars(-c(1:7, 10, 13, 16, 19)), ~ paste0(., "_per_100_poss"))
     write_csv(old %>% add_row(a) %>% arrange(desc(season),abbreviation), "Team Stats Per 100 Poss.csv")
   }
-  else if (type == "opponent-stats-per_poss") {
+  else if (type == "per_poss-opponent") {
     old <- read_csv("Opponent Stats Per 100 Poss.csv") %>% filter(season != seas)
     a <- a %>%
       rename_at(vars(-c(1:7)), ~ paste0("opp_", .)) %>%
@@ -194,13 +173,13 @@ add_new_seas <- function(seas = 2021, type = "totals", update_psi = FALSE) {
   }
 }
 
-add_new_team_seas(seas = 2021, type = "team-stats-base", update_abbrevs = TRUE)
-add_new_team_seas(seas = 2021, type = "opponent-stats-base", update_abbrevs = FALSE)
-add_new_team_seas(seas = 2021, type = "team-stats-per_game", update_abbrevs = FALSE)
-add_new_team_seas(seas = 2021, type = "opponent-stats-per_game", update_abbrevs = FALSE)
-add_new_team_seas(seas = 2021, type = "team-stats-per_poss", update_abbrevs = FALSE)
-add_new_team_seas(seas = 2021, type = "opponent-stats-per_poss", update_abbrevs = FALSE)
-add_new_team_seas(seas = 2021, type = "misc", update_abbrevs = FALSE)
+add_new_team_seas(seas = 2022, type = "totals-team", update_abbrevs = TRUE)
+add_new_team_seas(seas = 2022, type = "totals-opponent", update_abbrevs = FALSE)
+add_new_team_seas(seas = 2022, type = "per_game-team", update_abbrevs = FALSE)
+add_new_team_seas(seas = 2022, type = "per_game-opponent", update_abbrevs = FALSE)
+add_new_team_seas(seas = 2022, type = "per_poss-team", update_abbrevs = FALSE)
+add_new_team_seas(seas = 2022, type = "per_poss-opponent", update_abbrevs = FALSE)
+add_new_team_seas(seas = 2022, type = "advanced-team", update_abbrevs = FALSE)
 
 add_new_seas(seas = 2021, type = "totals", update_psi = TRUE)
 add_new_seas(seas = 2021, type = "advanced", update_psi = FALSE)

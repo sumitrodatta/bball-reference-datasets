@@ -6,21 +6,22 @@ library(polite)
 bbref_bow=bow("https://www.basketball-reference.com/",user_agent = "Sumitro Datta",force=TRUE)
 print(bbref_bow)
 
-# team-stats-base
-# opponent-stats-base
-# team-stats-per_poss from 1974
-# opponent-stats-per_poss from 1974
-teamStats <- function(season = 2020, league = "NBA", type = "team-stats-base") {
+# per_game-team, per_game-opponent
+# totals-team, totals-opponent
+# per_poss-team, per_poss-opponent from 1974
+# advanced-team
+teamStats <- function(season = 2020, league = "NBA", type = "per_game-team") {
   session = nod(bbref_bow,path=paste0("leagues/", league, "_", season, ".html"))
-  new_season <- scrape(session) %>%
-    html_nodes(xpath = "//comment()") %>%
-    html_text() %>%
-    paste(collapse = "") %>%
-    read_html() %>%
-    html_nodes(xpath = paste0('//*[(@id = "div_', type, '")]')) %>%
-    html_nodes("table") %>%
-    .[[1]] %>%
-    html_table()
+  new_season <- scrape(session) %>% 
+    html_nodes(css=paste0("#",type)) %>%
+    html_table() %>% .[[1]]
+  if (type=="advanced-team"){
+    new_season=new_season[-c(18,23,28)]
+    new_season[1, 22:25] <- paste0("opp_", new_season[1, 22:25])
+    colnames(new_season) <- new_season[1, ]
+    new_season <- new_season[-1, ]
+    new_season[, c(1, 3:25)] <- sapply(new_season[, c(1, 3:25)], as.numeric)
+  }
   new_season <- new_season %>%
     rename(Season = Rk) %>%
     mutate(Season = season) %>%
@@ -29,9 +30,9 @@ teamStats <- function(season = 2020, league = "NBA", type = "team-stats-base") {
   return(new_season)
 }
 
-get_all_team_stats <- function(to_scrape = "team-stats-base") {
+get_all_team_stats <- function(to_scrape = "per_game-team") {
   a <- teamStats(2020, type = to_scrape)
-  if (to_scrape %in% c("team-stats-per_poss", "opponent-stats-per_poss")) {
+  if (to_scrape %in% c("per_poss-team", "per_poss-opponent")) {
     # nba
     sapply(2019:1974, function(x) {
       new_seas <- teamStats(x, type = to_scrape)
@@ -71,33 +72,6 @@ get_all_team_stats <- function(to_scrape = "team-stats-base") {
   return(a)
 }
 
-misc_stats_scrape <- function(season = 2020, league = "NBA") {
-  session = nod(bbref_bow,path=paste0("leagues/", league, "_", season, ".html"))
-  new_season <- scrape(session) %>%
-    html_nodes(xpath = "//comment()") %>%
-    html_text() %>%
-    paste(collapse = "") %>%
-    read_html() %>%
-    html_nodes(xpath = '//*[(@id = "div_misc_stats")]') %>%
-    html_nodes("table") %>%
-    .[[1]] %>%
-    html_table()
-  new_season[1, 22:25] <- paste0("opp_", new_season[1, 22:25])
-  colnames(new_season) <- new_season[1, ]
-  new_season <- new_season[-1, ]
-  new_season[, c(1, 3:25)] <- sapply(new_season[, c(1, 3:25)], as.numeric)
-  new_season <- new_season %>%
-    rename(Season = Rk) %>%
-    mutate(Season = season) %>%
-    add_column(Lg = league, .before = "Team") %>%
-    mutate(
-      Playoffs = str_detect(Team, "\\*"),
-      Team = ifelse(Playoffs == TRUE, substr(Team, 1, nchar(Team) - 1), Team)
-    ) %>%
-    relocate(Playoffs, .after = "Team") %>%
-    clean_names()
-  return(new_season)
-}
 
 scrape_stats <- function(season = 2017, league = "NBA", type = "totals") {
   # scrape

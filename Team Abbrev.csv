@@ -1751,3 +1751,34 @@ season,lg,team,playoffs,abbreviation
 2021,NBA,Toronto Raptors,FALSE,TOR
 2021,NBA,Utah Jazz,TRUE,UTA
 2021,NBA,Washington Wizards,TRUE,WAS
+2022,NBA,Atlanta Hawks,FALSE,ATL
+2022,NBA,Boston Celtics,FALSE,BOS
+2022,NBA,Brooklyn Nets,FALSE,BRK
+2022,NBA,Charlotte Hornets,FALSE,CHO
+2022,NBA,Chicago Bulls,FALSE,CHI
+2022,NBA,Cleveland Cavaliers,FALSE,CLE
+2022,NBA,Dallas Mavericks,FALSE,DAL
+2022,NBA,Denver Nuggets,FALSE,DEN
+2022,NBA,Detroit Pistons,FALSE,DET
+2022,NBA,Golden State Warriors,FALSE,GSW
+2022,NBA,Houston Rockets,FALSE,HOU
+2022,NBA,Indiana Pacers,FALSE,IND
+2022,NBA,League Average,FALSE,NA
+2022,NBA,Los Angeles Clippers,FALSE,LAC
+2022,NBA,Los Angeles Lakers,FALSE,LAL
+2022,NBA,Memphis Grizzlies,FALSE,MEM
+2022,NBA,Miami Heat,FALSE,MIA
+2022,NBA,Milwaukee Bucks,FALSE,MIL
+2022,NBA,Minnesota Timberwolves,FALSE,MIN
+2022,NBA,New Orleans Pelicans,FALSE,NOP
+2022,NBA,New York Knicks,FALSE,NYK
+2022,NBA,Oklahoma City Thunder,FALSE,OKC
+2022,NBA,Orlando Magic,FALSE,ORL
+2022,NBA,Philadelphia 76ers,FALSE,PHI
+2022,NBA,Phoenix Suns,FALSE,PHO
+2022,NBA,Portland Trail Blazers,FALSE,POR
+2022,NBA,Sacramento Kings,FALSE,SAC
+2022,NBA,San Antonio Spurs,FALSE,SAS
+2022,NBA,Toronto Raptors,FALSE,TOR
+2022,NBA,Utah Jazz,FALSE,UTA
+2022,NBA,Washington Wizards,FALSE,WAS
