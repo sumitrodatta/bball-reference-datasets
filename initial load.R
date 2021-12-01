@@ -86,26 +86,26 @@ write_csv(career_info,"Player Career Info.csv")
 totals <- get_all() %>% select(-hof)
 
 per_game <- get_all("per_game") %>% select(-hof)
-per_game <- per_game %>% rename_at(vars(-c(1:13, 17, 20, 23:24, 27)), ~ paste0(., "_per_game"))
+per_game <- per_game %>% rename_at(vars(-c(1:12, 16, 19, 22:23, 26)), ~ paste0(., "_per_game"))
 
 advanced <- get_all("advanced") %>% select(-hof)
 advanced <- advanced %>% select(-c(x, x_2))
 
 per_36 <- get_all("per_minute") %>% select(-hof)
-per_36 <- per_36 %>% rename_at(vars(-c(1:14, 17, 20, 23, 26)), ~ paste0(., "_per_36_min"))
+per_36 <- per_36 %>% rename_at(vars(-c(1:13, 16, 19, 22, 25)), ~ paste0(., "_per_36_min"))
 
 per_100 <- get_all("per_poss") %>% select(-hof)
 per_100 <- per_100 %>%
   select(-x) %>%
   filter(season > 1973)
-per_100 <- per_100 %>% rename_at(vars(-c(1:14, 17, 20, 23, 26, 36:37)), ~ paste0(., "_per_100_poss"))
+per_100 <- per_100 %>% rename_at(vars(-c(1:13, 16, 19, 22, 25, 35:36)), ~ paste0(., "_per_100_poss"))
 
 shooting <- get_all("shooting") %>% select(-hof)
 shooting <- shooting %>%
   rename(avg_dist_fga = dist) %>%
-  rename_at(vars(c(16:21)), ~ paste0("percent_fga_from_", ., "_range")) %>%
-  rename_at(vars(c(22:27)), ~ paste0("fg_percent_from_", str_sub(., end = -3), "_range")) %>%
-  rename_at(vars(c(28:29)), ~ paste0("percent_assisted_", str_sub(., end = -3), "_fg")) %>%
+  rename_at(vars(c(15:20)), ~ paste0("percent_fga_from_", ., "_range")) %>%
+  rename_at(vars(c(21:26)), ~ paste0("fg_percent_from_", str_sub(., end = -3), "_range")) %>%
+  rename_at(vars(c(27:28)), ~ paste0("percent_assisted_", str_sub(., end = -3), "_fg")) %>%
   rename(
     percent_dunks_of_fga = percent_fga, num_of_dunks = number,
     percent_corner_3s_of_3pa = percent_3pa, corner_3_point_percent = x3p_percent,

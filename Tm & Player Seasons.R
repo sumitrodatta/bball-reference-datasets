@@ -17,7 +17,7 @@ teamStats <- function(season = 2020, league = "NBA", type = "per_game-team") {
     html_table() %>% .[[1]]
   if (type=="advanced-team"){
     new_season=new_season[-c(18,23,28)]
-    new_season[1, 22:25] <- paste0("opp_", new_season[1, 22:25])
+    new_season[1, 22:25] <- as.list(paste0("opp_", new_season[1, 22:25]))
     colnames(new_season) <- new_season[1, ]
     new_season <- new_season[-1, ]
     new_season[, c(1, 3:25)] <- sapply(new_season[, c(1, 3:25)], as.numeric)
