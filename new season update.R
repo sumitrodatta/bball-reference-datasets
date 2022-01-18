@@ -14,12 +14,12 @@ add_new_team_seas <- function(seas = 2021, type = "per_game-team", update_abbrev
   if (update_abbrevs == TRUE) {
     abbrev <- read_csv("Team Abbrev.csv") %>% filter(season != seas)
     new_seas <- a %>%
-      select(season:team,playoffs)
+      select(season:team,playoffs) %>% filter(team != "League Average")
     previous_seas <- abbrev %>%
       filter(season == seas - 1) %>%
       select(team, abbreviation)
     new_seas <- left_join(new_seas, previous_seas) %>% arrange(team)
-    abbrev <- abbrev %>% add_row(new_seas)
+    abbrev <- abbrev %>% add_row(new_seas) %>% arrange(desc(season),team)
     write_csv(abbrev, "Team Abbrev.csv")
   }
   a <- left_join(a, read_csv("Team Abbrev.csv")) %>%
@@ -70,12 +70,16 @@ add_new_team_seas <- function(seas = 2021, type = "per_game-team", update_abbrev
 
 add_new_seas <- function(seas = 2021, type = "totals", update_psi = FALSE) {
   a <- scrape_stats(season = seas, type = type)
+  alt_names=read_csv("Alternate Player Names.csv")
+  a=left_join(a,alternate_names) %>% 
+    mutate(player=coalesce(player_alternate,player)) %>% select(-player_alternate)
   if (update_psi == TRUE) {
     # no active hall of famers
     new_player_info <- a %>%
       select(season:tm) %>%
       arrange(season, player) %>% 
       mutate(birth_year=case_when((player=="Mike James" & season>=2018)~1990,
+                                  (player=="George King" & season>=2019)~1994,
                                   TRUE~NA_real_))
     # change above mutate birth year line whenever new player enters league
     psi <- read_csv("Player Season Info.csv") %>%
