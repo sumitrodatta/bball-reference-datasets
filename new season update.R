@@ -80,6 +80,7 @@ add_new_seas <- function(seas = 2021, type = "totals", update_psi = FALSE) {
       arrange(season, player) %>% 
       mutate(birth_year=case_when((player=="Mike James" & season>=2018)~1990,
                                   (player=="George King" & season>=2019)~1994,
+                                  (player=="Brandon Williams" & season>=2022)~1999,
                                   TRUE~NA_real_))
     # change above mutate birth year line whenever new player enters league
     psi <- read_csv("Player Season Info.csv") %>%
