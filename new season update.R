@@ -71,7 +71,7 @@ add_new_team_seas <- function(seas = 2021, type = "per_game-team", update_abbrev
 add_new_seas <- function(seas = 2021, type = "totals", update_psi = FALSE) {
   a <- scrape_stats(season = seas, type = type)
   alt_names=read_csv("Alternate Player Names.csv")
-  a=left_join(a,alternate_names) %>% 
+  a=left_join(a,alt_names) %>% 
     mutate(player=coalesce(player_alternate,player)) %>% select(-player_alternate)
   if (update_psi == TRUE) {
     # no active hall of famers
