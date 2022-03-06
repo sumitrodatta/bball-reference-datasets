@@ -1,4 +1,31 @@
 player,team,lg,season,replaced
+Bradley Beal,Team Durant,NBA,2021,FALSE
+Devin Booker,Team Durant,NBA,2021,FALSE
+Mike Conley,Team Durant,NBA,2021,FALSE
+Anthony Davis,Team Durant,NBA,2021,FALSE
+Kevin Durant,Team Durant,NBA,2021,FALSE
+Joel Embiid,Team Durant,NBA,2021,FALSE
+James Harden,Team Durant,NBA,2021,FALSE
+Kyrie Irving,Team Durant,NBA,2021,FALSE
+Zach LaVine,Team Durant,NBA,2021,FALSE
+Kawhi Leonard,Team Durant,NBA,2021,FALSE
+Donovan Mitchell,Team Durant,NBA,2021,FALSE
+Julius Randle,Team Durant,NBA,2021,FALSE
+Jayson Tatum,Team Durant,NBA,2021,FALSE
+Nikola Vučević,Team Durant,NBA,2021,FALSE
+Zion Williamson,Team Durant,NBA,2021,FALSE
+Giannis Antetokounmpo,Team LeBron,NBA,2021,FALSE
+Jaylen Brown,Team LeBron,NBA,2021,FALSE
+Stephen Curry,Team LeBron,NBA,2021,FALSE
+Luka Dončić,Team LeBron,NBA,2021,FALSE
+Paul George,Team LeBron,NBA,2021,FALSE
+Rudy Gobert,Team LeBron,NBA,2021,FALSE
+LeBron James,Team LeBron,NBA,2021,FALSE
+Nikola Jokić,Team LeBron,NBA,2021,FALSE
+Damian Lillard,Team LeBron,NBA,2021,FALSE
+Chris Paul,Team LeBron,NBA,2021,FALSE
+Domantas Sabonis,Team LeBron,NBA,2021,FALSE
+Ben Simmons,Team LeBron,NBA,2021,FALSE
 Bam Adebayo,Team Giannis,NBA,2020,FALSE
 Giannis Antetokounmpo,Team Giannis,NBA,2020,FALSE
 Jimmy Butler,Team Giannis,NBA,2020,FALSE
@@ -1094,6 +1121,29 @@ David Thompson,West,NBA,1977,FALSE
 Norm Van Lier,West,NBA,1977,FALSE
 Bill Walton,West,NBA,1977,TRUE
 Paul Westphal,West,NBA,1977,FALSE
+Marvin Barnes,All Stars,ABA,1976,FALSE
+Ron Boone,All Stars,ABA,1976,FALSE
+Don Buse,All Stars,ABA,1976,FALSE
+Julius Erving,All Stars,ABA,1976,FALSE
+George Gervin,All Stars,ABA,1976,FALSE
+Artis Gilmore,All Stars,ABA,1976,FALSE
+Larry Kenon,All Stars,ABA,1976,FALSE
+Billy Knight,All Stars,ABA,1976,FALSE
+Maurice Lucas,All Stars,ABA,1976,FALSE
+Billy Paultz,All Stars,ABA,1976,FALSE
+James Silas,All Stars,ABA,1976,FALSE
+Brian Taylor,All Stars,ABA,1976,FALSE
+Byron Beck,Denver,ABA,1976,FALSE
+Roger Brown,Denver,ABA,1976,FALSE
+Jimmy Foster,Denver,ABA,1976,FALSE
+Gus Gerard,Denver,ABA,1976,FALSE
+Dan Issel,Denver,ABA,1976,FALSE
+Bobby Jones,Denver,ABA,1976,FALSE
+Ralph Simpson,Denver,ABA,1976,FALSE
+Claude Terry,Denver,ABA,1976,FALSE
+David Thompson,Denver,ABA,1976,FALSE
+Monte Towe,Denver,ABA,1976,FALSE
+Chuck Williams,Denver,ABA,1976,FALSE
 Dave Bing,East,NBA,1976,FALSE
 Doug Collins,East,NBA,1976,FALSE
 Dave Cowens,East,NBA,1976,FALSE
@@ -1118,6 +1168,27 @@ Norm Van Lier,West,NBA,1976,FALSE
 Scott Wedman,West,NBA,1976,FALSE
 Jamaal Wilkes,West,NBA,1976,FALSE
 Brian Winters,West,NBA,1976,FALSE
+Marvin Barnes,East,ABA,1975,FALSE
+Louie Dampier,East,ABA,1975,FALSE
+Julius Erving,East,ABA,1975,FALSE
+Artis Gilmore,East,ABA,1975,FALSE
+Dan Issel,East,ABA,1975,FALSE
+Stew Johnson,East,ABA,1975,FALSE
+Larry Kenon,East,ABA,1975,FALSE
+Freddie Lewis,East,ABA,1975,FALSE
+Billy Paultz,East,ABA,1975,FALSE
+Brian Taylor,East,ABA,1975,FALSE
+Dave Twardzik,East,ABA,1975,FALSE
+Ron Boone,West,ABA,1975,FALSE
+Mack Calvin,West,ABA,1975,FALSE
+George Gervin,West,ABA,1975,FALSE
+Mike Green,West,ABA,1975,FALSE
+Caldwell Jones,West,ABA,1975,FALSE
+Moses Malone,West,ABA,1975,FALSE
+George McGinnis,West,ABA,1975,FALSE
+Swen Nater,West,ABA,1975,FALSE
+James Silas,West,ABA,1975,FALSE
+Ralph Simpson,West,ABA,1975,FALSE
 Phil Chenier,East,NBA,1975,FALSE
 Dave Cowens,East,NBA,1975,FALSE
 Walt Frazier,East,NBA,1975,FALSE
@@ -1142,6 +1213,26 @@ Bob Lanier,West,NBA,1975,FALSE
 Jim Price,West,NBA,1975,FALSE
 Charlie Scott,West,NBA,1975,FALSE
 Sidney Wicks,West,NBA,1975,FALSE
+Mack Calvin,East,ABA,1974,FALSE
+Louie Dampier,East,ABA,1974,FALSE
+Jim Eakins,East,ABA,1974,FALSE
+Julius Erving,East,ABA,1974,FALSE
+George Gervin,East,ABA,1974,FALSE
+Artis Gilmore,East,ABA,1974,FALSE
+Dan Issel,East,ABA,1974,FALSE
+Larry Kenon,East,ABA,1974,FALSE
+Ted McClain,East,ABA,1974,FALSE
+George Thompson,East,ABA,1974,FALSE
+Ron Boone,West,ABA,1974,FALSE
+Mel Daniels,West,ABA,1974,FALSE
+Warren Jabali,West,ABA,1974,FALSE
+Stew Johnson,West,ABA,1974,FALSE
+Jimmy Jones,West,ABA,1974,FALSE
+Rich Jones,West,ABA,1974,FALSE
+George McGinnis,West,ABA,1974,FALSE
+Swen Nater,West,ABA,1974,FALSE
+Ralph Simpson,West,ABA,1974,FALSE
+Willie Wise,West,ABA,1974,FALSE
 Austin Carr,East,NBA,1974,FALSE
 Phil Chenier,East,NBA,1974,FALSE
 Dave Cowens,East,NBA,1974,FALSE
@@ -1167,6 +1258,26 @@ Norm Van Lier,West,NBA,1974,FALSE
 Chet Walker,West,NBA,1974,FALSE
 Jerry West,West,NBA,1974,TRUE
 Sidney Wicks,West,NBA,1974,FALSE
+Joe Caldwell,East,ABA,1973,FALSE
+Mack Calvin,East,ABA,1973,FALSE
+Billy Cunningham,East,ABA,1973,FALSE
+Louie Dampier,East,ABA,1973,FALSE
+Julius Erving,East,ABA,1973,FALSE
+Artis Gilmore,East,ABA,1973,FALSE
+Dan Issel,East,ABA,1973,FALSE
+Bill Melchionni,East,ABA,1973,FALSE
+Billy Paultz,East,ABA,1973,FALSE
+George Thompson,East,ABA,1973,FALSE
+Zelmo Beaty,West,ABA,1973,FALSE
+Mel Daniels,West,ABA,1973,FALSE
+Warren Jabali,West,ABA,1973,FALSE
+Stew Johnson,West,ABA,1973,FALSE
+Jimmy Jones,West,ABA,1973,FALSE
+Rich Jones,West,ABA,1973,FALSE
+George McGinnis,West,ABA,1973,FALSE
+Ralph Simpson,West,ABA,1973,FALSE
+Chuck Williams,West,ABA,1973,FALSE
+Willie Wise,West,ABA,1973,FALSE
 John Block,East,NBA,1973,FALSE
 Bill Bradley,East,NBA,1973,FALSE
 Dave Cowens,East,NBA,1973,FALSE
@@ -1197,6 +1308,30 @@ Nate Thurmond,West,NBA,1973,FALSE
 Chet Walker,West,NBA,1973,FALSE
 Jerry West,West,NBA,1973,FALSE
 Sidney Wicks,West,NBA,1973,FALSE
+Rick Barry,East,ABA,1972,FALSE
+John Brisker,East,ABA,1972,FALSE
+Mack Calvin,East,ABA,1972,FALSE
+Louie Dampier,East,ABA,1972,FALSE
+Julius Erving,East,ABA,1972,FALSE
+Artis Gilmore,East,ABA,1972,FALSE
+Dan Issel,East,ABA,1972,FALSE
+Warren Jabali,East,ABA,1972,FALSE
+Jim McDaniels,East,ABA,1972,FALSE
+Bill Melchionni,East,ABA,1972,FALSE
+Charlie Scott,East,ABA,1972,FALSE
+George Thompson,East,ABA,1972,FALSE
+Zelmo Beaty,West,ABA,1972,FALSE
+Arthur Becker,West,ABA,1972,FALSE
+Roger Brown,West,ABA,1972,FALSE
+Glen Combs,West,ABA,1972,FALSE
+Mel Daniels,West,ABA,1972,FALSE
+Donnie Freeman,West,ABA,1972,FALSE
+Steve Jones,West,ABA,1972,FALSE
+Wil Jones,West,ABA,1972,FALSE
+Wendell Ladner,West,ABA,1972,FALSE
+Freddie Lewis,West,ABA,1972,FALSE
+Ralph Simpson,West,ABA,1972,FALSE
+Willie Wise,West,ABA,1972,FALSE
 Butch Beard,East,NBA,1972,FALSE
 Archie Clark,East,NBA,1972,FALSE
 Dave Cowens,East,NBA,1972,FALSE
@@ -1225,6 +1360,30 @@ Paul Silas,West,NBA,1972,FALSE
 Jimmy Walker,West,NBA,1972,FALSE
 Jerry West,West,NBA,1972,FALSE
 Sidney Wicks,West,NBA,1972,FALSE
+Rick Barry,East,ABA,1971,FALSE
+John Brisker,East,ABA,1971,FALSE
+Joe Caldwell,East,ABA,1971,FALSE
+Mack Calvin,East,ABA,1971,FALSE
+George Carter,East,ABA,1971,FALSE
+Dan Issel,East,ABA,1971,FALSE
+Neil Johnson,East,ABA,1971,FALSE
+Larry Jones,East,ABA,1971,FALSE
+Mike Lewis,East,ABA,1971,FALSE
+Bill Melchionni,East,ABA,1971,FALSE
+Cincinnatus Powell,East,ABA,1971,FALSE
+Charlie Scott,East,ABA,1971,FALSE
+Zelmo Beaty,West,ABA,1971,FALSE
+Ron Boone,West,ABA,1971,FALSE
+Roger Brown,West,ABA,1971,FALSE
+Glen Combs,West,ABA,1971,FALSE
+Mel Daniels,West,ABA,1971,FALSE
+Donnie Freeman,West,ABA,1971,FALSE
+Jimmy Jones,West,ABA,1971,FALSE
+Steve Jones,West,ABA,1971,FALSE
+Julius Keye,West,ABA,1971,FALSE
+Wendell Ladner,West,ABA,1971,FALSE
+Bob Netolicky,West,ABA,1971,FALSE
+Red Robbins,West,ABA,1971,FALSE
 Billy Cunningham,East,NBA,1971,FALSE
 Dave DeBusschere,East,NBA,1971,FALSE
 Walt Frazier,East,NBA,1971,FALSE
@@ -1253,6 +1412,31 @@ Dick Van Arsdale,West,NBA,1971,FALSE
 Chet Walker,West,NBA,1971,FALSE
 Jerry West,West,NBA,1971,FALSE
 Lenny Wilkens,West,NBA,1971,FALSE
+Roger Brown,East,ABA,1970,FALSE
+Darel Carrier,East,ABA,1970,FALSE
+Louie Dampier,East,ABA,1970,FALSE
+Mel Daniels,East,ABA,1970,FALSE
+Donnie Freeman,East,ABA,1970,FALSE
+Mike Lewis,East,ABA,1970,FALSE
+Doug Moe,East,ABA,1970,FALSE
+Gene Moore,East,ABA,1970,FALSE
+Bob Netolicky,East,ABA,1970,FALSE
+Levern Tart,East,ABA,1970,FALSE
+Bob Verga,East,ABA,1970,FALSE
+Charlie Williams,East,ABA,1970,FALSE
+Rick Barry,West,ABA,1970,FALSE
+John Beasley,West,ABA,1970,FALSE
+Larry Brown,West,ABA,1970,FALSE
+Glen Combs,West,ABA,1970,FALSE
+Warren Davis,West,ABA,1970,FALSE
+Gerald Govan,West,ABA,1970,FALSE
+Spencer Haywood,West,ABA,1970,FALSE
+Warren Jabali,West,ABA,1970,FALSE
+Jimmy Jones,West,ABA,1970,FALSE
+Larry Jones,West,ABA,1970,FALSE
+Steve Jones,West,ABA,1970,FALSE
+Cincinnatus Powell,West,ABA,1970,FALSE
+Red Robbins,West,ABA,1970,TRUE
 Kareem Abdul-Jabbar,East,NBA,1970,FALSE
 Billy Cunningham,East,NBA,1970,FALSE
 Dave DeBusschere,East,NBA,1970,FALSE
@@ -1278,6 +1462,29 @@ Dick Van Arsdale,West,NBA,1970,FALSE
 Chet Walker,West,NBA,1970,FALSE
 Jerry West,West,NBA,1970,FALSE
 Lenny Wilkens,West,NBA,1970,FALSE
+Darel Carrier,East,ABA,1969,FALSE
+Louie Dampier,East,ABA,1969,FALSE
+Mel Daniels,East,ABA,1969,FALSE
+Donnie Freeman,East,ABA,1969,FALSE
+Les Hunter,East,ABA,1969,FALSE
+Goose Ligon,East,ABA,1969,FALSE
+Bob Netolicky,East,ABA,1969,FALSE
+Walter Simon,East,ABA,1969,FALSE
+Skip Thoren,East,ABA,1969,FALSE
+Trooper Washington,East,ABA,1969,FALSE
+Charlie Williams,East,ABA,1969,FALSE
+Rick Barry,West,ABA,1969,FALSE
+John Beasley,West,ABA,1969,FALSE
+Byron Beck,West,ABA,1969,FALSE
+Larry Brown,West,ABA,1969,FALSE
+Warren Davis,West,ABA,1969,FALSE
+Wayne Hightower,West,ABA,1969,FALSE
+Mervin Jackson,West,ABA,1969,FALSE
+Jimmy Jones,West,ABA,1969,FALSE
+Larry Jones,West,ABA,1969,FALSE
+Doug Moe,West,ABA,1969,FALSE
+Red Robbins,West,ABA,1969,FALSE
+Willie Somerset,West,ABA,1969,FALSE
 Dave Bing,East,NBA,1969,FALSE
 Billy Cunningham,East,NBA,1969,FALSE
 Hal Greer,East,NBA,1969,FALSE
@@ -1303,6 +1510,30 @@ Jerry Sloan,West,NBA,1969,FALSE
 Dick Van Arsdale,West,NBA,1969,FALSE
 Jerry West,West,NBA,1969,TRUE
 Lenny Wilkens,West,NBA,1969,FALSE
+Roger Brown,East,ABA,1968,FALSE
+Darel Carrier,East,ABA,1968,FALSE
+Louie Dampier,East,ABA,1968,FALSE
+Mel Daniels,East,ABA,1968,FALSE
+Donnie Freeman,East,ABA,1968,FALSE
+Connie Hawkins,East,ABA,1968,FALSE
+Les Hunter,East,ABA,1968,FALSE
+Tony Jackson,East,ABA,1968,FALSE
+Freddie Lewis,East,ABA,1968,FALSE
+Randolph Mahaffey,East,ABA,1968,FALSE
+Bob Netolicky,East,ABA,1968,FALSE
+Chico Vaughn,East,ABA,1968,FALSE
+John Beasley,West,ABA,1968,FALSE
+Arthur Becker,West,ABA,1968,FALSE
+Larry Brown,West,ABA,1968,FALSE
+Larry Bunce,West,ABA,1968,FALSE
+Cliff Hagan,West,ABA,1968,FALSE
+Jimmy Jones,West,ABA,1968,FALSE
+Larry Jones,West,ABA,1968,FALSE
+Dewitt Menyard,West,ABA,1968,FALSE
+Doug Moe,West,ABA,1968,FALSE
+Red Robbins,West,ABA,1968,FALSE
+Levern Tart,West,ABA,1968,FALSE
+Ben Warley,West,ABA,1968,FALSE
 Dick Barnett,East,NBA,1968,FALSE
 Dave Bing,East,NBA,1968,FALSE
 Wilt Chamberlain,East,NBA,1968,FALSE
@@ -1688,234 +1919,3 @@ George Mikan,West,NBA,1951,FALSE
 Vern Mikkelsen,West,NBA,1951,FALSE
 Jim Pollard,West,NBA,1951,FALSE
 Fred Schaus,West,NBA,1951,FALSE
-Marvin Barnes,All Stars,ABA,1976,FALSE
-Ron Boone,All Stars,ABA,1976,FALSE
-Don Buse,All Stars,ABA,1976,FALSE
-Julius Erving,All Stars,ABA,1976,FALSE
-George Gervin,All Stars,ABA,1976,FALSE
-Artis Gilmore,All Stars,ABA,1976,FALSE
-Larry Kenon,All Stars,ABA,1976,FALSE
-Billy Knight,All Stars,ABA,1976,FALSE
-Maurice Lucas,All Stars,ABA,1976,FALSE
-Billy Paultz,All Stars,ABA,1976,FALSE
-James Silas,All Stars,ABA,1976,FALSE
-Brian Taylor,All Stars,ABA,1976,FALSE
-Byron Beck,Denver,ABA,1976,FALSE
-Roger Brown,Denver,ABA,1976,FALSE
-Jimmy Foster,Denver,ABA,1976,FALSE
-Gus Gerard,Denver,ABA,1976,FALSE
-Dan Issel,Denver,ABA,1976,FALSE
-Bobby Jones,Denver,ABA,1976,FALSE
-Ralph Simpson,Denver,ABA,1976,FALSE
-Claude Terry,Denver,ABA,1976,FALSE
-David Thompson,Denver,ABA,1976,FALSE
-Monte Towe,Denver,ABA,1976,FALSE
-Chuck Williams,Denver,ABA,1976,FALSE
-Marvin Barnes,East,ABA,1975,FALSE
-Louie Dampier,East,ABA,1975,FALSE
-Julius Erving,East,ABA,1975,FALSE
-Artis Gilmore,East,ABA,1975,FALSE
-Dan Issel,East,ABA,1975,FALSE
-Stew Johnson,East,ABA,1975,FALSE
-Larry Kenon,East,ABA,1975,FALSE
-Freddie Lewis,East,ABA,1975,FALSE
-Billy Paultz,East,ABA,1975,FALSE
-Brian Taylor,East,ABA,1975,FALSE
-Dave Twardzik,East,ABA,1975,FALSE
-Ron Boone,West,ABA,1975,FALSE
-Mack Calvin,West,ABA,1975,FALSE
-George Gervin,West,ABA,1975,FALSE
-Mike Green,West,ABA,1975,FALSE
-Caldwell Jones,West,ABA,1975,FALSE
-Moses Malone,West,ABA,1975,FALSE
-George McGinnis,West,ABA,1975,FALSE
-Swen Nater,West,ABA,1975,FALSE
-James Silas,West,ABA,1975,FALSE
-Ralph Simpson,West,ABA,1975,FALSE
-Mack Calvin,East,ABA,1974,FALSE
-Louie Dampier,East,ABA,1974,FALSE
-Jim Eakins,East,ABA,1974,FALSE
-Julius Erving,East,ABA,1974,FALSE
-George Gervin,East,ABA,1974,FALSE
-Artis Gilmore,East,ABA,1974,FALSE
-Dan Issel,East,ABA,1974,FALSE
-Larry Kenon,East,ABA,1974,FALSE
-Ted McClain,East,ABA,1974,FALSE
-George Thompson,East,ABA,1974,FALSE
-Ron Boone,West,ABA,1974,FALSE
-Mel Daniels,West,ABA,1974,FALSE
-Warren Jabali,West,ABA,1974,FALSE
-Stew Johnson,West,ABA,1974,FALSE
-Jimmy Jones,West,ABA,1974,FALSE
-Rich Jones,West,ABA,1974,FALSE
-George McGinnis,West,ABA,1974,FALSE
-Swen Nater,West,ABA,1974,FALSE
-Ralph Simpson,West,ABA,1974,FALSE
-Willie Wise,West,ABA,1974,FALSE
-Joe Caldwell,East,ABA,1973,FALSE
-Mack Calvin,East,ABA,1973,FALSE
-Billy Cunningham,East,ABA,1973,FALSE
-Louie Dampier,East,ABA,1973,FALSE
-Julius Erving,East,ABA,1973,FALSE
-Artis Gilmore,East,ABA,1973,FALSE
-Dan Issel,East,ABA,1973,FALSE
-Bill Melchionni,East,ABA,1973,FALSE
-Billy Paultz,East,ABA,1973,FALSE
-George Thompson,East,ABA,1973,FALSE
-Zelmo Beaty,West,ABA,1973,FALSE
-Mel Daniels,West,ABA,1973,FALSE
-Warren Jabali,West,ABA,1973,FALSE
-Stew Johnson,West,ABA,1973,FALSE
-Jimmy Jones,West,ABA,1973,FALSE
-Rich Jones,West,ABA,1973,FALSE
-George McGinnis,West,ABA,1973,FALSE
-Ralph Simpson,West,ABA,1973,FALSE
-Chuck Williams,West,ABA,1973,FALSE
-Willie Wise,West,ABA,1973,FALSE
-Rick Barry,East,ABA,1972,FALSE
-John Brisker,East,ABA,1972,FALSE
-Mack Calvin,East,ABA,1972,FALSE
-Louie Dampier,East,ABA,1972,FALSE
-Julius Erving,East,ABA,1972,FALSE
-Artis Gilmore,East,ABA,1972,FALSE
-Dan Issel,East,ABA,1972,FALSE
-Warren Jabali,East,ABA,1972,FALSE
-Jim McDaniels,East,ABA,1972,FALSE
-Bill Melchionni,East,ABA,1972,FALSE
-Charlie Scott,East,ABA,1972,FALSE
-George Thompson,East,ABA,1972,FALSE
-Zelmo Beaty,West,ABA,1972,FALSE
-Arthur Becker,West,ABA,1972,FALSE
-Roger Brown,West,ABA,1972,FALSE
-Glen Combs,West,ABA,1972,FALSE
-Mel Daniels,West,ABA,1972,FALSE
-Donnie Freeman,West,ABA,1972,FALSE
-Steve Jones,West,ABA,1972,FALSE
-Wil Jones,West,ABA,1972,FALSE
-Wendell Ladner,West,ABA,1972,FALSE
-Freddie Lewis,West,ABA,1972,FALSE
-Ralph Simpson,West,ABA,1972,FALSE
-Willie Wise,West,ABA,1972,FALSE
-Rick Barry,East,ABA,1971,FALSE
-John Brisker,East,ABA,1971,FALSE
-Joe Caldwell,East,ABA,1971,FALSE
-Mack Calvin,East,ABA,1971,FALSE
-George Carter,East,ABA,1971,FALSE
-Dan Issel,East,ABA,1971,FALSE
-Neil Johnson,East,ABA,1971,FALSE
-Larry Jones,East,ABA,1971,FALSE
-Mike Lewis,East,ABA,1971,FALSE
-Bill Melchionni,East,ABA,1971,FALSE
-Cincinnatus Powell,East,ABA,1971,FALSE
-Charlie Scott,East,ABA,1971,FALSE
-Zelmo Beaty,West,ABA,1971,FALSE
-Ron Boone,West,ABA,1971,FALSE
-Roger Brown,West,ABA,1971,FALSE
-Glen Combs,West,ABA,1971,FALSE
-Mel Daniels,West,ABA,1971,FALSE
-Donnie Freeman,West,ABA,1971,FALSE
-Jimmy Jones,West,ABA,1971,FALSE
-Steve Jones,West,ABA,1971,FALSE
-Julius Keye,West,ABA,1971,FALSE
-Wendell Ladner,West,ABA,1971,FALSE
-Bob Netolicky,West,ABA,1971,FALSE
-Red Robbins,West,ABA,1971,FALSE
-Roger Brown,East,ABA,1970,FALSE
-Darel Carrier,East,ABA,1970,FALSE
-Louie Dampier,East,ABA,1970,FALSE
-Mel Daniels,East,ABA,1970,FALSE
-Donnie Freeman,East,ABA,1970,FALSE
-Mike Lewis,East,ABA,1970,FALSE
-Doug Moe,East,ABA,1970,FALSE
-Gene Moore,East,ABA,1970,FALSE
-Bob Netolicky,East,ABA,1970,FALSE
-Levern Tart,East,ABA,1970,FALSE
-Bob Verga,East,ABA,1970,FALSE
-Charles Williams,East,ABA,1970,FALSE
-Rick Barry,West,ABA,1970,FALSE
-John Beasley,West,ABA,1970,FALSE
-Larry Brown,West,ABA,1970,FALSE
-Glen Combs,West,ABA,1970,FALSE
-Warren Davis,West,ABA,1970,FALSE
-Gerald Govan,West,ABA,1970,FALSE
-Spencer Haywood,West,ABA,1970,FALSE
-Warren Jabali,West,ABA,1970,FALSE
-Jimmy Jones,West,ABA,1970,FALSE
-Larry Jones,West,ABA,1970,FALSE
-Steve Jones,West,ABA,1970,FALSE
-Cincinnatus Powell,West,ABA,1970,FALSE
-Red Robbins,West,ABA,1970,TRUE
-Darel Carrier,East,ABA,1969,FALSE
-Louie Dampier,East,ABA,1969,FALSE
-Mel Daniels,East,ABA,1969,FALSE
-Donnie Freeman,East,ABA,1969,FALSE
-Les Hunter,East,ABA,1969,FALSE
-Goose Ligon,East,ABA,1969,FALSE
-Bob Netolicky,East,ABA,1969,FALSE
-Walter Simon,East,ABA,1969,FALSE
-Skip Thoren,East,ABA,1969,FALSE
-Trooper Washington,East,ABA,1969,FALSE
-Charles Williams,East,ABA,1969,FALSE
-Rick Barry,West,ABA,1969,FALSE
-John Beasley,West,ABA,1969,FALSE
-Byron Beck,West,ABA,1969,FALSE
-Larry Brown,West,ABA,1969,FALSE
-Warren Davis,West,ABA,1969,FALSE
-Wayne Hightower,West,ABA,1969,FALSE
-Mervin Jackson,West,ABA,1969,FALSE
-Jimmy Jones,West,ABA,1969,FALSE
-Larry Jones,West,ABA,1969,FALSE
-Doug Moe,West,ABA,1969,FALSE
-Red Robbins,West,ABA,1969,FALSE
-Willie Somerset,West,ABA,1969,FALSE
-Roger Brown,East,ABA,1968,FALSE
-Darel Carrier,East,ABA,1968,FALSE
-Louie Dampier,East,ABA,1968,FALSE
-Mel Daniels,East,ABA,1968,FALSE
-Donnie Freeman,East,ABA,1968,FALSE
-Connie Hawkins,East,ABA,1968,FALSE
-Les Hunter,East,ABA,1968,FALSE
-Tony Jackson,East,ABA,1968,FALSE
-Freddie Lewis,East,ABA,1968,FALSE
-Randolph Mahaffey,East,ABA,1968,FALSE
-Bob Netolicky,East,ABA,1968,FALSE
-Chico Vaughn,East,ABA,1968,FALSE
-John Beasley,West,ABA,1968,FALSE
-Arthur Becker,West,ABA,1968,FALSE
-Larry Brown,West,ABA,1968,FALSE
-Larry Bunce,West,ABA,1968,FALSE
-Cliff Hagan,West,ABA,1968,FALSE
-Jimmy Jones,West,ABA,1968,FALSE
-Larry Jones,West,ABA,1968,FALSE
-Dewitt Menyard,West,ABA,1968,FALSE
-Doug Moe,West,ABA,1968,FALSE
-Red Robbins,West,ABA,1968,FALSE
-Levern Tart,West,ABA,1968,FALSE
-Ben Warley,West,ABA,1968,FALSE
-Bradley Beal,Team Durant,NBA,2021,FALSE
-Devin Booker,Team Durant,NBA,2021,FALSE
-Mike Conley,Team Durant,NBA,2021,FALSE
-Anthony Davis,Team Durant,NBA,2021,FALSE
-Kevin Durant,Team Durant,NBA,2021,FALSE
-Joel Embiid,Team Durant,NBA,2021,FALSE
-James Harden,Team Durant,NBA,2021,FALSE
-Kyrie Irving,Team Durant,NBA,2021,FALSE
-Zach LaVine,Team Durant,NBA,2021,FALSE
-Kawhi Leonard,Team Durant,NBA,2021,FALSE
-Donovan Mitchell,Team Durant,NBA,2021,FALSE
-Julius Randle,Team Durant,NBA,2021,FALSE
-Jayson Tatum,Team Durant,NBA,2021,FALSE
-Nikola Vučević,Team Durant,NBA,2021,FALSE
-Zion Williamson,Team Durant,NBA,2021,FALSE
-Giannis Antetokounmpo,Team LeBron,NBA,2021,FALSE
-Jaylen Brown,Team LeBron,NBA,2021,FALSE
-Stephen Curry,Team LeBron,NBA,2021,FALSE
-Luka Dončić,Team LeBron,NBA,2021,FALSE
-Paul George,Team LeBron,NBA,2021,FALSE
-Rudy Gobert,Team LeBron,NBA,2021,FALSE
-LeBron James,Team LeBron,NBA,2021,FALSE
-Nikola Jokić,Team LeBron,NBA,2021,FALSE
-Damian Lillard,Team LeBron,NBA,2021,FALSE
-Chris Paul,Team LeBron,NBA,2021,FALSE
-Domantas Sabonis,Team LeBron,NBA,2021,FALSE
-Ben Simmons,Team LeBron,NBA,2021,FALSE

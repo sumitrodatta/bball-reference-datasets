@@ -16,122 +16,123 @@ get_award_pcts_mvp_roy <- function(season = 2020, award = "mvp", lg = "nba") {
       awarding <- paste0(lg, "_", award)
     }
   }
-  else # aba roy has voting results from 1972 to 1975 (other years added later)
+  else if (award=="roy") # aba roy has voting results from 1972 to 1975 (other years added later)
   {
     if (season < 1976 & season > 1971) {
       awarding <- paste0(lg, "_", award)
     }
   }
-  pcts <- scrape(session) %>%
-    html_nodes(xpath = paste0('//*[(@id = "div_', awarding, '")]')) %>%
-    .[[1]] %>%
-    html_node("table") %>%
-    html_table()
-  pcts <- pcts[, 2:8] # get only voting results (no stats)
-  colnames(pcts) <- pcts[1, ] # first row is actual column names
-  pcts <- pcts[-1, ]
-  rownames(pcts) <- c() # reset row names
-  # add season awarded and award name
-  pcts <- pcts %>%
-    add_column(Season = season, .before = "Player") %>%
-    add_column(Award = paste(lg, award), .before = "Player") %>%
-    add_column(Winner = FALSE) %>%
-    clean_names()
+  pcts <- scrape(session) %>% html_nodes(css=paste0("#all_",awarding)) %>% 
+    html_table() %>% .[[1]] %>%
+    # first row is actual column names
+    row_to_names(1) %>% clean_names() %>% 
+    # select only voting columns (no stats)
+    select(player:share) %>% 
+    # add season awarded and award name
+    add_column(season = season, .before = "player") %>%
+    add_column(award = paste(lg, award), .before = "player") %>%
+    add_column(winner = FALSE) %>%
+    mutate(across(c(age,first:share),as.numeric))
   return(pcts)
 }
 
 # works with dpoy, smoy, mip (all there are nba-only awards)
 get_award_pcts_other <- function(season = 2020, award = "mip") {
   session=nod(bbref_bow,path=paste0("awards/awards_",season,".html"))
-  pcts <- scrape(session) %>%
-    html_nodes(xpath = "//comment()") %>%
-    html_text() %>%
-    paste(collapse = "") %>%
-    read_html() %>%
-    html_node(paste0("#", award)) %>%
-    html_table()
-  pcts <- pcts[, 2:8] # get only voting results (no stats)
-  colnames(pcts) <- pcts[1, ] # first row is actual column names
-  pcts <- pcts[-1, ]
-  rownames(pcts) <- c() # reset row names
-  # add season awarded and award name
-  pcts <- pcts %>%
-    add_column(Season = season, .before = "Player") %>%
-    add_column(Award = award, .before = "Player") %>%
+  pcts <- scrape(session) %>% 
+    # thanks to Carl Boneri (https://stackoverflow.com/questions/40616357/how-to-scrape-tables-inside-a-comment-tag-in-html-with-r/40616937#40616937)
+    html_nodes(xpath = '//comment()') %>%    # select comment nodes
+    html_text() %>%    # extract comment text
+    paste(collapse = '') %>%    # collapse to a single string
+    read_html() %>%    # reparse to HTML
+    html_node(paste0('table#',award)) %>%    # select the desired table
+    html_table() %>%
+    # first row is actual column names
+    row_to_names(1) %>% clean_names() %>% 
+    # select only voting columns (no stats)
+    select(player:share) %>% 
+    # add season awarded and award name
+    add_column(season = season, .before = "player") %>%
+    add_column(award = award, .before = "player") %>%
     mutate(winner = FALSE) %>%
-    clean_names()
+    mutate(across(c(age,first:share),as.numeric))
+  return(pcts)
+}
+
+all_lg_voting<- function(season=2020){
+  session=nod(bbref_bow,path=paste0("awards/awards_",season,".html"))
+  pcts <- scrape(session) %>% html_nodes(css="#all_leading_all_nba") %>% 
+    html_table() %>% .[[1]] %>% 
+    # first row is actual column names
+    row_to_names(1) %>% clean_names() %>% 
+    # remove blank rows
+    filter(player!="") %>%
+    # remove asterisks (players with notes)
+    mutate(player=ifelse(str_detect(player,"\\*"),str_sub(player,end=-2),player)) %>%
+    # select only voting columns (no stats)
+    select(number_tm:x3rd_tm) %>% 
+    mutate(season=season,lg="NBA",type="All-NBA",.before=everything()) %>%
+    rename(position=pos) %>%
+    mutate(across(c(age,pts_won:x3rd_tm),as.numeric))
   return(pcts)
 }
 
 # get all-league teams
 all_lg_scrape <- function() {
-  all_lg <- "https://www.basketball-reference.com/awards/all_league.html" %>%
-    read_html() %>%
-    html_nodes(xpath = '//*[(@id = "div_awards_all_league")]') %>%
-    html_node("table") %>%
-    html_table() %>%
-    .[[1]]
-  # change blanks to NA's and remove
-  all_lg[all_lg == ""] <- NA
-  all_lg <- na.omit(all_lg)
-  colnames(all_lg) <- c("Season", "Lg", "team_rank", "Player1", "Player2", "Player3", "Player4", "Player5")
-  all_lg <- all_lg %>% mutate(Season = as.numeric(substr(Season, 0, 4)) + 1)
-  # players become one column
-  all_lg <- all_lg %>%
-    pivot_longer(-c(Season, Lg, team_rank), names_prefix = "Player") %>%
-    select(-name)
-  # separate out ties
-  all_lg <- all_lg %>%
-    rename("Player" = value) %>%
-    separate_rows(Player, sep = ", ")
-  all_lg <- all_lg %>% mutate(Player = ifelse(str_detect(Player, "\\(T\\)$"), substr(Player, 1, nchar(Player) - 4), str_trim(Player)))
+  session=nod(bbref_bow,path="awards/all_league.html")
+  all_lg <- scrape(session) %>% 
+    html_nodes(css = "#div_awards_all_league") %>%
+    html_table() %>% .[[1]]
+  colnames(all_lg) <- c("Season", "Lg", "number_tm", "Voting", "Player1", "Player2", "Player3", "Player4", "Player5")
+  all_lg <- all_lg %>% filter(Player1 != "") %>% 
+    mutate(Season = as.numeric(substr(Season, 0, 4)) + 1) %>% 
+    select(-Voting) %>%
+    # players become one column
+    pivot_longer(-c(Season, Lg, number_tm), names_prefix = "Player",values_to="Player") %>%
+    select(-name) %>%
+    # separate out ties
+    separate_rows(Player, sep = ", ") %>% 
+    mutate(Player = ifelse(str_detect(Player, "\\(T\\)$"), substr(Player, 1, nchar(Player) - 4), str_trim(Player)))
   # separate out positions
   nopos <- all_lg %>%
     filter(!str_detect(Player, "(C|F|G)$")) %>%
     mutate(Position = NA)
-  all_lg <- all_lg %>%
+  with_pos <- all_lg %>%
     filter(str_detect(Player, "(C|F|G)$")) %>%
     mutate(Position = str_sub(Player, start = -1), Player = substr(Player, 1, nchar(Player) - 2))
-  all_lg <- rbind(all_lg, nopos)
-  all_lg <- all_lg %>%
+  final_all_lg <- rbind(with_pos, nopos) %>%
     mutate(Type = paste("All", Lg, sep = "-")) %>%
     select(1, 2, 6, 3, 4, 5) %>%
     clean_names()
-  return(all_lg)
+  return(final_all_lg)
 }
 
 all_def_or_all_rookie <- function(type = "all_defense") {
   session=nod(bbref_bow,path=paste0("awards/", type, ".html"))
-  alldef <- scrape(session) %>%
-    html_nodes(xpath = paste0('//*[(@id = "div_awards_', type, '")]')) %>%
-    html_node("table") %>%
-    html_table() %>%
-    .[[1]]
-  alldef[alldef == ""] <- NA
-  alldef <- alldef[complete.cases(alldef), ]
-  colnames(alldef) <- c("Season", "Lg", "team_rank", "Player1", "Player2", "Player3", "Player4", "Player5")
-  alldef <- alldef %>% mutate(Season = as.numeric(substr(Season, 0, 4)) + 1)
-  alldef <- alldef %>%
-    pivot_longer(-c(Season, Lg, team_rank), names_prefix = "Player") %>%
-    select(-name)
-  alldef <- alldef %>%
-    rename("Player" = value) %>%
-    separate_rows(Player, sep = ", ")
-  tieds <- alldef %>%
-    filter(str_detect(Player, "\\(T\\)$")) %>%
-    mutate(Player = substr(Player, 1, nchar(Player) - 4))
-  alldef <- alldef %>% filter(!str_detect(Player, "\\(T\\)$"))
-  alldef <- rbind(alldef, tieds) %>% arrange(desc(Season), Lg, team_rank)
+  def_or_rookie <- scrape(session) %>% 
+    html_nodes(css = paste0("#div_awards_",type)) %>%
+    html_table() %>% .[[1]]
+  colnames(def_or_rookie) <- c("Season", "Lg", "number_tm", "Player1", "Player2", "Player3", "Player4", "Player5")
+  def_or_rookie <- def_or_rookie %>% filter(Player1 !="") %>%
+    mutate(Season = as.numeric(substr(Season, 0, 4)) + 1) %>% 
+    select(-Voting) %>%
+    # players become one column
+    pivot_longer(-c(Season, Lg, number_tm), names_prefix = "Player",values_to="Player") %>%
+    select(-name) %>%
+    # separate out ties
+    separate_rows(Player, sep = ", ") %>% 
+    mutate(Player = ifelse(str_detect(Player, "\\(T\\)$"), substr(Player, 1, nchar(Player) - 4), str_trim(Player))) %>% 
+    arrange(desc(Season), Lg, number_tm)
   if (type == "all_defense") {
-    alldef <- alldef %>% add_column(Type = "All-Defense", .before = "team_rank")
+    def_or_rookie <- def_or_rookie %>% add_column(Type = "All-Defense", .before = "number_tm")
   }
   else {
-    alldef <- alldef %>% add_column(Type = "All-Rookie", .before = "team_rank")
+    def_or_rookie <- def_or_rookie %>% add_column(Type = "All-Rookie", .before = "number_tm")
   }
-  alldef <- alldef %>%
+  def_or_rookie <- def_or_rookie %>%
     mutate(Position = NA) %>%
     clean_names()
-  return(alldef)
+  return(def_or_rookie)
 }
 
 all_stars <- function(season = 2020, league = "NBA") {
@@ -156,19 +157,4 @@ all_stars <- function(season = 2020, league = "NBA") {
   team2 <- tibble(player = rosters[[2]]) %>% mutate(team = team_names[[2]], lg = league, season = season)
   all_stars_tibble <- rbind(all_stars_tibble, team1) %>% rbind(., team2)
   return(all_stars_tibble)
-}
-
-get_all_all_stars <- function() {
-  a <- all_stars()
-  # nba (no game in 1999)
-  sapply(setdiff(2019:1951, 1999), function(x) {
-    new_seas <- all_stars(x)
-    a <<- rbind(a, new_seas)
-  })
-  # aba
-  sapply(1976:1968, function(x) {
-    new_seas <- all_stars(x, "ABA")
-    a <<- rbind(a, new_seas)
-  })
-  return(a)
 }
