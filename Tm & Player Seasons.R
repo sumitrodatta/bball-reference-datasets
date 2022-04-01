@@ -30,36 +30,13 @@ teamStats <- function(season = 2020, league = "NBA", type = "per_game-team") {
   return(new_season)
 }
 
-get_all_team_stats <- function(to_scrape = "per_game-team") {
-  a <- teamStats(2020, type = to_scrape)
-  if (to_scrape %in% c("per_poss-team", "per_poss-opponent")) {
-    # nba
-    sapply(2019:1974, function(x) {
-      new_seas <- teamStats(x, type = to_scrape)
-      a <<- rbind(a, new_seas)
-    })
-    # aba
-    sapply(1976:1974, function(x) {
-      new_seas <- teamStats(x, "ABA", type = to_scrape)
-      a <<- rbind(a, new_seas)
-    })
-  }
-  else {
-    # nba
-    sapply(2019:1950, function(x) {
-      new_seas <- teamStats(x, type = to_scrape)
-      a <<- rbind(a, new_seas)
-    })
-    # aba
-    sapply(1976:1968, function(x) {
-      new_seas <- teamStats(x, "ABA", type = to_scrape)
-      a <<- rbind(a, new_seas)
-    })
-    # baa
-    sapply(1949:1947, function(x) {
-      new_seas <- teamStats(x, "BAA", type = to_scrape)
-      a <<- rbind(a, new_seas)
-    })
+
+get_season_range_team_stats<-function(seas_range=2020,league="NBA",to_scrape="per_game-team"){
+  a<-tibble()
+  for (season in seas_range){
+    new_seas<-teamStats(season=season,league=league,type=to_scrape)
+    a<-bind_rows(a,new_seas)
+    print(paste(season,league))
   }
   a <- a %>%
     mutate(
@@ -67,7 +44,7 @@ get_all_team_stats <- function(to_scrape = "per_game-team") {
       team = ifelse(playoffs == TRUE, substr(team, 1, nchar(team) - 1), team)
     ) %>%
     relocate(playoffs, .after = "team")
-  a <- full_join(a, read_csv("Team Abbrev.csv"))
+  a <- left_join(a, read_csv("Data/Team Abbrev.csv"))
   a <- a %>% relocate(abbreviation, .after = "team")
   return(a)
 }
@@ -103,48 +80,13 @@ scrape_stats <- function(season = 2017, league = "NBA", type = "totals") {
   return(player_stats_a)
 }
 
-get_all <- function(to_scrape = "totals") {
-  a <- scrape_stats(2020, type = to_scrape)
-  if (to_scrape == "per_poss") {
-    # nba
-    sapply(2019:1974, function(x) {
-      new_seas <- scrape_stats(x, type = to_scrape)
-      names(new_seas) <- names(a)
-      a <<- rbind(a, new_seas)
-    })
-    # aba
-    sapply(1976:1974, function(x) {
-      new_seas <- scrape_stats(x, "ABA", type = to_scrape)
-      names(new_seas) <- names(a)
-      a <<- rbind(a, new_seas)
-    })
-  }
-  else if (to_scrape %in% c("shooting", "play-by-play")) {
-    sapply(2019:1997, function(x) {
-      new_seas <- scrape_stats(x, type = to_scrape)
-      names(new_seas) <- names(a)
-      a <<- rbind(a, new_seas)
-    })
-  }
-  else {
-    # nba
-    sapply(2019:1950, function(x) {
-      new_seas <- scrape_stats(x, type = to_scrape)
-      names(new_seas) <- names(a)
-      a <<- rbind(a, new_seas)
-    })
-    # aba
-    sapply(1976:1968, function(x) {
-      new_seas <- scrape_stats(x, "ABA", type = to_scrape)
-      names(new_seas) <- names(a)
-      a <<- rbind(a, new_seas)
-    })
-    # baa
-    sapply(1949:1947, function(x) {
-      new_seas <- scrape_stats(x, "BAA", type = to_scrape)
-      names(new_seas) <- names(a)
-      a <<- rbind(a, new_seas)
-    })
+
+get_season_range_player_stats<-function(seas_range=2020,league="NBA",to_scrape="per_game-team"){
+  a<-tibble()
+  for (season in seas_range){
+    new_seas<-scrape_stats(season=season,league=league,type=to_scrape)
+    a<-bind_rows(a,new_seas)
+    print(paste(season,league))
   }
   # removed asterisk from hall of fame players
   a <- a %>%
@@ -152,7 +94,19 @@ get_all <- function(to_scrape = "totals") {
       hof = str_detect(player, "\\*"),
       player = ifelse(hof, substr(player, 1, nchar(player) - 1), player)
     ) %>%
-    left_join(., read_csv("Player Season Info.csv"))
+    left_join(., read_csv("Data/Player Season Info.csv"))
   a <- a %>% relocate(seas_id, season, player_id, player, birth_year, hof, pos, age, experience, lg)
   return(a)
+}
+
+
+get_rookies<-function(season = 2017, league = "NBA"){
+  session = nod(bbref_bow,path=paste0("leagues/", league, "_", season, "_rookies.html"))
+  rookies=scrape(session) %>% html_nodes(css="#rookies") %>%
+    html_table() %>% .[[1]] %>% row_to_names(1) %>% clean_names() %>% select(-rk) %>% 
+    filter(!(player %in% c("","Player"))) %>% 
+    mutate(season=season,.before=everything()) %>% select(season:debut) %>% 
+    mutate(debut=word(debut,end=2,sep=",")) %>%
+    mutate(debut=as.Date(debut,format="%b %d, '%y")) %>% arrange(player,debut)
+  return(rookies)
 }
