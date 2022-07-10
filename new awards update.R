@@ -5,21 +5,19 @@ library(polite)
 
 source("award shares.R")
 
-curr_year=2021
+curr_year=2022
 mvp <- get_award_pcts_mvp_roy(season = curr_year, award = "mvp")
 roy <- get_award_pcts_mvp_roy(season = curr_year, award = "roy")
 mip <- get_award_pcts_other(season = curr_year, award = "mip")
 dpoy <- get_award_pcts_other(season = curr_year, award = "dpoy")
 smoy <- get_award_pcts_other(season = curr_year, award = "smoy")
 
-new_seas_awards <- bind_rows(dpoy, smoy, mip, mvp, roy)
+new_seas_awards <- bind_rows(dpoy, smoy, mip, mvp, roy) %>% 
+  group_by(award) %>% 
+  mutate(winner=if_else(share==max(share),TRUE,FALSE)) %>% 
+  ungroup() %>%
+  arrange(award,desc(share))
 
-winners <- new_seas_awards %>%
-  group_by(award) %>%
-  slice_max(share) %>% ungroup()
-new_seas_awards <- anti_join(new_seas_awards, winners)
-winners <- winners %>% mutate(winner = TRUE)
-new_seas_awards <- full_join(new_seas_awards, winners) %>% arrange(award, desc(share))
 psi <- read_csv("Data/Player Season Info.csv")
 final_new_seas_awards <- new_seas_awards %>%
   mutate(player=case_when(
@@ -68,12 +66,12 @@ new_end_seas_teams=bind_rows(all_lg_without_voting,alldef,allrook) %>% filter(se
     (player == "Michael Porter" & season >= 2020)~"Michael Porter Jr.",
     TRUE~player
   )
-  ) %>% left_join(.,psi) %>% select(season:birth_year,tm,age)
+  ) %>% left_join(.,psi) %>% select(season:birth_year,tm,age) %>% rename(team_rank=number_tm)
 
 write_csv(read_csv("Data/End of Season Teams.csv") %>% 
             filter(season != curr_year) %>%
             add_row(new_end_seas_teams) %>% 
-            arrange(desc(season), type, number_tm),
+            arrange(desc(season), type, team_rank),
           "Data/End of Season Teams.csv")
 
 all_lg <- all_lg_voting(season=curr_year)
