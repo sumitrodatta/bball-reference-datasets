@@ -70,9 +70,10 @@ add_new_team_seas <- function(seas = 2021, type = "per_game-team", update_abbrev
 
 add_new_seas <- function(seas = 2021, type = "totals", update_psi = FALSE) {
   a <- scrape_stats(season = seas, type = type)
-  alt_names=read_csv("Data/Alternate Player Names.csv")
-  a=left_join(a,alt_names) %>% 
-    mutate(player=coalesce(player_alternate,player)) %>% select(-player_alternate)
+  # no need for alt names after full data reload
+  # alt_names=read_csv("Data/Alternate Player Names.csv")
+  # a=left_join(a,alt_names) %>% 
+  #   mutate(player=coalesce(player_alternate,player)) %>% select(-player_alternate)
   if (update_psi == TRUE) {
     new_player_info <- a %>%
       select(season:tm) %>%

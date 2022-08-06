@@ -224,7 +224,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 223,Curly Armstrong,1918,FALSE,3,1949,1951
 224,D.C. Wilcutt,1923,FALSE,2,1949,1950
 225,Dan Kraus,NA,FALSE,1,1949,1949
-226,Darrell Brown,NA,FALSE,1,1949,1949
+226,Darrel Brown,NA,FALSE,1,1949,1949
 227,Dermie O'Connell,1928,FALSE,2,1949,1950
 228,Dick Shrider,NA,FALSE,1,1949,1949
 229,Dick Triptow,1922,FALSE,2,1949,1950
@@ -532,10 +532,10 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 531,Isaac Walthour,NA,FALSE,1,1954,1954
 532,Jack George,NA,FALSE,8,1954,1961
 533,Jack Molinas,NA,FALSE,1,1954,1954
-534,James Phelan,NA,FALSE,1,1954,1954
-535,Jim Fritsche,NA,FALSE,2,1954,1955
-536,Jim Luisi,NA,FALSE,1,1954,1954
-537,Jim Neal,NA,FALSE,2,1954,1955
+534,Jim Fritsche,NA,FALSE,2,1954,1955
+535,Jim Luisi,NA,FALSE,1,1954,1954
+536,Jim Neal,NA,FALSE,2,1954,1955
+537,Jim Phelan,NA,FALSE,1,1954,1954
 538,Joe Smyth,NA,FALSE,1,1954,1954
 539,Norm Grekin,NA,FALSE,1,1954,1954
 540,Norm Swanson,NA,FALSE,1,1954,1954
@@ -568,7 +568,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 567,Jackie Moore,NA,FALSE,3,1955,1957
 568,Jim Tucker,NA,FALSE,3,1955,1957
 569,Ken McBride,NA,FALSE,1,1955,1955
-570,Larry Costello,NA,FALSE,12,1955,1968
+570,Larry Costello,NA,TRUE,12,1955,1968
 571,Mike Kearns,NA,FALSE,1,1955,1955
 572,Phil Martin,NA,FALSE,1,1955,1955
 573,Red Kerr,NA,FALSE,12,1955,1966
@@ -885,7 +885,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 884,Joe Ellis,NA,FALSE,8,1967,1974
 885,John Block,NA,FALSE,10,1967,1976
 886,Johnny Austin,1944,FALSE,2,1967,1968
-887,Lou Hudson,NA,FALSE,13,1967,1979
+887,Lou Hudson,NA,TRUE,13,1967,1979
 888,Matt Guokas,1944,FALSE,10,1967,1976
 889,Nate Bowman,NA,FALSE,6,1967,1972
 890,Neil Johnson,1943,FALSE,7,1967,1973
@@ -901,7 +901,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 900,Art Williams,1939,FALSE,8,1968,1975
 901,Arthur Becker,NA,FALSE,6,1968,1973
 902,Arvesta Kelly,NA,FALSE,5,1968,1972
-903,Barry Liebowitz,NA,FALSE,1,1968,1968
+903,Barry Leibowitz,NA,FALSE,1,1968,1968
 904,Bill Allen,NA,FALSE,1,1968,1968
 905,Bill Bradley,1943,TRUE,10,1968,1977
 906,Bill Bradley,1941,FALSE,1,1968,1968
@@ -1028,8 +1028,8 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 1027,Red Stroud,NA,FALSE,1,1968,1968
 1028,Rich Peek,NA,FALSE,1,1968,1968
 1029,Richard Clark,NA,FALSE,2,1968,1969
-1030,Richard Moore,NA,FALSE,1,1968,1968
-1031,Richard Parks,NA,FALSE,1,1968,1968
+1030,Richard Parks,NA,FALSE,1,1968,1968
+1031,Richie Moore,NA,FALSE,1,1968,1968
 1032,Rick Weitzman,NA,FALSE,1,1968,1968
 1033,Riney Lochmann,NA,FALSE,3,1968,1970
 1034,Roger Brown,1942,TRUE,8,1968,1975
@@ -1137,7 +1137,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 1136,Rich Dumas,NA,FALSE,1,1969,1969
 1137,Rich Johnson,1946,FALSE,3,1969,1971
 1138,Rich Niemann,1946,FALSE,4,1969,1972
-1139,Rick Adelman,NA,FALSE,7,1969,1975
+1139,Rick Adelman,NA,TRUE,7,1969,1975
 1140,Rod Knowles,1946,FALSE,1,1969,1969
 1141,Ron Boone,1946,FALSE,13,1969,1981
 1142,Ron Williams,NA,FALSE,8,1969,1976
@@ -1503,7 +1503,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 1502,Ed Ratleff,NA,FALSE,5,1974,1978
 1503,Ernie DiGregorio,NA,FALSE,5,1974,1978
 1504,Gary Melchionni,NA,FALSE,2,1974,1975
-1505,George Karl,1951,FALSE,5,1974,1978
+1505,George Karl,1951,TRUE,5,1974,1978
 1506,Jerry Pender,NA,FALSE,1,1974,1974
 1507,Jim Bradley,NA,FALSE,3,1974,1976
 1508,Jim Brewer,NA,FALSE,9,1974,1982
@@ -2474,7 +2474,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 2473,Tom Tolbert,NA,FALSE,7,1989,1995
 2474,Vernon Maxwell,NA,FALSE,13,1989,2001
 2475,Vinny Del Negro,NA,FALSE,12,1989,2002
-2476,Wayne Englestad,NA,FALSE,1,1989,1989
+2476,Wayne Engelstad,NA,FALSE,1,1989,1989
 2477,Will Perdue,NA,FALSE,13,1989,2001
 2478,Willie Anderson,NA,FALSE,9,1989,1997
 2479,Adrian Caldwell,NA,FALSE,6,1990,1998
@@ -2550,7 +2550,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 2549,Steve Bucknall,NA,FALSE,1,1990,1990
 2550,Terry Davis,NA,FALSE,10,1990,2001
 2551,Terry Dozier,NA,FALSE,1,1990,1990
-2552,Tim Hardaway,NA,FALSE,13,1990,2003
+2552,Tim Hardaway,NA,TRUE,13,1990,2003
 2553,Tim Legler,NA,FALSE,10,1990,2000
 2554,Todd Lichti,NA,FALSE,5,1990,1994
 2555,Tom Hammonds,NA,FALSE,12,1990,2001
@@ -3379,7 +3379,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 3378,Dan Gadzuric,NA,FALSE,10,2003,2012
 3379,Devin Brown,NA,FALSE,8,2003,2010
 3380,Drew Gooden,NA,FALSE,14,2003,2016
-3381,Efthimis Rentzias,NA,FALSE,1,2003,2003
+3381,Efthimios Rentzias,NA,FALSE,1,2003,2003
 3382,Frank Williams,NA,FALSE,3,2003,2005
 3383,Fred Jones,NA,FALSE,7,2003,2009
 3384,Gordan Giriček,NA,FALSE,6,2003,2008
@@ -3399,7 +3399,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 3398,Ken Johnson,1978,FALSE,1,2003,2003
 3399,Lonny Baxter,NA,FALSE,4,2003,2006
 3400,Maceo Baston,NA,FALSE,4,2003,2009
-3401,Manu Ginóbili,NA,FALSE,16,2003,2018
+3401,Manu Ginóbili,NA,TRUE,16,2003,2018
 3402,Marcus Haislip,NA,FALSE,4,2003,2010
 3403,Marko Jarić,NA,FALSE,7,2003,2009
 3404,Mehmet Okur,NA,FALSE,10,2003,2012
@@ -4004,7 +4004,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 4003,E'Twaun Moore,NA,FALSE,10,2012,2021
 4004,Edwin Ubiles,NA,FALSE,1,2012,2012
 4005,Elliot Williams,NA,FALSE,4,2012,2016
-4006,Enes Kanter,NA,FALSE,11,2012,2022
+4006,Enes Freedom,NA,FALSE,11,2012,2022
 4007,Eric Dawson,NA,FALSE,1,2012,2012
 4008,Greg Smith,1991,FALSE,5,2012,2016
 4009,Greg Stiemsma,NA,FALSE,4,2012,2015
@@ -4187,7 +4187,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 4186,Nemanja Nedović,NA,FALSE,1,2014,2014
 4187,Nick Calathes,NA,FALSE,2,2014,2015
 4188,Ognjen Kuzmić,NA,FALSE,2,2014,2015
-4189,Otto Porter,NA,FALSE,9,2014,2022
+4189,Otto Porter Jr.,NA,FALSE,9,2014,2022
 4190,Pero Antić,NA,FALSE,2,2014,2015
 4191,Peyton Siva,NA,FALSE,1,2014,2014
 4192,Phil Pressey,NA,FALSE,3,2014,2016
@@ -4250,7 +4250,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 4249,Jabari Parker,NA,FALSE,8,2015,2022
 4250,Jack Cooley,NA,FALSE,2,2015,2018
 4251,JaKarr Sampson,NA,FALSE,6,2015,2021
-4252,James Ennis,NA,FALSE,8,2015,2022
+4252,James Ennis III,NA,FALSE,8,2015,2022
 4253,James Michael McAdoo,NA,FALSE,4,2015,2018
 4254,James Young,NA,FALSE,4,2015,2018
 4255,JaMychal Green,NA,FALSE,8,2015,2022
@@ -4387,7 +4387,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 4386,Chinanu Onuaku,NA,FALSE,2,2017,2018
 4387,Damian Jones,NA,FALSE,6,2017,2022
 4388,Daniel Ochefu,NA,FALSE,1,2017,2017
-4389,Danuel House,NA,FALSE,6,2017,2022
+4389,Danuel House Jr.,NA,FALSE,6,2017,2022
 4390,Dario Šarić,NA,FALSE,5,2017,2021
 4391,David Nwaba,NA,FALSE,6,2017,2022
 4392,Dāvis Bertāns,NA,FALSE,6,2017,2022
@@ -4417,7 +4417,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 4416,Joel Bolomboy,NA,FALSE,2,2017,2018
 4417,Joel Embiid,NA,FALSE,6,2017,2022
 4418,Jonathan Gibson,NA,FALSE,2,2017,2018
-4419,Juan Hernangómez,NA,FALSE,6,2017,2022
+4419,Juancho Hernangómez,NA,FALSE,6,2017,2022
 4420,Kay Felder,NA,FALSE,2,2017,2018
 4421,Kris Dunn,NA,FALSE,6,2017,2022
 4422,Kyle Wiltjer,NA,FALSE,1,2017,2017
@@ -4576,7 +4576,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 4575,Tyrone Wallace,NA,FALSE,4,2018,2022
 4576,Vince Hunter,NA,FALSE,1,2018,2018
 4577,Walt Lemon Jr.,NA,FALSE,2,2018,2019
-4578,Wesley Iwundu,NA,FALSE,5,2018,2022
+4578,Wes Iwundu,NA,FALSE,5,2018,2022
 4579,Xavier Rathan-Mayes,NA,FALSE,1,2018,2018
 4580,Zach Collins,NA,FALSE,4,2018,2022
 4581,Zhou Qi,NA,FALSE,2,2018,2019
@@ -4651,7 +4651,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 4650,Khyri Thomas,NA,FALSE,3,2019,2021
 4651,Kostas Antetokounmpo,NA,FALSE,3,2019,2021
 4652,Landry Shamet,NA,FALSE,4,2019,2022
-4653,Lonnie Walker,NA,FALSE,4,2019,2022
+4653,Lonnie Walker IV,NA,FALSE,4,2019,2022
 4654,Luka Dončić,NA,FALSE,4,2019,2022
 4655,Marcus Derrickson,NA,FALSE,1,2019,2019
 4656,Marvin Bagley III,NA,FALSE,4,2019,2022
@@ -4670,7 +4670,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 4669,Ryan Broekhoff,NA,FALSE,2,2019,2020
 4670,Shai Gilgeous-Alexander,NA,FALSE,4,2019,2022
 4671,Shake Milton,NA,FALSE,4,2019,2022
-4672,Sviatoslav Mykhailiuk,NA,FALSE,4,2019,2022
+4672,Svi Mykhailiuk,NA,FALSE,4,2019,2022
 4673,Tahjere McCall,NA,FALSE,1,2019,2019
 4674,Theo Pinson,NA,FALSE,4,2019,2022
 4675,Thomas Welsh,NA,FALSE,1,2019,2019
@@ -4698,7 +4698,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 4697,Cam Reddish,NA,FALSE,3,2020,2022
 4698,Cameron Johnson,NA,FALSE,3,2020,2022
 4699,Carsen Edwards,NA,FALSE,3,2020,2022
-4700,Charlie Brown,NA,FALSE,3,2020,2022
+4700,Charlie Brown Jr.,NA,FALSE,3,2020,2022
 4701,Chris Clemons,NA,FALSE,1,2020,2020
 4702,Chris Silva,NA,FALSE,3,2020,2022
 4703,Coby White,NA,FALSE,3,2020,2022
@@ -4770,8 +4770,8 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 4769,Mychal Mulder,NA,FALSE,3,2020,2022
 4770,Nassir Little,NA,FALSE,3,2020,2022
 4771,Naz Reid,NA,FALSE,3,2020,2022
-4772,Nickeil Alexander-Walker,NA,FALSE,3,2020,2022
-4773,Nicolas Claxton,NA,FALSE,3,2020,2022
+4772,Nic Claxton,NA,FALSE,3,2020,2022
+4773,Nickeil Alexander-Walker,NA,FALSE,3,2020,2022
 4774,Nicolò Melli,NA,FALSE,2,2020,2021
 4775,Nigel Williams-Goss,NA,FALSE,1,2020,2020
 4776,Norvel Pelle,NA,FALSE,3,2020,2022
@@ -4878,7 +4878,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 4877,R.J. Hampton,NA,FALSE,2,2021,2022
 4878,Reggie Perry,NA,FALSE,2,2021,2022
 4879,Robert Franks,NA,FALSE,1,2021,2021
-4880,Robert Woodard,NA,FALSE,2,2021,2022
+4880,Robert Woodard II,NA,FALSE,2,2021,2022
 4881,Saben Lee,NA,FALSE,2,2021,2022
 4882,Saddiq Bey,NA,FALSE,2,2021,2022
 4883,Sam Merrill,NA,FALSE,2,2021,2022

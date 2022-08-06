@@ -66,12 +66,12 @@ new_end_seas_teams=bind_rows(all_lg_without_voting,alldef,allrook) %>% filter(se
     (player == "Michael Porter" & season >= 2020)~"Michael Porter Jr.",
     TRUE~player
   )
-  ) %>% left_join(.,psi) %>% select(season:birth_year,tm,age) %>% rename(team_rank=number_tm)
+  ) %>% left_join(.,psi) %>% select(season:birth_year,tm,age)
 
 write_csv(read_csv("Data/End of Season Teams.csv") %>% 
             filter(season != curr_year) %>%
             add_row(new_end_seas_teams) %>% 
-            arrange(desc(season), type, team_rank),
+            arrange(desc(season), type, number_tm),
           "Data/End of Season Teams.csv")
 
 all_lg <- all_lg_voting(season=curr_year)

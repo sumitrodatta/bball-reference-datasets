@@ -45,7 +45,7 @@ get_season_range_team_stats<-function(seas_range=2020,league="NBA",to_scrape="pe
     ) %>%
     relocate(playoffs, .after = "team")
   a <- left_join(a, read_csv("Data/Team Abbrev.csv"))
-  a <- a %>% relocate(abbreviation, .after = "team")
+  a <- a %>% relocate(abbreviation, .after = "team") %>% arrange(desc(season),abbreviation)
   return(a)
 }
 
@@ -81,7 +81,7 @@ scrape_stats <- function(season = 2017, league = "NBA", type = "totals") {
 }
 
 
-get_season_range_player_stats<-function(seas_range=2020,league="NBA",to_scrape="per_game-team"){
+get_season_range_player_stats<-function(seas_range=2020,league="NBA",to_scrape="per_game"){
   a<-tibble()
   for (season in seas_range){
     new_seas<-scrape_stats(season=season,league=league,type=to_scrape)
@@ -95,8 +95,9 @@ get_season_range_player_stats<-function(seas_range=2020,league="NBA",to_scrape="
       player = ifelse(hof, substr(player, 1, nchar(player) - 1), player)
     ) %>%
     left_join(., read_csv("Data/Player Season Info.csv"))
-  a <- a %>% relocate(seas_id, season, player_id, player, birth_year, hof, pos, age, experience, lg)
-  return(a)
+  a <- a %>% relocate(seas_id, season, player_id, player, birth_year, hof, pos, age, experience, lg) %>%
+    arrange(desc(season),player)
+  return(a) 
 }
 
 
