@@ -5,6 +5,8 @@ library(polite)
 
 source("Tm & Player Seasons.R")
 
+current_seas=2023
+
 add_new_team_seas <- function(seas = 2021, type = "per_game-team", update_abbrevs = FALSE) {
   a <- teamStats(season = seas, type = type)
   a<-a %>% mutate(
@@ -81,6 +83,7 @@ add_new_seas <- function(seas = 2021, type = "totals", update_psi = FALSE) {
       mutate(birth_year=case_when((player=="Mike James" & season>=2018)~1990,
                                   (player=="George King" & season>=2019)~1994,
                                   (player=="Brandon Williams" & season>=2022)~1999,
+                                  (player=="Johnny Davis" & season>=2023)~2002,
                                   TRUE~NA_real_))
     # change above mutate birth year line whenever new player enters league
     psi <- read_csv("Data/Player Season Info.csv") %>%
@@ -178,25 +181,25 @@ add_new_seas <- function(seas = 2021, type = "totals", update_psi = FALSE) {
   }
 }
 
-add_new_team_seas(seas = 2022, type = "totals-team", update_abbrevs = TRUE)
-add_new_team_seas(seas = 2022, type = "totals-opponent", update_abbrevs = FALSE)
-add_new_team_seas(seas = 2022, type = "per_game-team", update_abbrevs = FALSE)
-add_new_team_seas(seas = 2022, type = "per_game-opponent", update_abbrevs = FALSE)
-add_new_team_seas(seas = 2022, type = "per_poss-team", update_abbrevs = FALSE)
-add_new_team_seas(seas = 2022, type = "per_poss-opponent", update_abbrevs = FALSE)
-add_new_team_seas(seas = 2022, type = "advanced-team", update_abbrevs = FALSE)
+add_new_team_seas(seas = current_seas, type = "totals-team", update_abbrevs = TRUE)
+add_new_team_seas(seas = current_seas, type = "totals-opponent", update_abbrevs = FALSE)
+add_new_team_seas(seas = current_seas, type = "per_game-team", update_abbrevs = FALSE)
+add_new_team_seas(seas = current_seas, type = "per_game-opponent", update_abbrevs = FALSE)
+add_new_team_seas(seas = current_seas, type = "per_poss-team", update_abbrevs = FALSE)
+add_new_team_seas(seas = current_seas, type = "per_poss-opponent", update_abbrevs = FALSE)
+add_new_team_seas(seas = current_seas, type = "advanced-team", update_abbrevs = FALSE)
 
-add_new_seas(seas = 2022, type = "totals", update_psi = TRUE)
-add_new_seas(seas = 2022, type = "advanced", update_psi = FALSE)
-add_new_seas(seas = 2022, type = "per_game", update_psi = FALSE)
-add_new_seas(seas = 2022, type = "per_minute", update_psi = FALSE)
-add_new_seas(seas = 2022, type = "per_poss", update_psi = FALSE)
-add_new_seas(seas = 2022, type = "shooting", update_psi = FALSE)
-add_new_seas(seas = 2022, type = "play-by-play", update_psi = FALSE)
+add_new_seas(seas = current_seas, type = "totals", update_psi = TRUE)
+add_new_seas(seas = current_seas, type = "advanced", update_psi = FALSE)
+add_new_seas(seas = current_seas, type = "per_game", update_psi = FALSE)
+add_new_seas(seas = current_seas, type = "per_minute", update_psi = FALSE)
+add_new_seas(seas = current_seas, type = "per_poss", update_psi = FALSE)
+add_new_seas(seas = current_seas, type = "shooting", update_psi = FALSE)
+add_new_seas(seas = current_seas, type = "play-by-play", update_psi = FALSE)
 
-curr_rookies=get_rookies(2022)
+curr_rookies=get_rookies(current_seas)
 
-rookies_from_pci=read_csv("Data/Player Career Info.csv") %>% filter(first_seas==2022)
+rookies_from_pci=read_csv("Data/Player Career Info.csv") %>% filter(first_seas==current_seas)
 
 left_join(curr_rookies,rookies_from_pci) %>% filter(is.na(player_id))
 

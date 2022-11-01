@@ -3,7 +3,7 @@ library(tidyverse)
 library(janitor)
 library(polite)
 
-bbref_bow=bow("https://www.basketball-reference.com/",user_agent = "Sumitro Datta",force=TRUE)
+bbref_bow=bow("https://www.basketball-reference.com/",user_agent = "Sumitro Datta",force=TRUE,delay=10)
 print(bbref_bow)
 
 # per_game-team, per_game-opponent
