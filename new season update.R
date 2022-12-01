@@ -207,6 +207,6 @@ file_names=c("Data/Player Totals.csv","Data/Advanced.csv","Data/Player Per Game.
              "Data/Per 36 Minutes.csv","Data/Per 100 Poss.csv","Data/Player Shooting.csv","Data/Player Play By Play.csv")
 
 sapply(file_names,function(x){
-  write_csv(read_csv(x) %>% select(-birth_year) %>% left_join(.,read_csv("Player Season Info.csv")) %>% 
+  write_csv(read_csv(x) %>% select(-birth_year) %>% left_join(.,read_csv("Data/Player Season Info.csv")) %>% 
               relocate(birth_year,.after=player),x)
 })
