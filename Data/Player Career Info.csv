@@ -3498,7 +3498,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 3497,Anderson Varejão,NA,FALSE,14,2005,2021
 3498,Andre Barrett,NA,FALSE,4,2005,2008
 3499,Andre Emmett,NA,FALSE,2,2005,2012
-3500,Andre Iguodala,NA,FALSE,18,2005,2022
+3500,Andre Iguodala,NA,FALSE,19,2005,2023
 3501,Andrés Nocioni,NA,FALSE,8,2005,2012
 3502,Andris Biedriņš,NA,FALSE,10,2005,2014
 3503,Antonio Burks,NA,FALSE,2,2005,2006
@@ -4049,7 +4049,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 4048,Nolan Smith,NA,FALSE,2,2012,2013
 4049,Norris Cole,NA,FALSE,6,2012,2017
 4050,Reggie Jackson,NA,FALSE,12,2012,2023
-4051,Ricky Rubio,NA,FALSE,11,2012,2022
+4051,Ricky Rubio,NA,FALSE,12,2012,2023
 4052,Ryan Reid,NA,FALSE,1,2012,2012
 4053,Shelvin Mack,NA,FALSE,8,2012,2019
 4054,Terrel Harris,NA,FALSE,2,2012,2013
@@ -4402,7 +4402,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 4401,Dorian Finney-Smith,NA,FALSE,7,2017,2023
 4402,Dragan Bender,NA,FALSE,4,2017,2020
 4403,Fred VanVleet,NA,FALSE,7,2017,2023
-4404,Gary Payton II,NA,FALSE,6,2017,2022
+4404,Gary Payton II,NA,FALSE,7,2017,2023
 4405,Georges Niang,NA,FALSE,7,2017,2023
 4406,Georgios Papagiannis,NA,FALSE,2,2017,2018
 4407,Henry Ellenson,NA,FALSE,5,2017,2021
@@ -4520,7 +4520,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 4519,John Collins,NA,FALSE,6,2018,2023
 4520,John Holland,NA,FALSE,2,2018,2019
 4521,Johnathan Motley,NA,FALSE,3,2018,2020
-4522,Jonathan Isaac,NA,FALSE,3,2018,2020
+4522,Jonathan Isaac,NA,FALSE,4,2018,2023
 4523,Jordan Bell,NA,FALSE,5,2018,2022
 4524,Josh Gray,NA,FALSE,2,2018,2020
 4525,Josh Hart,NA,FALSE,6,2018,2023
@@ -4555,7 +4555,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 4554,Nigel Hayes,NA,FALSE,1,2018,2018
 4555,OG Anunoby,NA,FALSE,6,2018,2023
 4556,Omari Johnson,NA,FALSE,1,2018,2018
-4557,PJ Dozier,NA,FALSE,5,2018,2022
+4557,PJ Dozier,NA,FALSE,6,2018,2023
 4558,Reggie Hearn,NA,FALSE,1,2018,2018
 4559,Rodney Purvis,NA,FALSE,1,2018,2018
 4560,Royce O'Neale,NA,FALSE,6,2018,2023
@@ -4563,7 +4563,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 4562,Semi Ojeleye,NA,FALSE,5,2018,2022
 4563,Shaquille Harrison,NA,FALSE,5,2018,2022
 4564,Sindarius Thornwell,NA,FALSE,4,2018,2021
-4565,Sterling Brown,NA,FALSE,5,2018,2022
+4565,Sterling Brown,NA,FALSE,6,2018,2023
 4566,T.J. Leaf,NA,FALSE,4,2018,2021
 4567,Terrance Ferguson,NA,FALSE,4,2018,2021
 4568,Thomas Bryant,NA,FALSE,6,2018,2023
@@ -4913,7 +4913,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 4912,Cade Cunningham,NA,FALSE,2,2022,2023
 4913,Cam Thomas,NA,FALSE,2,2022,2023
 4914,Cameron McGriff,NA,FALSE,1,2022,2022
-4915,Carlik Jones,NA,FALSE,1,2022,2022
+4915,Carlik Jones,NA,FALSE,2,2022,2023
 4916,Cat Barber,NA,FALSE,1,2022,2022
 4917,Charles Bassey,NA,FALSE,2,2022,2023
 4918,Chaundee Brown Jr.,NA,FALSE,1,2022,2022
@@ -4960,7 +4960,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 4959,Jeremiah Robinson-Earl,NA,FALSE,2,2022,2023
 4960,Jericho Sims,NA,FALSE,2,2022,2023
 4961,Jock Landale,NA,FALSE,2,2022,2023
-4962,Joe Wieskamp,NA,FALSE,1,2022,2022
+4962,Joe Wieskamp,NA,FALSE,2,2022,2023
 4963,Joel Ayayi,NA,FALSE,1,2022,2022
 4964,Jon Teske,NA,FALSE,1,2022,2022
 4965,Jonathan Kuminga,NA,FALSE,2,2022,2023
@@ -5053,44 +5053,45 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 5052,Jalen Duren,NA,FALSE,1,2023,2023
 5053,Jalen Williams,NA,FALSE,1,2023,2023
 5054,Jamal Cain,NA,FALSE,1,2023,2023
-5055,Jason Preston,NA,FALSE,1,2023,2023
-5056,Jaylin Williams,NA,FALSE,1,2023,2023
-5057,JD Davison,NA,FALSE,1,2023,2023
-5058,Jeremy Sochan,NA,FALSE,1,2023,2023
-5059,John Butler,NA,FALSE,1,2023,2023
-5060,Johnny Davis,2002,FALSE,1,2023,2023
-5061,Jordan Hall,NA,FALSE,1,2023,2023
-5062,Josh Minott,NA,FALSE,1,2023,2023
-5063,Julian Champagnie,NA,FALSE,1,2023,2023
-5064,Keegan Murray,NA,FALSE,1,2023,2023
-5065,Kendall Brown,NA,FALSE,1,2023,2023
-5066,Kennedy Chandler,NA,FALSE,1,2023,2023
-5067,Kenneth Lofton Jr.,NA,FALSE,1,2023,2023
-5068,Keon Ellis,NA,FALSE,1,2023,2023
-5069,Kevon Harris,NA,FALSE,1,2023,2023
-5070,Malaki Branham,NA,FALSE,1,2023,2023
-5071,MarJon Beauchamp,NA,FALSE,1,2023,2023
-5072,Mark Williams,NA,FALSE,1,2023,2023
-5073,Max Christie,NA,FALSE,1,2023,2023
-5074,Michael Foster Jr.,NA,FALSE,1,2023,2023
-5075,Moussa Diabaté,NA,FALSE,1,2023,2023
-5076,Nikola Jović,NA,FALSE,1,2023,2023
-5077,Ochai Agbaji,NA,FALSE,1,2023,2023
-5078,Orlando Robinson,NA,FALSE,1,2023,2023
-5079,Ousmane Dieng,NA,FALSE,1,2023,2023
-5080,Paolo Banchero,NA,FALSE,1,2023,2023
-5081,Patrick Baldwin Jr.,NA,FALSE,1,2023,2023
-5082,Peyton Watson,NA,FALSE,1,2023,2023
-5083,Ron Harper Jr.,NA,FALSE,1,2023,2023
-5084,Ryan Rollins,NA,FALSE,1,2023,2023
-5085,Scotty Pippen Jr.,NA,FALSE,1,2023,2023
-5086,Shaedon Sharpe,NA,FALSE,1,2023,2023
-5087,Simone Fontecchio,NA,FALSE,1,2023,2023
-5088,Tari Eason,NA,FALSE,1,2023,2023
-5089,Trevor Hudgins,NA,FALSE,1,2023,2023
-5090,Trevor Keels,NA,FALSE,1,2023,2023
-5091,Tyrese Martin,NA,FALSE,1,2023,2023
-5092,TyTy Washington Jr.,NA,FALSE,1,2023,2023
-5093,Vince Williams Jr.,NA,FALSE,1,2023,2023
-5094,Walker Kessler,NA,FALSE,1,2023,2023
-5095,Wendell Moore Jr.,NA,FALSE,1,2023,2023
+5055,Jared Rhoden,NA,FALSE,1,2023,2023
+5056,Jason Preston,NA,FALSE,1,2023,2023
+5057,Jaylin Williams,NA,FALSE,1,2023,2023
+5058,JD Davison,NA,FALSE,1,2023,2023
+5059,Jeremy Sochan,NA,FALSE,1,2023,2023
+5060,John Butler,NA,FALSE,1,2023,2023
+5061,Johnny Davis,2002,FALSE,1,2023,2023
+5062,Jordan Hall,NA,FALSE,1,2023,2023
+5063,Josh Minott,NA,FALSE,1,2023,2023
+5064,Julian Champagnie,NA,FALSE,1,2023,2023
+5065,Keegan Murray,NA,FALSE,1,2023,2023
+5066,Kendall Brown,NA,FALSE,1,2023,2023
+5067,Kennedy Chandler,NA,FALSE,1,2023,2023
+5068,Kenneth Lofton Jr.,NA,FALSE,1,2023,2023
+5069,Keon Ellis,NA,FALSE,1,2023,2023
+5070,Kevon Harris,NA,FALSE,1,2023,2023
+5071,Malaki Branham,NA,FALSE,1,2023,2023
+5072,MarJon Beauchamp,NA,FALSE,1,2023,2023
+5073,Mark Williams,NA,FALSE,1,2023,2023
+5074,Max Christie,NA,FALSE,1,2023,2023
+5075,Michael Foster Jr.,NA,FALSE,1,2023,2023
+5076,Moussa Diabaté,NA,FALSE,1,2023,2023
+5077,Nikola Jović,NA,FALSE,1,2023,2023
+5078,Ochai Agbaji,NA,FALSE,1,2023,2023
+5079,Orlando Robinson,NA,FALSE,1,2023,2023
+5080,Ousmane Dieng,NA,FALSE,1,2023,2023
+5081,Paolo Banchero,NA,FALSE,1,2023,2023
+5082,Patrick Baldwin Jr.,NA,FALSE,1,2023,2023
+5083,Peyton Watson,NA,FALSE,1,2023,2023
+5084,Ron Harper Jr.,NA,FALSE,1,2023,2023
+5085,Ryan Rollins,NA,FALSE,1,2023,2023
+5086,Scotty Pippen Jr.,NA,FALSE,1,2023,2023
+5087,Shaedon Sharpe,NA,FALSE,1,2023,2023
+5088,Simone Fontecchio,NA,FALSE,1,2023,2023
+5089,Tari Eason,NA,FALSE,1,2023,2023
+5090,Trevor Hudgins,NA,FALSE,1,2023,2023
+5091,Trevor Keels,NA,FALSE,1,2023,2023
+5092,Tyrese Martin,NA,FALSE,1,2023,2023
+5093,TyTy Washington Jr.,NA,FALSE,1,2023,2023
+5094,Vince Williams Jr.,NA,FALSE,1,2023,2023
+5095,Walker Kessler,NA,FALSE,1,2023,2023
+5096,Wendell Moore Jr.,NA,FALSE,1,2023,2023
