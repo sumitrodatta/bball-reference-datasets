@@ -12,10 +12,7 @@ mip <- get_award_pcts_other(season = curr_year, award = "mip")
 dpoy <- get_award_pcts_other(season = curr_year, award = "dpoy")
 smoy <- get_award_pcts_other(season = curr_year, award = "smoy")
 
-new_seas_awards <- bind_rows(dpoy, smoy, mip, mvp, roy) %>% 
-  group_by(award) %>% 
-  mutate(winner=if_else(share==max(share),TRUE,FALSE)) %>% 
-  ungroup() %>%
+new_seas_awards <- bind_rows(dpoy, smoy, mip, mvp, roy) %>%
   arrange(award,desc(share))
 
 psi <- read_csv("Data/Player Season Info.csv")

@@ -77,13 +77,11 @@ aba_roys_without_voting <- scrape(session) %>%
 final_roys <- bind_rows(roy, nba_roys_without_voting,aba_roys_without_voting)
 
 mip <- tibble()
-# no voting found for 1987
-sapply(c(current_year:1988, 1986), function(x) {
+sapply(current_year:1986, function(x) {
   new_seas <- get_award_pcts_other(season=x, award="mip")
   mip <<- rbind(mip, new_seas)
   print(x)
 })
-mip <- mip %>% add_row(season = 1987, award = "mip", player = "Dale Ellis", age = 26, tm = "SEA", winner = TRUE)
 
 dpoy <- tibble()
 sapply(current_year:1983, function(x) {
@@ -101,9 +99,7 @@ sapply(current_year:1984, function(x) {
 })
 smoy <- smoy %>% add_row(season = 1983, award = "smoy", player = "Bobby Jones", age = 31, tm = "PHI", winner = TRUE)
 
-awards <- bind_rows(dpoy, smoy, mip, mvp, roy) %>% group_by(season,award) %>% 
-  mutate(winner=if_else(share==max(share),TRUE,FALSE)) %>% 
-  ungroup() %>%
+awards <- bind_rows(dpoy, smoy, mip, mvp, roy) %>%
   arrange(desc(season),award,desc(share)) %>%
   mutate(player=case_when(
     (player == "Jaren Jackson" & season >=2019)~"Jaren Jackson Jr.",

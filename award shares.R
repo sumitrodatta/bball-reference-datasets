@@ -31,8 +31,8 @@ get_award_pcts_mvp_roy <- function(season = 2020, award = "mvp", lg = "nba") {
     # add season awarded and award name
     add_column(season = season, .before = "player") %>%
     add_column(award = paste(lg, award), .before = "player") %>%
-    add_column(winner = FALSE) %>%
-    mutate(across(c(age,first:share),as.numeric))
+    mutate(across(c(age,first:share),as.numeric)) %>% 
+    mutate(winner=if_else(share==max(share),TRUE,FALSE))
   return(pcts)
 }
 
@@ -54,8 +54,8 @@ get_award_pcts_other <- function(season = 2020, award = "mip") {
     # add season awarded and award name
     add_column(season = season, .before = "player") %>%
     add_column(award = award, .before = "player") %>%
-    mutate(winner = FALSE) %>%
-    mutate(across(c(age,first:share),as.numeric))
+    mutate(across(c(age,first:share),as.numeric)) %>% 
+    mutate(winner=if_else(share==max(share),TRUE,FALSE))
   return(pcts)
 }
 
