@@ -3114,7 +3114,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 3113,Cory Carr,NA,FALSE,1,1999,1999
 3114,Cuttino Mobley,NA,FALSE,11,1999,2009
 3115,Damon Jones,NA,FALSE,11,1999,2009
-3116,Dirk Nowitzki,NA,FALSE,21,1999,2019
+3116,Dirk Nowitzki,NA,TRUE,21,1999,2019
 3117,Earl Boykins,NA,FALSE,13,1999,2012
 3118,Felipe López,NA,FALSE,4,1999,2002
 3119,Gerald Brown,NA,FALSE,1,1999,1999
@@ -3340,7 +3340,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 3339,Mike James,1975,FALSE,12,2002,2014
 3340,Norm Richardson,NA,FALSE,1,2002,2002
 3341,Óscar Torres,NA,FALSE,2,2002,2003
-3342,Pau Gasol,NA,FALSE,18,2002,2019
+3342,Pau Gasol,NA,TRUE,18,2002,2019
 3343,Predrag Drobnjak,NA,FALSE,4,2002,2005
 3344,Primož Brezec,NA,FALSE,8,2002,2010
 3345,Ratko Varda,NA,FALSE,1,2002,2002
@@ -3354,7 +3354,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 3353,Tang Hamilton,NA,FALSE,1,2002,2002
 3354,Terence Morris,NA,FALSE,3,2002,2006
 3355,Tierre Brown,NA,FALSE,4,2002,2005
-3356,Tony Parker,NA,FALSE,18,2002,2019
+3356,Tony Parker,NA,TRUE,18,2002,2019
 3357,Tremaine Fowlkes,NA,FALSE,4,2002,2005
 3358,Trenton Hassell,NA,FALSE,9,2002,2010
 3359,Troy Murphy,NA,FALSE,12,2002,2013
@@ -3443,7 +3443,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 3442,David West,NA,FALSE,15,2004,2018
 3443,Desmond Ferguson,NA,FALSE,1,2004,2004
 3444,Desmond Penigar,NA,FALSE,1,2004,2004
-3445,Dwyane Wade,NA,FALSE,16,2004,2019
+3445,Dwyane Wade,NA,TRUE,16,2004,2019
 3446,Francisco Elson,NA,FALSE,9,2004,2012
 3447,Hiram Fuller,NA,FALSE,1,2004,2004
 3448,Ime Udoka,NA,FALSE,7,2004,2011
