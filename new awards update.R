@@ -5,7 +5,9 @@ library(polite)
 
 source("award shares.R")
 
-curr_year=2022
+psi <- read_csv("Data/Player Season Info.csv")
+curr_year=2023
+
 mvp <- get_award_pcts_mvp_roy(season = curr_year, award = "mvp")
 roy <- get_award_pcts_mvp_roy(season = curr_year, award = "roy")
 mip <- get_award_pcts_other(season = curr_year, award = "mip")
@@ -15,7 +17,6 @@ smoy <- get_award_pcts_other(season = curr_year, award = "smoy")
 new_seas_awards <- bind_rows(dpoy, smoy, mip, mvp, roy) %>%
   arrange(award,desc(share))
 
-psi <- read_csv("Data/Player Season Info.csv")
 final_new_seas_awards <- new_seas_awards %>%
   mutate(player=case_when(
     (player == "Jaren Jackson" & season >=2019)~"Jaren Jackson Jr.",
@@ -61,6 +62,7 @@ new_end_seas_teams=bind_rows(all_lg_without_voting,alldef,allrook) %>% filter(se
     (player == "Tim Hardaway" & season >= 2014)~"Tim Hardaway Jr.",
     (player == "Nenê Hilário" & season >= 2003)~"Nenê",
     (player == "Michael Porter" & season >= 2020)~"Michael Porter Jr.",
+    (player == "Jabari Smith" & season>=2023)~"Jabari Smith Jr.",
     TRUE~player
   )
   ) %>% left_join(.,psi) %>% select(season:birth_year,tm,age)
@@ -71,8 +73,9 @@ write_csv(read_csv("Data/End of Season Teams.csv") %>%
             arrange(desc(season), type, number_tm),
           "Data/End of Season Teams.csv")
 
-all_lg <- all_lg_voting(season=curr_year)
-new_all_lg <- left_join(all_lg, psi) %>% select(-c(birth_year:experience))
+all_lg <- all_lg_voting(season=curr_year,award="all_nba")
+all_def_voting <- all_lg_voting(season=curr_year,award="all_defense")
+new_all_lg <- bind_rows(all_lg,all_def_voting) %>% left_join(., psi) %>% select(-c(birth_year:experience))
 
 write_csv(read_csv("Data/End of Season Teams (Voting).csv") %>% 
             filter(season != curr_year) %>%

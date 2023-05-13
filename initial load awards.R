@@ -118,24 +118,18 @@ write_csv(awards, "Data/Player Award Shares.csv")
 
 all_lg <- tibble()
 sapply(current_year:1966, function(x) {
-  new_seas <- all_lg_voting(season=x)
+  new_seas <- all_lg_voting(season=x,award="all_nba")
   all_lg <<- rbind(all_lg, new_seas)
   print(x)
 })
+all_def_voting <- tibble()
+sapply(current_year:1969, function(x) {
+  new_seas <- all_lg_voting(season=x,award="all_defense")
+  all_def_voting <<- rbind(all_def_voting, new_seas)
+  print(x)
+})
 
-all_lg_without_voting <- all_lg_scrape() %>%
-  mutate(player=case_when(
-    (player == "Charles Williams" & season == 1968)~"Charlie Williams",
-    TRUE~player)) %>%
-  left_join(.,psi) %>%
-  mutate(tm = ifelse(tm == "TOT", "1TOT", tm)) %>%
-  group_by(player_id,season,type) %>%
-  arrange(tm) %>%
-  slice(1) %>%
-  mutate(tm = ifelse(tm == "1TOT", "TOT", tm)) %>% ungroup() %>%
-  arrange(desc(season), type, number_tm) %>% select(-c(birth_year:experience))
-
-full_all_lg<-all_lg %>%
+full_all_lg<-bind_rows(all_lg,all_def_voting) %>%
   mutate(player=case_when(
     (player == "Jaren Jackson" & season >=2019)~"Jaren Jackson Jr.",
     (player == "Marvin Bagley" & season >= 2019)~"Marvin Bagley III",
@@ -152,13 +146,21 @@ full_all_lg<-all_lg %>%
   arrange(tm) %>%
   slice(1) %>%
   mutate(tm = ifelse(tm == "1TOT", "TOT", tm)) %>% ungroup() %>%
+  arrange(desc(season), type, number_tm,desc(share)) %>% select(-c(birth_year:experience))
+
+write_csv(full_all_lg,"Data/End of Season Teams (Voting).csv")
+
+all_lg_without_voting <- all_lg_scrape() %>%
+  mutate(player=case_when(
+    (player == "Charles Williams" & season == 1968)~"Charlie Williams",
+    TRUE~player)) %>%
+  left_join(.,psi) %>%
+  mutate(tm = ifelse(tm == "TOT", "1TOT", tm)) %>%
+  group_by(player_id,season,type) %>%
+  arrange(tm) %>%
+  slice(1) %>%
+  mutate(tm = ifelse(tm == "1TOT", "TOT", tm)) %>% ungroup() %>%
   arrange(desc(season), type, number_tm) %>% select(-c(birth_year:experience))
-
-final_all_lg=bind_rows(full_all_lg,
-                       all_lg_without_voting %>% filter(!(lg=="NBA" & season %in% full_all_lg$season))) %>%
-  arrange(desc(season),number_tm,desc(share))
-
-write_csv(final_all_lg,"Data/End of Season Teams (Voting).csv")
 
 alldef <- all_def_or_all_rookie("all_defense")
 allrook <- all_def_or_all_rookie("all_rookie")

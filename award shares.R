@@ -59,9 +59,9 @@ get_award_pcts_other <- function(season = 2020, award = "mip") {
   return(pcts)
 }
 
-all_lg_voting<- function(season=2020){
+all_lg_voting<- function(season=2020,award="all_nba"){
   session=nod(bbref_bow,path=paste0("awards/awards_",season,".html"))
-  pcts <- scrape(session) %>% html_nodes(css="#all_leading_all_nba") %>% 
+  pcts <- scrape(session) %>% html_nodes(css=paste0("#all_leading_",award)) %>% 
     html_table() %>% .[[1]] %>% 
     # first row is actual column names
     row_to_names(1) %>% clean_names() %>% 
@@ -69,12 +69,20 @@ all_lg_voting<- function(season=2020){
     filter(player!="") %>%
     # remove asterisks (players with notes)
     mutate(player=ifelse(str_detect(player,"\\*"),str_sub(player,end=-2),player)) %>%
+    rename(position=pos)
+  if (award=="all_nba"){
     # select only voting columns (no stats)
-    select(number_tm:x3rd_tm) %>% 
-    mutate(season=season,lg="NBA",type="All-NBA",.before=everything()) %>%
-    rename(position=pos) %>%
-    mutate(across(c(age,pts_won:x3rd_tm),as.numeric))
-  return(pcts)
+    final_pcts=pcts %>% select(number_tm:x3rd_tm) %>% 
+      mutate(season=season,lg="NBA",type="All-NBA",.before=everything()) %>%
+      mutate(across(c(age,pts_won:x3rd_tm),as.numeric))
+  }
+  else if (award=="all_defense"){
+    # select only voting columns (no stats)
+    final_pcts=pcts %>% select(number_tm:share) %>% 
+      mutate(season=season,lg="NBA",type="All-Defense",.before=everything()) %>%
+      mutate(across(c(age,pts_won:share),as.numeric))
+  }
+  return(final_pcts)
 }
 
 # get all-league teams
@@ -112,7 +120,13 @@ all_def_or_all_rookie <- function(type = "all_defense") {
   def_or_rookie <- scrape(session) %>% 
     html_nodes(css = paste0("#div_awards_",type)) %>%
     html_table() %>% .[[1]]
-  colnames(def_or_rookie) <- c("Season", "Lg", "number_tm", "Player1", "Player2", "Player3", "Player4", "Player5")
+  if (type=="all_defense"){
+    colnames(def_or_rookie) <- c("Season", "Lg", "number_tm","Voting", "Player1", "Player2", "Player3", "Player4", "Player5")
+    def_or_rookie<-def_or_rookie %>% select(-Voting)
+  }
+  else{
+    colnames(def_or_rookie) <- c("Season", "Lg", "number_tm", "Player1", "Player2", "Player3", "Player4", "Player5")
+  }
   def_or_rookie <- def_or_rookie %>% filter(Player1 !="") %>%
     mutate(Season = as.numeric(substr(Season, 0, 4)) + 1) %>%
     # players become one column

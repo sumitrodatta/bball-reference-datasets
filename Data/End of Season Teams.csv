@@ -1,4 +1,39 @@
 season,lg,type,number_tm,player,position,seas_id,player_id,birth_year,tm,age
+2023,NBA,All-Defense,1st,Alex Caruso,NA,30471,4465,NA,CHI,28
+2023,NBA,All-Defense,1st,Jrue Holiday,NA,30796,3891,NA,MIL,32
+2023,NBA,All-Defense,1st,Jaren Jackson Jr.,NA,30733,4632,NA,MEM,23
+2023,NBA,All-Defense,1st,Brook Lopez,NA,30508,3801,NA,MIL,34
+2023,NBA,All-Defense,1st,Evan Mobley,NA,30640,4931,NA,CLE,21
+2023,NBA,All-Defense,2nd,Bam Adebayo,NA,30489,4472,NA,MIA,25
+2023,NBA,All-Defense,2nd,OG Anunoby,NA,30971,4555,NA,TOR,25
+2023,NBA,All-Defense,2nd,Dillon Brooks,NA,30612,4494,NA,MEM,27
+2023,NBA,All-Defense,2nd,Draymond Green,NA,30622,4085,NA,GSW,32
+2023,NBA,All-Defense,2nd,Derrick White,NA,30601,4492,NA,BOS,28
+2023,NBA,All-NBA,1st,Joel Embiid,C,30764,4417,NA,PHI,28
+2023,NBA,All-NBA,1st,Giannis Antetokounmpo,F,30665,4164,NA,MIL,28
+2023,NBA,All-NBA,1st,Jayson Tatum,F,30749,4518,NA,BOS,24
+2023,NBA,All-NBA,1st,Luka Dončić,G,30880,4654,NA,DAL,23
+2023,NBA,All-NBA,1st,Shai Gilgeous-Alexander,G,31046,4670,NA,OKC,24
+2023,NBA,All-NBA,2nd,Nikola Jokić,C,30964,4352,NA,DEN,27
+2023,NBA,All-NBA,2nd,Jimmy Butler,F,30759,4023,NA,MIA,33
+2023,NBA,All-NBA,2nd,Jaylen Brown,F,30746,4415,NA,BOS,26
+2023,NBA,All-NBA,2nd,Donovan Mitchell,G,30615,4495,NA,CLE,26
+2023,NBA,All-NBA,2nd,Stephen Curry,G,31056,3903,NA,GSW,34
+2023,NBA,All-NBA,3rd,Domantas Sabonis,C,30613,4400,NA,SAC,26
+2023,NBA,All-NBA,3rd,LeBron James,F,30873,3463,NA,LAL,38
+2023,NBA,All-NBA,3rd,Julius Randle,F,30805,4266,NA,NYK,28
+2023,NBA,All-NBA,3rd,De'Aaron Fox,G,30585,4489,NA,SAC,25
+2023,NBA,All-NBA,3rd,Damian Lillard,G,30561,4077,NA,POR,32
+2023,NBA,All-Rookie,1st,Paolo Banchero,NA,30981,5089,NA,ORL,20
+2023,NBA,All-Rookie,1st,Walker Kessler,NA,31117,5106,NA,UTA,21
+2023,NBA,All-Rookie,1st,Bennedict Mathurin,NA,30491,5030,NA,IND,20
+2023,NBA,All-Rookie,1st,Keegan Murray,NA,30819,5072,NA,SAC,22
+2023,NBA,All-Rookie,1st,Jalen Williams,NA,30718,5056,NA,OKC,21
+2023,NBA,All-Rookie,2nd,Jalen Duren,NA,30710,5055,NA,DET,19
+2023,NBA,All-Rookie,2nd,Tari Eason,NA,31068,5100,NA,HOU,21
+2023,NBA,All-Rookie,2nd,Jaden Ivey,NA,30700,5053,NA,DET,20
+2023,NBA,All-Rookie,2nd,Jabari Smith Jr.,NA,30695,5048,NA,HOU,19
+2023,NBA,All-Rookie,2nd,Jeremy Sochan,NA,30756,5064,NA,SAS,19
 2022,NBA,All-Defense,1st,Giannis Antetokounmpo,NA,29918,4164,NA,MIL,27
 2022,NBA,All-Defense,1st,Jaren Jackson Jr.,NA,29991,4632,NA,MEM,22
 2022,NBA,All-Defense,1st,Marcus Smart,NA,30183,4275,NA,BOS,27
