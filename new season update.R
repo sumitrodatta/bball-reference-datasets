@@ -5,7 +5,7 @@ library(polite)
 
 source("Tm & Player Seasons.R")
 
-current_seas=2023
+current_seas=2024
 
 add_new_team_seas <- function(seas = 2021, type = "per_game-team", update_abbrevs = FALSE) {
   a <- teamStats(season = seas, type = type)
