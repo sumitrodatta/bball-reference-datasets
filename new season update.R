@@ -201,7 +201,7 @@ curr_rookies=get_rookies(current_seas)
 
 rookies_from_pci=read_csv("Data/Player Career Info.csv") %>% filter(first_seas==current_seas)
 
-left_join(curr_rookies,rookies_from_pci) %>% filter(is.na(player_id))
+full_join(curr_rookies,rookies_from_pci) %>% filter(is.na(debut)|is.na(player_id))
 
 file_names=c("Data/Player Totals.csv","Data/Advanced.csv","Data/Player Per Game.csv",
              "Data/Per 36 Minutes.csv","Data/Per 100 Poss.csv","Data/Player Shooting.csv","Data/Player Play By Play.csv")

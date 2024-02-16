@@ -4810,7 +4810,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 4809,Anthony Gill,NA,FALSE,4,2021,2024
 4810,Anthony Lamb,NA,FALSE,3,2021,2023
 4811,Armoni Brooks,NA,FALSE,3,2021,2024
-4812,Ashton Hagans,NA,FALSE,1,2021,2021
+4812,Ashton Hagans,NA,FALSE,2,2021,2024
 4813,Brodric Thomas,NA,FALSE,2,2021,2022
 4814,Cameron Oliver,NA,FALSE,2,2021,2022
 4815,Cassius Stanley,NA,FALSE,2,2021,2022
@@ -5017,7 +5017,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 5016,Trey Murphy III,NA,FALSE,3,2022,2024
 5017,Tyler Hall,NA,FALSE,1,2022,2022
 5018,Usman Garuba,NA,FALSE,3,2022,2024
-5019,Vit Krejci,NA,FALSE,2,2022,2023
+5019,Vit Krejci,NA,FALSE,3,2022,2024
 5020,Xavier Moon,NA,FALSE,3,2022,2024
 5021,Xavier Sneed,NA,FALSE,2,2022,2023
 5022,Yves Pons,NA,FALSE,1,2022,2022
@@ -5026,7 +5026,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 5025,A.J. Green,NA,FALSE,2,2023,2024
 5026,A.J. Lawson,NA,FALSE,2,2023,2024
 5027,AJ Griffin,NA,FALSE,2,2023,2024
-5028,Alondes Williams,NA,FALSE,1,2023,2023
+5028,Alondes Williams,NA,FALSE,2,2023,2024
 5029,Andrew Nembhard,NA,FALSE,2,2023,2024
 5030,Bennedict Mathurin,NA,FALSE,2,2023,2024
 5031,Blake Wesley,NA,FALSE,2,2023,2024
@@ -5058,7 +5058,7 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 5057,Jamal Cain,NA,FALSE,2,2023,2024
 5058,Jamaree Bouyea,NA,FALSE,2,2023,2024
 5059,Jared Rhoden,NA,FALSE,2,2023,2024
-5060,Jason Preston,NA,FALSE,1,2023,2023
+5060,Jason Preston,NA,FALSE,2,2023,2024
 5061,Jaylin Williams,NA,FALSE,2,2023,2024
 5062,JD Davison,NA,FALSE,2,2023,2024
 5063,Jeenathan Williams,NA,FALSE,2,2023,2024
@@ -5137,8 +5137,8 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 5136,E.J. Liddell,NA,FALSE,1,2024,2024
 5137,Emoni Bates,NA,FALSE,1,2024,2024
 5138,Filip Petrušev,NA,FALSE,1,2024,2024
-5139,Gradey Dick,NA,FALSE,1,2024,2024
-5140,Gregory Jackson II,NA,FALSE,1,2024,2024
+5139,GG Jackson II,NA,FALSE,1,2024,2024
+5140,Gradey Dick,NA,FALSE,1,2024,2024
 5141,Gui Santos,NA,FALSE,1,2024,2024
 5142,Hunter Tyson,NA,FALSE,1,2024,2024
 5143,Ibou Badji,NA,FALSE,1,2024,2024
@@ -5172,25 +5172,27 @@ player_id,player,birth_year,hof,num_seasons,first_seas,last_seas
 5171,Markquis Nowell,NA,FALSE,1,2024,2024
 5172,Matthew Hurt,NA,FALSE,1,2024,2024
 5173,Maxwell Lewis,NA,FALSE,1,2024,2024
-5174,Mouhamed Gueye,NA,FALSE,1,2024,2024
-5175,Nathan Mensah,NA,FALSE,1,2024,2024
-5176,Nick Smith Jr.,NA,FALSE,1,2024,2024
-5177,Noah Clowney,NA,FALSE,1,2024,2024
-5178,Olivier-Maxence Prosper,NA,FALSE,1,2024,2024
-5179,Onuralp Bitim,NA,FALSE,1,2024,2024
-5180,Oscar Tshiebwe,NA,FALSE,1,2024,2024
-5181,Pete Nance,NA,FALSE,1,2024,2024
-5182,Rayan Rupert,NA,FALSE,1,2024,2024
-5183,Ricky Council IV,NA,FALSE,1,2024,2024
-5184,Sasha Vezenkov,NA,FALSE,1,2024,2024
-5185,Scoot Henderson,NA,FALSE,1,2024,2024
-5186,Seth Lundy,NA,FALSE,1,2024,2024
-5187,Sidy Cissoko,NA,FALSE,1,2024,2024
-5188,Taylor Hendricks,NA,FALSE,1,2024,2024
-5189,Taze Moore,NA,FALSE,1,2024,2024
-5190,Terquavion Smith,NA,FALSE,1,2024,2024
-5191,Toumani Camara,NA,FALSE,1,2024,2024
-5192,Trayce Jackson-Davis,NA,FALSE,1,2024,2024
-5193,Trey Jemison,NA,FALSE,1,2024,2024
-5194,Vasilije Micić,NA,FALSE,1,2024,2024
-5195,Victor Wembanyama,NA,FALSE,1,2024,2024
+5174,Mouhamadou Gueye,NA,FALSE,1,2024,2024
+5175,Mouhamed Gueye,NA,FALSE,1,2024,2024
+5176,Nathan Mensah,NA,FALSE,1,2024,2024
+5177,Nick Smith Jr.,NA,FALSE,1,2024,2024
+5178,Noah Clowney,NA,FALSE,1,2024,2024
+5179,Olivier-Maxence Prosper,NA,FALSE,1,2024,2024
+5180,Onuralp Bitim,NA,FALSE,1,2024,2024
+5181,Oscar Tshiebwe,NA,FALSE,1,2024,2024
+5182,Pete Nance,NA,FALSE,1,2024,2024
+5183,Rayan Rupert,NA,FALSE,1,2024,2024
+5184,Ricky Council IV,NA,FALSE,1,2024,2024
+5185,Sasha Vezenkov,NA,FALSE,1,2024,2024
+5186,Scoot Henderson,NA,FALSE,1,2024,2024
+5187,Seth Lundy,NA,FALSE,1,2024,2024
+5188,Sidy Cissoko,NA,FALSE,1,2024,2024
+5189,Taylor Hendricks,NA,FALSE,1,2024,2024
+5190,Taze Moore,NA,FALSE,1,2024,2024
+5191,Terquavion Smith,NA,FALSE,1,2024,2024
+5192,Tosan Evbuomwan,NA,FALSE,1,2024,2024
+5193,Toumani Camara,NA,FALSE,1,2024,2024
+5194,Trayce Jackson-Davis,NA,FALSE,1,2024,2024
+5195,Trey Jemison,NA,FALSE,1,2024,2024
+5196,Vasilije Micić,NA,FALSE,1,2024,2024
+5197,Victor Wembanyama,NA,FALSE,1,2024,2024

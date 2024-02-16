@@ -6,7 +6,7 @@ library(polite)
 source("award shares.R")
 
 psi <- read_csv("Data/Player Season Info.csv")
-curr_year=2023
+curr_year=2024
 
 mvp <- get_award_pcts_mvp_roy(season = curr_year, award = "mvp")
 roy <- get_award_pcts_mvp_roy(season = curr_year, award = "roy")
