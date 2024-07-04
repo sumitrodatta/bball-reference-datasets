@@ -1,4 +1,39 @@
 season,lg,type,number_tm,player,position,seas_id,player_id,birth_year,tm,age
+2024,NBA,All-Defense,1st,Rudy Gobert,NA,31747,4199,NA,MIN,31
+2024,NBA,All-Defense,1st,Victor Wembanyama,NA,31850,5209,NA,SAS,20
+2024,NBA,All-Defense,1st,Bam Adebayo,NA,31178,4472,NA,MIA,26
+2024,NBA,All-Defense,1st,Herbert Jones,NA,31385,4939,NA,NOP,25
+2024,NBA,All-Defense,1st,Anthony Davis,NA,31170,4066,NA,LAL,30
+2024,NBA,All-Defense,2nd,Alex Caruso,NA,31153,4465,NA,CHI,29
+2024,NBA,All-Defense,2nd,Jalen Suggs,NA,31439,4948,NA,ORL,22
+2024,NBA,All-Defense,2nd,Derrick White,NA,31312,4492,NA,BOS,29
+2024,NBA,All-Defense,2nd,Jaden McDaniels,NA,31419,4841,NA,MIN,23
+2024,NBA,All-Defense,2nd,Jrue Holiday,NA,31514,3891,NA,BOS,33
+2024,NBA,All-NBA,1st,Nikola Jokić,C,31672,4352,NA,DEN,28
+2024,NBA,All-NBA,1st,Giannis Antetokounmpo,F,31366,4164,NA,MIL,29
+2024,NBA,All-NBA,1st,Jayson Tatum,F,31468,4518,NA,BOS,25
+2024,NBA,All-NBA,1st,Luka Dončić,G,31593,4654,NA,DAL,24
+2024,NBA,All-NBA,1st,Shai Gilgeous-Alexander,G,31769,4670,NA,OKC,25
+2024,NBA,All-NBA,2nd,Anthony Davis,C,31170,4066,NA,LAL,30
+2024,NBA,All-NBA,2nd,Kevin Durant,F,31551,3770,NA,PHO,35
+2024,NBA,All-NBA,2nd,Kawhi Leonard,F,31531,4032,NA,LAC,32
+2024,NBA,All-NBA,2nd,Jalen Brunson,G,31429,4630,NA,NYK,27
+2024,NBA,All-NBA,2nd,Anthony Edwards,G,31171,4808,NA,MIN,22
+2024,NBA,All-NBA,3rd,LeBron James,F,31585,3463,NA,LAL,39
+2024,NBA,All-NBA,3rd,Domantas Sabonis,F,31320,4400,NA,SAC,27
+2024,NBA,All-NBA,3rd,Devin Booker,G,31314,4321,NA,PHO,27
+2024,NBA,All-NBA,3rd,Stephen Curry,G,31786,3903,NA,GSW,35
+2024,NBA,All-NBA,3rd,Tyrese Haliburton,G,31842,4892,NA,IND,23
+2024,NBA,All-Rookie,1st,Chet Holmgren,NA,31230,5125,NA,OKC,21
+2024,NBA,All-Rookie,1st,Jaime Jaquez Jr.,NA,31426,5151,NA,MIA,22
+2024,NBA,All-Rookie,1st,Brandon Miller,NA,31200,5121,NA,CHO,21
+2024,NBA,All-Rookie,1st,Brandin Podziemski,NA,31196,5120,NA,GSW,20
+2024,NBA,All-Rookie,1st,Victor Wembanyama,NA,31850,5209,NA,SAS,20
+2024,NBA,All-Rookie,2nd,Dereck Lively II,NA,31308,5134,NA,DAL,19
+2024,NBA,All-Rookie,2nd,GG Jackson II,NA,31358,5142,NA,MEM,19
+2024,NBA,All-Rookie,2nd,Keyonte George,NA,31558,5170,NA,UTA,20
+2024,NBA,All-Rookie,2nd,Amen Thompson,NA,31161,5113,NA,HOU,21
+2024,NBA,All-Rookie,2nd,Cason Wallace,NA,31226,5124,NA,OKC,20
 2023,NBA,All-Defense,1st,Alex Caruso,NA,30471,4465,NA,CHI,28
 2023,NBA,All-Defense,1st,Jrue Holiday,NA,30796,3891,NA,MIL,32
 2023,NBA,All-Defense,1st,Jaren Jackson Jr.,NA,30733,4632,NA,MEM,23

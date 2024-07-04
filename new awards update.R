@@ -13,8 +13,9 @@ roy <- get_award_pcts_mvp_roy(season = curr_year, award = "roy")
 mip <- get_award_pcts_other(season = curr_year, award = "mip")
 dpoy <- get_award_pcts_other(season = curr_year, award = "dpoy")
 smoy <- get_award_pcts_other(season = curr_year, award = "smoy")
+cpoy <- get_award_pcts_other(season = curr_year, award = "clutch_poy")
 
-new_seas_awards <- bind_rows(dpoy, smoy, mip, mvp, roy) %>%
+new_seas_awards <- bind_rows(dpoy, smoy, mip, mvp, roy, cpoy) %>%
   arrange(award,desc(share))
 
 final_new_seas_awards <- new_seas_awards %>%
@@ -63,6 +64,9 @@ new_end_seas_teams=bind_rows(all_lg_without_voting,alldef,allrook) %>% filter(se
     (player == "Nenê Hilário" & season >= 2003)~"Nenê",
     (player == "Michael Porter" & season >= 2020)~"Michael Porter Jr.",
     (player == "Jabari Smith" & season>=2023)~"Jabari Smith Jr.",
+    (player == "Jaime Jaquez" & season>=2024)~"Jaime Jaquez Jr.",
+    (player == "Dereck Lively" & season>=2024)~"Dereck Lively II",
+    (player == "Gregory Jackson" & season>=2024)~"GG Jackson II",
     TRUE~player
   )
   ) %>% left_join(.,psi) %>% select(season:birth_year,tm,age)

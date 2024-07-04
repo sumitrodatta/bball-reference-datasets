@@ -120,14 +120,9 @@ all_def_or_all_rookie <- function(type = "all_defense") {
   def_or_rookie <- scrape(session) %>% 
     html_nodes(css = paste0("#div_awards_",type)) %>%
     html_table() %>% .[[1]]
-  if (type=="all_defense"){
     colnames(def_or_rookie) <- c("Season", "Lg", "number_tm","Voting", "Player1", "Player2", "Player3", "Player4", "Player5")
     def_or_rookie<-def_or_rookie %>% select(-Voting)
-  }
-  else{
-    colnames(def_or_rookie) <- c("Season", "Lg", "number_tm", "Player1", "Player2", "Player3", "Player4", "Player5")
-  }
-  def_or_rookie <- def_or_rookie %>% filter(Player1 !="") %>%
+    def_or_rookie <- def_or_rookie %>% filter(Player1 !="") %>%
     mutate(Season = as.numeric(substr(Season, 0, 4)) + 1) %>%
     # players become one column
     pivot_longer(-c(Season, Lg, number_tm), names_prefix = "Player",values_to="Player") %>%
