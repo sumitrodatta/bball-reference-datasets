@@ -5,7 +5,7 @@ library(polite)
 
 source("award shares.R")
 
-current_year=2022
+current_year=2024
 
 psi <- read_csv("Data/Player Season Info.csv")
 
@@ -128,18 +128,15 @@ sapply(current_year:1969, function(x) {
   all_def_voting <<- rbind(all_def_voting, new_seas)
   print(x)
 })
+all_rook_voting <- tibble()
+sapply(current_year:1963, function(x) {
+  new_seas <- all_lg_voting(season=x,award="all_rookie")
+  all_rook_voting <<- rbind(all_rook_voting, new_seas)
+  print(x)
+})
 
-full_all_lg<-bind_rows(all_lg,all_def_voting) %>%
-  mutate(player=case_when(
-    (player == "Jaren Jackson" & season >=2019)~"Jaren Jackson Jr.",
-    (player == "Marvin Bagley" & season >= 2019)~"Marvin Bagley III",
-    (player == "Dennis Smith" & season >= 2018)~"Dennis Smith Jr.",
-    (player == "Taurean Waller-Prince" & season >= 2018)~"Taurean Prince",
-    (player == "Tim Hardaway" & season >= 2014)~"Tim Hardaway Jr.",
-    (player == "Nenê Hilário" & season >= 2003)~"Nenê",
-    (player == "Michael Porter" & season >= 2020)~"Michael Porter Jr.",
-    TRUE~player)
-  ) %>%
+
+full_all_lg<-bind_rows(all_lg,all_def_voting,all_rook_voting) %>%
   left_join(.,psi) %>%
   mutate(tm = ifelse(tm == "TOT", "1TOT", tm)) %>%
   group_by(player_id, season,type) %>%
@@ -174,8 +171,12 @@ end_seas_teams <- bind_rows(all_lg_without_voting %>% select(-c(seas_id,player_i
     (player == "Tim Hardaway" & season >= 2014)~"Tim Hardaway Jr.",
     (player == "Nenê Hilário" & season >= 2003)~"Nenê",
     (player == "Michael Porter" & season >= 2020)~"Michael Porter Jr.",
-    TRUE~player)
-  ) %>% left_join(., psi) %>%
+    (player == "Jabari Smith" & season>=2023)~"Jabari Smith Jr.",
+    (player == "Jaime Jaquez" & season>=2024)~"Jaime Jaquez Jr.",
+    (player == "Dereck Lively" & season>=2024)~"Dereck Lively II",
+    (player == "Gregory Jackson" & season>=2024)~"GG Jackson II",
+    TRUE~player
+  )) %>% left_join(., psi) %>%
   select(season:birth_year, tm, age) %>%
   # two George Johnsons played at same time, one won All-Defense, remove the other
   filter(!(player == "George Johnson" & birth_year == 1956)) %>%

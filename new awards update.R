@@ -79,7 +79,8 @@ write_csv(read_csv("Data/End of Season Teams.csv") %>%
 
 all_lg <- all_lg_voting(season=curr_year,award="all_nba")
 all_def_voting <- all_lg_voting(season=curr_year,award="all_defense")
-new_all_lg <- bind_rows(all_lg,all_def_voting) %>% left_join(., psi) %>% select(-c(birth_year:experience))
+all_rook_voting <- all_lg_voting(season=curr_year,award="all_rookie")
+new_all_lg <- bind_rows(all_lg,all_def_voting,all_rook_voting) %>% left_join(., psi) %>% select(-c(birth_year:experience))
 
 write_csv(read_csv("Data/End of Season Teams (Voting).csv") %>% 
             filter(season != curr_year) %>%

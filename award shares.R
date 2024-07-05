@@ -68,8 +68,10 @@ all_lg_voting<- function(season=2020,award="all_nba"){
     # remove blank rows
     filter(player!="") %>%
     # remove asterisks (players with notes)
-    mutate(player=ifelse(str_detect(player,"\\*"),str_sub(player,end=-2),player)) %>%
-    rename(position=pos)
+    mutate(player=ifelse(str_detect(player,"\\*"),str_sub(player,end=-2),player))
+  if (award !="all_rookie"){
+    pcts <- pcts %>% rename(position=pos)
+  }
   if (award=="all_nba"){
     # select only voting columns (no stats)
     final_pcts=pcts %>% select(number_tm:x3rd_tm) %>% 
@@ -81,6 +83,12 @@ all_lg_voting<- function(season=2020,award="all_nba"){
     final_pcts=pcts %>% select(number_tm:share) %>% 
       mutate(season=season,lg="NBA",type="All-Defense",.before=everything()) %>%
       mutate(across(c(age,pts_won:share),as.numeric))
+  }
+  else{
+    # select only voting columns (no stats)
+    final_pcts=pcts %>% select(number_tm:x2nd_tm) %>% 
+      mutate(season=season,lg="NBA",type="All-Rookie",.before=everything()) %>%
+      mutate(across(c(age,pts_won:x2nd_tm),as.numeric))
   }
   return(final_pcts)
 }
