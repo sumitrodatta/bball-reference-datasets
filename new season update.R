@@ -88,7 +88,8 @@ add_new_seas <- function(seas = 2021, type = "totals", update_psi = FALSE) {
     # change above mutate birth year line whenever new player enters league
     psi <- read_csv("Data/Player Season Info.csv") %>%
       select(season, player:tm) %>%
-      filter(season != seas)
+      filter(season != seas) %>%
+      arrange(season, player)
     pci <- read_csv("Data/Player Career Info.csv") %>% filter(last_seas<seas) %>%
       select(player_id:hof)
     updated_psi <- psi %>% add_row(new_player_info)
@@ -124,6 +125,10 @@ add_new_seas <- function(seas = 2021, type = "totals", update_psi = FALSE) {
       full_join(pci,.) %>% replace_na(list(hof=FALSE)) %>% arrange(player_id)
     write_csv(updated_pci, "Data/Player Career Info.csv")
     write_csv(updated_psi, "Data/Player Season Info.csv")
+  }
+  # positions in upgraded tables truncated
+  if (type %in% c("advanced","per_poss","shooting","play_by_play")){
+    a <- a %>% select(-pos)
   }
   a <- left_join(a, read_csv("Data/Player Season Info.csv",col_types = "dddcdcdccd")) %>%
     relocate(seas_id, season, player_id, player, birth_year, pos, age, experience, lg)

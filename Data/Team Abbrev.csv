@@ -4,25 +4,25 @@ season,lg,team,playoffs,abbreviation
 2024,NBA,Brooklyn Nets,FALSE,BRK
 2024,NBA,Charlotte Hornets,FALSE,CHO
 2024,NBA,Chicago Bulls,FALSE,CHI
-2024,NBA,Cleveland Cavaliers,FALSE,CLE
+2024,NBA,Cleveland Cavaliers,TRUE,CLE
 2024,NBA,Dallas Mavericks,TRUE,DAL
 2024,NBA,Denver Nuggets,TRUE,DEN
 2024,NBA,Detroit Pistons,FALSE,DET
 2024,NBA,Golden State Warriors,FALSE,GSW
 2024,NBA,Houston Rockets,FALSE,HOU
-2024,NBA,Indiana Pacers,FALSE,IND
+2024,NBA,Indiana Pacers,TRUE,IND
 2024,NBA,Los Angeles Clippers,TRUE,LAC
-2024,NBA,Los Angeles Lakers,FALSE,LAL
+2024,NBA,Los Angeles Lakers,TRUE,LAL
 2024,NBA,Memphis Grizzlies,FALSE,MEM
-2024,NBA,Miami Heat,FALSE,MIA
+2024,NBA,Miami Heat,TRUE,MIA
 2024,NBA,Milwaukee Bucks,TRUE,MIL
 2024,NBA,Minnesota Timberwolves,TRUE,MIN
-2024,NBA,New Orleans Pelicans,FALSE,NOP
-2024,NBA,New York Knicks,FALSE,NYK
+2024,NBA,New Orleans Pelicans,TRUE,NOP
+2024,NBA,New York Knicks,TRUE,NYK
 2024,NBA,Oklahoma City Thunder,TRUE,OKC
-2024,NBA,Orlando Magic,FALSE,ORL
-2024,NBA,Philadelphia 76ers,FALSE,PHI
-2024,NBA,Phoenix Suns,FALSE,PHO
+2024,NBA,Orlando Magic,TRUE,ORL
+2024,NBA,Philadelphia 76ers,TRUE,PHI
+2024,NBA,Phoenix Suns,TRUE,PHO
 2024,NBA,Portland Trail Blazers,FALSE,POR
 2024,NBA,Sacramento Kings,FALSE,SAC
 2024,NBA,San Antonio Spurs,FALSE,SAS

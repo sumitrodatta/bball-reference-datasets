@@ -70,13 +70,21 @@ scrape_stats <- function(season = 2017, league = "NBA", type = "totals") {
   else if (type == "shooting") {
     player_stats_a <- player_stats_a %>% select(-starts_with("na"))
   }
-  player_stats_a <- player_stats_a %>%
+  else if (type == "per_minute") {
+    player_stats_a <- player_stats_a %>% select(-e_fg_percent) #per minute added efg_percent
+  }
+  player_stats_a <- player_stats_a %>% 
+    rename(any_of(c("tm"="team"))) %>% #upgraded tables use team
     mutate_at(vars(-c(player, tm, pos)), as.numeric) %>%
     as_tibble() %>%
     mutate(rk = season) %>%
     rename(Season = rk) %>%
     mutate(Lg = league, .before = "tm") %>%
-    clean_names()
+    clean_names() %>%
+    select(-any_of(c("awards"))) %>% #upgraded tables have awards
+    filter(player != "League Average") %>% #upgraded tables have league average
+    relocate(season,player,pos,age,lg,tm) %>% #upgraded tables rearrange columns
+    mutate(tm=if_else(str_detect(tm,"[0-9]TM"),"TOT",tm)) #upgraded tables add number of teams played for
   return(player_stats_a)
 }
 
