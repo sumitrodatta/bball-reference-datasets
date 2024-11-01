@@ -5,7 +5,7 @@ library(polite)
 
 source("Tm & Player Seasons.R")
 
-current_seas=2024
+current_seas=2025
 
 add_new_team_seas <- function(seas = 2021, type = "per_game-team", update_abbrevs = FALSE) {
   a <- teamStats(season = seas, type = type)
@@ -208,10 +208,11 @@ rookies_from_pci=read_csv("Data/Player Career Info.csv") %>% filter(first_seas==
 
 full_join(curr_rookies,rookies_from_pci) %>% filter(is.na(debut)|is.na(player_id))
 
-file_names=c("Data/Player Totals.csv","Data/Advanced.csv","Data/Player Per Game.csv",
-             "Data/Per 36 Minutes.csv","Data/Per 100 Poss.csv","Data/Player Shooting.csv","Data/Player Play By Play.csv")
-
-sapply(file_names,function(x){
-  write_csv(read_csv(x) %>% select(-birth_year) %>% left_join(.,read_csv("Data/Player Season Info.csv")) %>% 
-              relocate(birth_year,.after=player),x)
-})
+# running this removes birth years for old players now
+# file_names=c("Data/Player Totals.csv","Data/Advanced.csv","Data/Player Per Game.csv",
+#              "Data/Per 36 Minutes.csv","Data/Per 100 Poss.csv","Data/Player Shooting.csv","Data/Player Play By Play.csv")
+# 
+# sapply(file_names,function(x){
+#   write_csv(read_csv(x) %>% select(-birth_year) %>% left_join(.,read_csv("Data/Player Season Info.csv")) %>% 
+#               relocate(birth_year,.after=player),x)
+# })
