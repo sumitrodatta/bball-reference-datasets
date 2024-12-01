@@ -70,8 +70,11 @@ scrape_stats <- function(season = 2017, league = "NBA", type = "totals") {
   else if (type == "shooting") {
     player_stats_a <- player_stats_a %>% select(-starts_with("na"))
   }
-  else if (type == "per_minute") {
+  else if (type %in% c("per_minute","per_poss")) {
     player_stats_a <- player_stats_a %>% select(-e_fg_percent) #per minute added efg_percent
+  }
+  else if (type == "totals") {
+    player_stats_a <- player_stats_a %>% select(-trp_dbl) #totals added triple double count
   }
   player_stats_a <- player_stats_a %>% 
     rename(any_of(c("tm"="team"))) %>% #upgraded tables use team

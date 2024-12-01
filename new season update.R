@@ -126,9 +126,9 @@ add_new_seas <- function(seas = 2021, type = "totals", update_psi = FALSE) {
     write_csv(updated_pci, "Data/Player Career Info.csv")
     write_csv(updated_psi, "Data/Player Season Info.csv")
   }
-  # positions in upgraded tables truncated
-  if (type %in% c("advanced","per_poss","shooting","play_by_play")){
-    a <- a %>% select(-pos)
+  # upgraded tables all now have games started
+  if (type %in% c("advanced","shooting","play-by-play")){
+    a <- a %>% select(-gs)
   }
   a <- left_join(a, read_csv("Data/Player Season Info.csv",col_types = "dddcdcdccd")) %>%
     relocate(seas_id, season, player_id, player, birth_year, pos, age, experience, lg)
@@ -138,7 +138,6 @@ add_new_seas <- function(seas = 2021, type = "totals", update_psi = FALSE) {
   }
   else if (type == "advanced") {
     old <- read_csv("Data/Advanced.csv") %>% filter(season != seas)
-    a <- a %>% select(-c(x, x_2))
     write_csv(old %>% add_row(a) %>% arrange(desc(season),player), "Data/Advanced.csv")
   }
   else if (type == "per_game") {
@@ -154,7 +153,6 @@ add_new_seas <- function(seas = 2021, type = "totals", update_psi = FALSE) {
   else if (type == "per_poss") {
     old <- read_csv("Data/Per 100 Poss.csv") %>% filter(season != seas)
     a <- a %>%
-      select(-x) %>%
       rename_at(vars(-c(1:13, 16, 19, 22, 25, 35:36)), ~ paste0(., "_per_100_poss"))
     write_csv(old %>% add_row(a) %>% arrange(desc(season),player), "Data/Per 100 Poss.csv")
   }
@@ -168,7 +166,7 @@ add_new_seas <- function(seas = 2021, type = "totals", update_psi = FALSE) {
       rename(
         percent_dunks_of_fga = percent_fga, num_of_dunks = number,
         percent_corner_3s_of_3pa = percent_3pa, corner_3_point_percent = x3p_percent,
-        num_heaves_attempted = att, num_heaves_made = number_2
+        num_heaves_attempted = att, num_heaves_made = md
       )
     write_csv(old %>% add_row(a) %>% arrange(desc(season),player), "Data/Player Shooting.csv")
   }
