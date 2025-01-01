@@ -122,3 +122,43 @@ get_rookies<-function(season = 2017, league = "NBA"){
     mutate(debut=as.Date(debut,format="%b %d, '%y")) %>% arrange(player,debut)
   return(rookies)
 }
+
+get_letter_directory_table<-function(letter="/players/a/"){
+  page=nod(bbref_bow,path=letter) %>% scrape()
+  
+  letter_table=page %>% html_table() %>% .[[1]] %>% clean_names() %>% 
+    mutate(hof = str_detect(player, "\\*"),
+           player = ifelse(hof, substr(player, 1, nchar(player) - 1), player),
+           colleges=na_if(colleges,""),
+           birth_date=mdy(birth_date)) %>%
+    mutate(ht_in_in=as.numeric(word(ht,sep="-"))*12+
+             as.numeric(word(ht,sep="-",start=2)),.before=wt) %>%
+    select(-ht)
+  
+  letter_slugs=tibble(
+    slug=page %>% 
+      html_elements(xpath="//a") %>% html_attr("href")
+  ) %>% 
+    filter(str_detect(slug,"(?=.*players/)(?=.*html$)")) %>%
+    slice(1:nrow(letter_table)) %>%
+    mutate(slug=word(word(slug,sep="/",start=4),sep=".html"))
+  
+  full_letter_table=bind_cols(letter_table,letter_slugs)
+  
+  return(full_letter_table)
+}
+
+get_player_directory<-function(){
+  session=nod(bbref_bow,path="players/")
+  player_letter_hyperlinks=scrape(session) %>% 
+    html_nodes("a") %>% html_attrs() %>% map_df(as_tibble_row) %>%
+    filter(str_detect(href,"/players/[a-z]/$")) %>% pull(href)
+  player_table=tibble()
+  for (letter_link in player_letter_hyperlinks){
+    letter_table=get_letter_directory_table(letter_link)
+    
+    player_table=bind_rows(player_table,letter_table)
+    print(letter_link)
+  }
+  return(player_table)
+}
