@@ -7,208 +7,153 @@ source("award shares.R")
 
 current_year=2024
 
-psi <- read_csv("Data/Player Season Info.csv")
+award_seasons=bind_rows(
+  tibble(league="nba",award="mvp",season=current_year:1956),
+  tibble(league="aba",award="mvp",season=1976:1968),
+  tibble(league="nba",award="roy",season=c(current_year:1964,1959)),
+  tibble(league="aba",award="roy",season=1975:1972),
+  tibble(league="nba",award="dpoy",season=current_year:1983),
+  tibble(league="nba",award="smoy",season=current_year:1984),
+  tibble(league="nba",award="mip",season=current_year:1986),
+  tibble(league="nba",award="clutch_poy",season=current_year:2023)
+)
 
-# add nba mvps
-mvp <- tibble()
-sapply(current_year:1956, function(x) {
-  new_seas <- get_award_pcts_mvp_roy(season=x,award = "mvp",lg="nba")
-  mvp <<- bind_rows(mvp, new_seas)
-  print(x)
-})
+awards<-tibble()
+for (row in 1:nrow(award_seasons)) {
+  curr_lg=award_seasons$league[row]
+  curr_seas=award_seasons$season[row]
+  curr_award=award_seasons$award[row]
+  awards=bind_rows(
+    awards,
+    get_award_pcts(lg=curr_lg,season=curr_seas,award=curr_award)
+  )
+  print(paste(curr_seas,curr_lg,curr_award))
+}
 
-# add aba mvps
-sapply(1976:1968, function(x) {
-  new_seas <- get_award_pcts_mvp_roy(season=x, award = "mvp", lg="aba")
-  mvp <<- rbind(mvp, new_seas)
-  print(x)
-})
 
-# add nba roys
-roy=tibble()
-sapply(c(current_year:1964, 1959), function(x) {
-  new_seas <- get_award_pcts_mvp_roy(season=x, award="roy",lg="nba")
-  roy <<- rbind(roy, new_seas)
-  print(x)
-})
-
-# add aba roys
-sapply(1975:1972, function(x) {
-  new_seas <- get_award_pcts_mvp_roy(season=x, award="roy", lg="aba")
-  roy <<- rbind(roy, new_seas)
-  print(x)
-})
+session=nod(bbref_bow,path="awards/roy.html") %>% scrape()
 
 # add nba roy winners with no voting results
-session=nod(bbref_bow,path="awards/roy.html")
-
-nba_roys_without_voting <- scrape(session) %>%
-  html_nodes(css = "#div_roy_NBA") %>% 
+nba_roys <- session %>%
+  html_elements(css = "#div_roy_NBA") %>% 
   html_table() %>% .[[1]]  %>%
   # first row is actual column names
-  row_to_names(1) %>% clean_names() %>%
+  row_to_names(1) %>% clean_names()
+
+nba_roy_player_ids=tibble(
+  player_id=session %>% 
+    html_elements(css = "#div_roy_NBA") %>% 
+    html_elements("td") %>%
+    #data-append-csv have slugs
+    html_attr("data-append-csv")) %>% 
+  filter(!is.na(player_id))
+
+nba_roys_without_voting <- bind_cols(nba_roys,nba_roy_player_ids) %>%
   filter(voting != "(V)") %>%
   mutate(season = as.numeric(substr(season, 0, 4)) + 1) %>%
   # remove asterisks (unofficial recognize)
   mutate(player = ifelse(str_detect(player, "\\*"), substr(player, 1, nchar(player) - 2), player)) %>%
   # remove trailing tie in 1952
   mutate(player = ifelse(str_detect(player, "(Tie)"), substr(player, 1, nchar(player) - 6), player)) %>%
-  select(-c(voting, g:ws_48)) %>%
+  select(-c(voting, tm:ws_48)) %>%
   mutate(award = ifelse(lg == "NBA", "nba roy", "baa roy")) %>%
   relocate(award, .before = player) %>%
   select(-lg) %>%
-  add_column("winner" = TRUE) %>% mutate(age=as.numeric(age))
+  mutate(winner = TRUE) %>% mutate(age=as.numeric(age))
 
-# add aba roy winners with no voting results
-aba_roys_without_voting <- scrape(session) %>%
-  html_nodes(css = "#div_roy_ABA") %>% 
+aba_roys <- session %>%
+  html_elements(css = "#div_roy_ABA") %>% 
   html_table() %>% .[[1]]  %>%
   # first row is actual column names
-  row_to_names(1) %>% clean_names() %>%
+  row_to_names(1) %>% clean_names()
+
+aba_roy_player_ids=tibble(
+  player_id=session %>% 
+    html_elements(css = "#div_roy_ABA") %>%
+    html_elements("td") %>%
+    #data-append-csv have slugs
+    html_attr("data-append-csv")) %>% 
+  filter(!is.na(player_id))
+
+# add aba roy winners with no voting results
+aba_roys_without_voting <- bind_cols(aba_roys,aba_roy_player_ids) %>%
   filter(voting != "(V)") %>%
   mutate(season = as.numeric(substr(season, 0, 4)) + 1) %>%
   # 1971 was a tie, so get rid of trailing (Tie) remark for Charlie Scott and Dan Issel
   mutate(player = ifelse(str_detect(player, "(Tie)"), substr(player, 1, nchar(player) - 6), player)) %>%
-  select(-c(voting, g:ws_48)) %>%
+  select(-c(voting, tm:ws_48)) %>%
   add_column(award = "aba roy", .before = "player") %>%
   select(-lg) %>%
   add_column("winner" = TRUE) %>% mutate(age=as.numeric(age))
 
-final_roys <- bind_rows(roy, nba_roys_without_voting,aba_roys_without_voting)
 
-mip <- tibble()
-sapply(current_year:1986, function(x) {
-  new_seas <- get_award_pcts_other(season=x, award="mip")
-  mip <<- rbind(mip, new_seas)
-  print(x)
-})
+final_awards <- bind_rows(awards, nba_roys_without_voting,aba_roys_without_voting) %>%
+  # no voting found for 1983 smoy
+  add_row(season = 1983, award = "nba smoy", player = "Bobby Jones", age = 31, winner = TRUE) %>%
+  arrange(desc(season),award,desc(share))
 
-dpoy <- tibble()
-sapply(current_year:1983, function(x) {
-  new_seas <- get_award_pcts_other(x, "dpoy")
-  dpoy <<- rbind(dpoy, new_seas)
-  print(x)
-})
+write_csv(final_awards, "Data/Player Award Shares.csv")
 
-smoy <- tibble()
-# no voting found for 1983
-sapply(current_year:1984, function(x) {
-  new_seas <- get_award_pcts_other(x, "smoy")
-  smoy <<- rbind(smoy, new_seas)
-  print(x)
-})
-smoy <- smoy %>% add_row(season = 1983, award = "smoy", player = "Bobby Jones", age = 31, tm = "PHI", winner = TRUE)
+all_lg_voting_seasons=bind_rows(
+  tibble(league="nba",award="all_nba",season=current_year:1966),
+  tibble(league="nba",award="all_rookie",season=current_year:1963),
+  tibble(league="nba",award="all_defense",season=current_year:1969)
+  )
 
-awards <- bind_rows(dpoy, smoy, mip, mvp, roy) %>%
-  arrange(desc(season),award,desc(share)) %>%
-  mutate(player=case_when(
-    (player == "Jaren Jackson" & season >=2019)~"Jaren Jackson Jr.",
-    (player == "Marvin Bagley" & season >= 2019)~"Marvin Bagley III",
-    (player == "Dennis Smith" & season >= 2018)~"Dennis Smith Jr.",
-    (player == "Taurean Waller-Prince" & season >= 2018)~"Taurean Prince",
-    (player == "Tim Hardaway" & season >= 2014)~"Tim Hardaway Jr.",
-    (player == "Nenê Hilário" & season >= 2003)~"Nenê",
-    (player == "Michael Porter" & season >= 2020)~"Michael Porter Jr.",
-    TRUE~player)
-    ) %>%
-  left_join(., psi) %>%
-  select(-c(birth_year:experience))
+all_lg<-tibble()
+for (row in 1:nrow(all_lg_voting_seasons)) {
+  curr_lg=all_lg_voting_seasons$league[row]
+  curr_seas=all_lg_voting_seasons$season[row]
+  curr_award=all_lg_voting_seasons$award[row]
+  all_lg=bind_rows(
+    all_lg,
+    all_lg_voting(league=curr_lg,season=curr_seas,award=curr_award)
+  )
+  print(paste(curr_seas,curr_lg,curr_award))
+}
 
-write_csv(awards, "Data/Player Award Shares.csv")
+final_all_lg=all_lg %>% arrange(desc(season), type, number_tm)
 
-all_lg <- tibble()
-sapply(current_year:1966, function(x) {
-  new_seas <- all_lg_voting(season=x,award="all_nba")
-  all_lg <<- rbind(all_lg, new_seas)
-  print(x)
-})
-all_def_voting <- tibble()
-sapply(current_year:1969, function(x) {
-  new_seas <- all_lg_voting(season=x,award="all_defense")
-  all_def_voting <<- rbind(all_def_voting, new_seas)
-  print(x)
-})
-all_rook_voting <- tibble()
-sapply(current_year:1963, function(x) {
-  new_seas <- all_lg_voting(season=x,award="all_rookie")
-  all_rook_voting <<- rbind(all_rook_voting, new_seas)
-  print(x)
-})
+write_csv(all_lg,"Data/End of Season Teams (Voting).csv")
 
+all_league <- end_seas_team_scrape("all_league")
+all_def <- end_seas_team_scrape("all_defense")
+all_rook <- end_seas_team_scrape("all_rookie")
 
-full_all_lg<-bind_rows(all_lg,all_def_voting,all_rook_voting) %>%
-  left_join(.,psi) %>%
-  mutate(tm = ifelse(tm == "TOT", "1TOT", tm)) %>%
-  group_by(player_id, season,type) %>%
-  arrange(tm) %>%
-  slice(1) %>%
-  mutate(tm = ifelse(tm == "1TOT", "TOT", tm)) %>% ungroup() %>%
-  arrange(desc(season), type, number_tm,desc(share)) %>% select(-c(birth_year:experience))
+end_seas_teams <- bind_rows(all_league, all_def, all_rook)
 
-write_csv(full_all_lg,"Data/End of Season Teams (Voting).csv")
+#for some reason, names on these pages omit suffixes
+#jaren jackson instead of jaren jackson jr
+#jabari smith instead of jabari smith jr
+#join with player career info to get true names
 
-all_lg_without_voting <- all_lg_scrape() %>%
-  mutate(player=case_when(
-    (player == "Charles Williams" & season == 1968)~"Charlie Williams",
-    TRUE~player)) %>%
-  left_join(.,psi) %>%
-  mutate(tm = ifelse(tm == "TOT", "1TOT", tm)) %>%
-  group_by(player_id,season,type) %>%
-  arrange(tm) %>%
-  slice(1) %>%
-  mutate(tm = ifelse(tm == "1TOT", "TOT", tm)) %>% ungroup() %>%
-  arrange(desc(season), type, number_tm) %>% select(-c(birth_year:experience))
+pci=read_csv("Data/Player Career Info.csv") %>% select(player,player_id)
 
-alldef <- all_def_or_all_rookie("all_defense")
-allrook <- all_def_or_all_rookie("all_rookie")
+final_end_seas=left_join(end_seas_teams,pci,
+                         by=join_by(player_id==player_id),
+                         suffix = c("_orig","")) %>%
+  select(-player_orig) %>% relocate(player,.before=player_id) %>%
+  arrange(desc(season),lg,type)
 
-end_seas_teams <- bind_rows(all_lg_without_voting %>% select(-c(seas_id,player_id)), alldef, allrook) %>%
-  mutate(player=case_when(
-    (player == "Jaren Jackson" & season >=2019)~"Jaren Jackson Jr.",
-    (player == "Marvin Bagley" & season >= 2019)~"Marvin Bagley III",
-    (player == "Dennis Smith" & season >= 2018)~"Dennis Smith Jr.",
-    (player == "Taurean Waller-Prince" & season >= 2018)~"Taurean Prince",
-    (player == "Tim Hardaway" & season >= 2014)~"Tim Hardaway Jr.",
-    (player == "Nenê Hilário" & season >= 2003)~"Nenê",
-    (player == "Michael Porter" & season >= 2020)~"Michael Porter Jr.",
-    (player == "Jabari Smith" & season>=2023)~"Jabari Smith Jr.",
-    (player == "Jaime Jaquez" & season>=2024)~"Jaime Jaquez Jr.",
-    (player == "Dereck Lively" & season>=2024)~"Dereck Lively II",
-    (player == "Gregory Jackson" & season>=2024)~"GG Jackson II",
-    TRUE~player
-  )) %>% left_join(., psi) %>%
-  select(season:birth_year, tm, age) %>%
-  # two George Johnsons played at same time, one won All-Defense, remove the other
-  filter(!(player == "George Johnson" & birth_year == 1956)) %>%
-  mutate(tm = ifelse(tm == "TOT", "1TOT", tm)) %>%
-  group_by(season,lg,type,number_tm,player,position) %>%
-  arrange(tm) %>%
-  slice(1) %>%
-  mutate(tm = ifelse(tm == "1TOT", "TOT", tm)) %>% ungroup() %>%
-  arrange(desc(season), type, number_tm, player)
+write_csv(final_end_seas, "Data/End of Season Teams.csv")
 
-write_csv(end_seas_teams, "Data/End of Season Teams.csv")
+all_star_years=bind_rows(
+  #no all-stars in 1999
+  tibble(league="NBA",season=setdiff(current_year:1951, 1999)),
+  tibble(league="ABA",season=1976:1968),
+)
 
 all_stars_all_years <- tibble()
-# nba (no game in 1999)
-sapply(setdiff(current_year:1951, 1999), function(x) {
-  new_seas <- all_stars(x)
-  all_stars_all_years <<- rbind(all_stars_all_years, new_seas)
-  print(x)
-})
-# aba
-sapply(1976:1968, function(x) {
-  new_seas <- all_stars(x, "ABA")
-  all_stars_all_years <<- rbind(all_stars_all_years, new_seas)
-  print(x)
-})
+for (row in 1:nrow(all_star_years)) {
+  curr_lg=all_star_years$league[row]
+  curr_seas=all_star_years$season[row]
+  all_stars_all_years=bind_rows(
+    all_stars_all_years,
+    all_stars(league=curr_lg,season=curr_seas)
+  )
+  print(paste(curr_seas,curr_lg))
+}
 
-all_stars_cleaned <- all_stars_all_years %>%
-  mutate(
-    replaced = str_detect(player, "\\("),
-    player = ifelse(replaced == TRUE, substr(player, 1, nchar(player) - 4), player),
-    hof = str_detect(player, "\\*"),
-    player = ifelse(hof == TRUE, substr(player, 1, nchar(player) - 1), player)
-  ) %>% select(-hof) %>% arrange(desc(season),lg,team)
+all_stars_cleaned <- all_stars_all_years %>% select(-hof) %>% arrange(desc(season),lg,team)
 
 write_csv(all_stars_cleaned, "Data/All-Star Selections.csv")

@@ -5,85 +5,84 @@ library(polite)
 
 source("award shares.R")
 
-psi <- read_csv("Data/Player Season Info.csv")
-curr_year=2024
+curr_year=2025
 
-mvp <- get_award_pcts_mvp_roy(season = curr_year, award = "mvp")
-roy <- get_award_pcts_mvp_roy(season = curr_year, award = "roy")
-mip <- get_award_pcts_other(season = curr_year, award = "mip")
-dpoy <- get_award_pcts_other(season = curr_year, award = "dpoy")
-smoy <- get_award_pcts_other(season = curr_year, award = "smoy")
-cpoy <- get_award_pcts_other(season = curr_year, award = "clutch_poy")
+awards=c("mvp","roy","mip","dpoy","smoy","clutch_poy")
 
-new_seas_awards <- bind_rows(dpoy, smoy, mip, mvp, roy, cpoy) %>%
-  arrange(award,desc(share))
+new_seas_awards<-tibble()
+for (i in 1:length(awards)) {
+  curr_award=awards[i]
+  new_seas_awards=bind_rows(
+    new_seas_awards,
+    get_award_pcts(season=curr_year,award=curr_award)
+  )
+  print(paste(curr_year,curr_award))
+}
 
 final_new_seas_awards <- new_seas_awards %>%
-  mutate(player=case_when(
-    (player == "Jaren Jackson" & season >=2019)~"Jaren Jackson Jr.",
-    (player == "Marvin Bagley" & season >= 2019)~"Marvin Bagley III",
-    (player == "Dennis Smith" & season >= 2018)~"Dennis Smith Jr.",
-    (player == "Taurean Waller-Prince" & season >= 2018)~"Taurean Prince",
-    (player == "Tim Hardaway" & season >= 2014)~"Tim Hardaway Jr.",
-    (player == "Nenê Hilário" & season >= 2003)~"Nenê",
-    (player == "Michael Porter" & season >= 2020)~"Michael Porter Jr.",
-    TRUE~player
-  )
-  ) %>%
-  left_join(., psi) %>%
-  select(-c(birth_year:experience))
+  arrange(award,desc(share))
 
 old_awards <- read_csv("Data/Player Award Shares.csv")
-write_csv(old_awards %>% 
-            filter(season != curr_year) %>% 
-            add_row(final_new_seas_awards) %>%
-            arrange(desc(season),award,desc(share)), "Data/Player Award Shares.csv")
 
-new_seas_allstars <- all_stars(season = curr_year) %>%
-  mutate(
-    replaced = str_detect(player, "\\("),
-    player = ifelse(replaced == TRUE, substr(player, 1, nchar(player) - 4), player),
-    hof = str_detect(player, "\\*"),
-    player = ifelse(hof == TRUE, substr(player, 1, nchar(player) - 1), player)
-  ) %>% select(-hof)
+updated_awards=old_awards %>% 
+  filter(season != curr_year) %>% 
+  bind_rows(final_new_seas_awards) %>%
+  arrange(desc(season),award,desc(share))
 
-write_csv(read_csv("Data/All-Star Selections.csv") %>% filter(season != curr_year) %>%
-            add_row(new_seas_allstars) %>% arrange(desc(season),lg,team), "Data/All-Star Selections.csv")
+write_csv(updated_awards, "Data/Player Award Shares.csv")
 
-all_lg_without_voting <- all_lg_scrape()
-alldef <- all_def_or_all_rookie()
-allrook <- all_def_or_all_rookie("all_rookie")
+all_league <- end_seas_team_scrape("all_league")
+all_def <- end_seas_team_scrape("all_defense")
+all_rook <- end_seas_team_scrape("all_rookie")
 
-new_end_seas_teams=bind_rows(all_lg_without_voting,alldef,allrook) %>% filter(season==curr_year) %>%
-  mutate(player=case_when(
-    (player == "Jaren Jackson" & season >=2019)~"Jaren Jackson Jr.",
-    (player == "Marvin Bagley" & season >= 2019)~"Marvin Bagley III",
-    (player == "Dennis Smith" & season >= 2018)~"Dennis Smith Jr.",
-    (player == "Taurean Waller-Prince" & season >= 2018)~"Taurean Prince",
-    (player == "Tim Hardaway" & season >= 2014)~"Tim Hardaway Jr.",
-    (player == "Nenê Hilário" & season >= 2003)~"Nenê",
-    (player == "Michael Porter" & season >= 2020)~"Michael Porter Jr.",
-    (player == "Jabari Smith" & season>=2023)~"Jabari Smith Jr.",
-    (player == "Jaime Jaquez" & season>=2024)~"Jaime Jaquez Jr.",
-    (player == "Dereck Lively" & season>=2024)~"Dereck Lively II",
-    (player == "Gregory Jackson" & season>=2024)~"GG Jackson II",
-    TRUE~player
+new_end_seas_teams <- bind_rows(all_league, all_def, all_rook) %>% filter(season==curr_year)
+
+pci=read_csv("Data/Player Career Info.csv") %>% select(player,player_id)
+
+final_new_end_seas=left_join(new_end_seas_teams,pci,
+                         by=join_by(player_id==player_id),
+                         suffix = c("_orig","")) %>%
+  select(-player_orig) %>% relocate(player,.before=player_id) %>%
+  arrange(type)
+
+old_end_seas_teams <- read_csv("Data/End of Season Teams.csv")
+
+updated_end_seas_teams = old_end_seas_teams %>% 
+  filter(season != curr_year) %>%
+  bind_rows(final_new_end_seas) %>% 
+  arrange(desc(season), type, number_tm)
+
+write_csv(updated_end_seas_teams,"Data/End of Season Teams.csv")
+
+end_seas_team_types=c("all_nba","all_defense","all_rookie")
+
+new_end_seas_voting<-tibble()
+for (i in 1:length(end_seas_team_types)) {
+  curr_end_seas_team_type=end_seas_team_types[i]
+  new_end_seas_voting=bind_rows(
+    new_end_seas_voting,
+    all_lg_voting(season=curr_year,award=curr_end_seas_team_type)
   )
-  ) %>% left_join(.,psi) %>% select(season:birth_year,tm,age)
+  print(paste(curr_year,curr_end_seas_team_type))
+}
 
-write_csv(read_csv("Data/End of Season Teams.csv") %>% 
-            filter(season != curr_year) %>%
-            add_row(new_end_seas_teams) %>% 
-            arrange(desc(season), type, number_tm),
-          "Data/End of Season Teams.csv")
+old_end_seas_voting=read_csv("Data/End of Season Teams (Voting).csv")
 
-all_lg <- all_lg_voting(season=curr_year,award="all_nba")
-all_def_voting <- all_lg_voting(season=curr_year,award="all_defense")
-all_rook_voting <- all_lg_voting(season=curr_year,award="all_rookie")
-new_all_lg <- bind_rows(all_lg,all_def_voting,all_rook_voting) %>% left_join(., psi) %>% select(-c(birth_year:experience))
+updated_end_seas_voting=old_end_seas_voting %>% 
+  filter(season != curr_year) %>%
+  add_row(new_end_seas_voting) %>% 
+  arrange(desc(season), type, number_tm)
 
-write_csv(read_csv("Data/End of Season Teams (Voting).csv") %>% 
-            filter(season != curr_year) %>%
-            add_row(new_all_lg) %>% 
-            arrange(desc(season), type, number_tm),
-          "Data/End of Season Teams (Voting).csv")
+write_csv(updated_end_seas_voting,"Data/End of Season Teams (Voting).csv")
+
+new_seas_allstars <- all_stars(season = curr_year) %>% select(-hof)
+
+old_allstars <- read_csv("Data/All-Star Selections.csv")
+
+updated_allstars=old_allstars %>% 
+  filter(season != curr_year) %>%
+  bind_rows(new_seas_allstars) %>% 
+  arrange(desc(season),lg,team)
+
+write_csv(updated_allstars, "Data/All-Star Selections.csv")
+

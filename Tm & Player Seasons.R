@@ -10,154 +10,224 @@ print(bbref_bow)
 # totals-team, totals-opponent
 # per_poss-team, per_poss-opponent from 1974
 # advanced-team
-teamStats <- function(season = 2020, league = "NBA", type = "per_game-team") {
-  session = nod(bbref_bow,path=paste0("leagues/", league, "_", season, ".html"))
-  new_season <- scrape(session) %>% 
-    html_nodes(css=paste0("#",type)) %>%
+team_stats <- function(season = 2020, league = "NBA", type = "per_game-team") {
+  session = nod(bbref_bow,path=paste0("leagues/", league, "_", season, ".html")) %>% scrape()
+  new_season <- session %>% 
+    html_elements(css=paste0("#",type)) %>%
     html_table() %>% .[[1]]
+  
+  abbrevs=tibble(href=session %>% 
+                   html_elements(css=paste0("#",type)) %>% 
+                   #link in table to team's specific page
+                   html_elements("a") %>% 
+                   html_attr("href")) %>%
+    #format is /teams/[abbrev]/[year].html
+    mutate(abbreviation=word(href,start=3,sep="/")) %>% 
+    select(abbreviation) %>%
+    #league average is not a team, so no abbreviation
+    add_row(abbreviation=NA)
+  
   if (type=="advanced-team"){
-    new_season=new_season[-c(18,23,28)]
-    new_season[1, 22:25] <- as.list(paste0("opp_", new_season[1, 22:25]))
-    colnames(new_season) <- new_season[1, ]
-    new_season <- new_season[-1, ]
-    new_season[, c(1, 3:25)] <- sapply(new_season[, c(1, 3:25)], as.numeric)
+    new_season <- new_season %>% 
+      #advanced table has first header for offense & defense four factors
+      row_to_names(1) %>% 
+      clean_names() %>% 
+      #advanced has 3 blank separator columns
+      select(!starts_with("na")) %>%
+      #defensive four factors are opponent stats
+      rename_with(~str_c("opp_",str_remove(.,"_2")),ends_with("_2")) %>%
+      #attendance has commas
+      mutate(attend = gsub(",", "", attend), attend_g = gsub(",", "", attend_g)) %>%
+      mutate(across(c(age:opp_ft_fga,attend:attend_g),as.numeric))
   }
-  new_season <- new_season %>%
-    rename(Season = Rk) %>%
-    mutate(Season = season) %>%
-    add_column(Lg = league, .before = "Team") %>%
-    clean_names()
-  return(new_season)
-}
-
-
-get_season_range_team_stats<-function(seas_range=2020,league="NBA",to_scrape="per_game-team"){
-  a<-tibble()
-  for (season in seas_range){
-    new_seas<-teamStats(season=season,league=league,type=to_scrape)
-    a<-bind_rows(a,new_seas)
-    print(paste(season,league))
-  }
-  a <- a %>%
+  new_season <- new_season %>% clean_names() %>%
+    mutate(season=season,lg=league,.before=team) %>%
+    select(-rk) %>%
+    #separate playoff asterisk into separate column
     mutate(
       playoffs = str_detect(team, "\\*"),
-      team = ifelse(playoffs == TRUE, substr(team, 1, nchar(team) - 1), team)
+      team = ifelse(playoffs, str_remove(team,"\\*"), team)
     ) %>%
-    relocate(playoffs, .after = "team")
-  a <- left_join(a, read_csv("Data/Team Abbrev.csv"))
-  a <- a %>% relocate(abbreviation, .after = "team") %>% arrange(desc(season),abbreviation)
-  return(a)
+    relocate(playoffs, .after = team)
+  if (str_detect(type,"opponent")){
+    new_season <- new_season %>%
+      rename_with(~str_c("opp_",.),.cols=c(fg:pts))
+  }
+  if (str_detect(type,"per_game")){
+    new_season <- new_season %>%
+      rename_with(~str_c(.,"_per_game"),.cols=-c(season:g,contains("percent")))
+  }
+  if (str_detect(type,"per_poss")){
+    new_season <- new_season %>%
+      rename_with(~str_c(.,"_per_100_poss"),.cols=-c(season:mp,contains("percent")))
+    abbrevs = abbrevs %>% filter(!is.na(abbreviation))
+  }
+
+  final_new_season=bind_cols(new_season,abbrevs) %>% 
+    relocate(abbreviation, .after = "team")
+  
+  return(final_new_season)
 }
 
-
-scrape_stats <- function(season = 2017, league = "NBA", type = "totals") {
+# totals, per_game, per_minute, advanced
+# per_poss from 1974
+# shooting, play-by-play from 1997
+player_stats <- function(season = 2017, league = "NBA", type = "totals") {
   # scrape
-  session = nod(bbref_bow,path=paste0("leagues/", league, "_", season, "_", type, ".html"))
-  stats_a <- scrape(session) %>%
-    html_table() %>%
-    .[[1]]
+  session = nod(bbref_bow,path=paste0("leagues/", league, "_", season, "_", type, ".html")) %>% scrape()
+  stats_a <- session %>%
+    html_table() %>% .[[1]]
   if (type %in% c("shooting", "play-by-play")) {
-    colnames(stats_a) <- stats_a[1, ]
-    stats_a <- stats_a[-1, ]
+    stats_a <- stats_a %>% row_to_names(1)
   }
   # clean
-  player_stats_a <- stats_a %>%
+  stats_a <- stats_a %>%
     clean_names() %>%
-    filter(!player == "Player")
-  if (type == "play-by-play") {
-    player_stats_a <- player_stats_a %>% mutate(across(pg_percent:c_percent, ~ gsub("%", "", .)))
+    select(-awards) %>%
+    filter(player != "League Average")
+  player_stats_a <- stats_a %>% 
+    #convert blanks in position column to NAs
+    mutate(pos=na_if(pos,"")) %>%
+    mutate(across(-c(player, team, pos), as.numeric)) %>%
+    select(-rk) %>%  
+    mutate(season=season,lg=league,.before=everything())
+  if (str_detect(type,"per_game")){
+    if (season<=1970||(season<=1971 && league=="ABA")){
+      #add games started column if does not exist for early years
+      player_stats_a <- player_stats_a %>% mutate(gs=NA_real_,.after=g)
+    }
+    player_stats_a <- player_stats_a %>% 
+      rename_with(~str_c(.,"_per_game"),
+                  .cols=-c(season:gs,contains("percent")))
   }
-  else if (type == "shooting") {
-    player_stats_a <- player_stats_a %>% select(-starts_with("na"))
+  if (str_detect(type,"per_minute")){
+    player_stats_a <- player_stats_a %>% 
+      rename_with(~str_c(.,"_per_36_min"),
+                  .cols=-c(season:mp,contains("percent")))
   }
-  else if (type %in% c("per_minute","per_poss")) {
-    player_stats_a <- player_stats_a %>% select(-e_fg_percent) #per minute added efg_percent
+  if (str_detect(type,"per_poss")){
+    player_stats_a <- player_stats_a %>% 
+      rename_with(~str_c(.,"_per_100_poss"),
+                  .cols=-c(season:mp,contains("percent"),contains("rtg")))
   }
-  else if (type == "totals") {
-    player_stats_a <- player_stats_a %>% select(-trp_dbl) #totals added triple double count
+  if (str_detect(type,"shooting")){
+    player_stats_a <- player_stats_a %>% 
+      rename(avg_dist_fga = dist) %>%
+      rename_with(.cols=x2p:x3p,.fn= ~ str_c("percent_fga_from_", ., "_range")) %>%
+      rename_with(.cols=x2p_2:x3p_2,.fn= ~ paste0("fg_percent_from_", str_remove(.,"_2"), "_range")) %>%
+      rename_with(.cols=x2p_3:x3p_3,.fn= ~ paste0("percent_assisted_", str_remove(.,"_3"), "_fg")) %>%
+      rename(
+        percent_dunks_of_fga = percent_fga, num_of_dunks = number,
+        percent_corner_3s_of_3pa = percent_3pa, corner_3_point_percent = x3p_percent,
+        num_heaves_attempted = att, num_heaves_made = md
+      )
   }
-  player_stats_a <- player_stats_a %>% 
-    rename(any_of(c("tm"="team"))) %>% #upgraded tables use team
-    mutate_at(vars(-c(player, tm, pos)), as.numeric) %>%
-    as_tibble() %>%
-    mutate(rk = season) %>%
-    rename(Season = rk) %>%
-    mutate(Lg = league, .before = "tm") %>%
-    clean_names() %>%
-    select(-any_of(c("awards"))) %>% #upgraded tables have awards
-    filter(player != "League Average") %>% #upgraded tables have league average
-    relocate(season,player,pos,age,lg,tm) %>% #upgraded tables rearrange columns
-    mutate(tm=if_else(str_detect(tm,"[0-9]TM"),"TOT",tm)) #upgraded tables add number of teams played for
-  return(player_stats_a)
+  if (str_detect(type,"play-by-play")){
+    if (season<=2005){
+      #add offensive fouls drawn column if does not exist
+      player_stats_a <- player_stats_a %>% mutate(off_2=NA_real_,.after=shoot_2)
+    }
+    player_stats_a <- player_stats_a %>%
+      rename(
+        on_court_plus_minus_per_100_poss = on_court,
+        net_plus_minus_per_100_poss = on_off, 
+        bad_pass_turnover = bad_pass, lost_ball_turnover = lost_ball, 
+        shooting_foul_committed = shoot, offensive_foul_committed = off, 
+        shooting_foul_drawn = shoot_2, offensive_foul_drawn = off_2, 
+        points_generated_by_assists = pga, fga_blocked = blkd
+      )
+  }
+  stat_player_ids=tibble(
+    player_id=session %>% 
+      html_element("table") %>%
+      html_elements("td") %>%
+      #data-append-csv have slugs
+      html_attr("data-append-csv")) %>% 
+    filter(!is.na(player_id))
+  
+  final_player_stats_a <- bind_cols(player_stats_a,stat_player_ids) %>% 
+    relocate(player_id,.after=player)
+  
+  return(final_player_stats_a)
 }
 
-
-get_season_range_player_stats<-function(seas_range=2020,league="NBA",to_scrape="per_game"){
-  a<-tibble()
-  for (season in seas_range){
-    new_seas<-scrape_stats(season=season,league=league,type=to_scrape)
-    a<-bind_rows(a,new_seas)
-    print(paste(season,league))
-  }
-  # removed asterisk from hall of fame players
-  a <- a %>%
-    mutate(
-      hof = str_detect(player, "\\*"),
-      player = ifelse(hof, substr(player, 1, nchar(player) - 1), player)
-    ) %>%
-    left_join(., read_csv("Data/Player Season Info.csv"))
-  a <- a %>% relocate(seas_id, season, player_id, player, birth_year, hof, pos, age, experience, lg) %>%
-    arrange(desc(season),player)
-  return(a) 
-}
-
-
-get_rookies<-function(season = 2017, league = "NBA"){
-  session = nod(bbref_bow,path=paste0("leagues/", league, "_", season, "_rookies.html"))
-  rookies=scrape(session) %>% html_nodes(css="#rookies") %>%
-    html_table() %>% .[[1]] %>% row_to_names(1) %>% clean_names() %>% select(-rk) %>% 
+get_rookie_debuts<-function(season = 2017, league = "NBA"){
+  session = nod(bbref_bow,path=paste0("leagues/", league, "_", season, "_rookies.html")) %>% scrape()
+  
+  debuts=session %>% html_table() %>% .[[1]] %>% 
+    row_to_names(1) %>% clean_names() %>% select(-rk) %>%
+    #filter out blank or repeated header rows
     filter(!(player %in% c("","Player"))) %>% 
-    mutate(season=season,.before=everything()) %>% select(season:debut) %>% 
-    mutate(debut=word(debut,end=2,sep=",")) %>%
-    mutate(debut=as.Date(debut,format="%b %d, '%y")) %>% arrange(player,debut)
+    mutate(season=season,league=league,.before=everything()) %>%
+    mutate(
+      #remove asterisk from hall of famers
+      player = ifelse(str_detect(player, "\\*"), substr(player, 1, nchar(player) - 1), player),
+      #take only date part of debut, not game, convert to tidy-friendly date
+      #since year is two-digits, using mdy guesses wrong for early years (1946 becomes 2046)
+      debut=parse_date_time2(word(debut,end=2,sep=","),"mdy",cutoff_2000 = 45)) %>%
+    select(season:debut)
+  
+  debut_player_ids=tibble(
+    player_id=session %>% 
+      html_elements("td") %>%
+      #data-append-csv have slugs
+      html_attr("data-append-csv")) %>% 
+    filter(!is.na(player_id))
+  
+  rookies=bind_cols(debuts,debut_player_ids)
+  
   return(rookies)
 }
 
-get_letter_directory_table<-function(letter="/players/a/"){
-  page=nod(bbref_bow,path=letter) %>% scrape()
+get_letter_directory_table<-function(letter="a"){
+  page=nod(bbref_bow,path=paste0("/players/",letter)) %>% scrape()
   
   letter_table=page %>% html_table() %>% .[[1]] %>% clean_names() %>% 
-    mutate(hof = str_detect(player, "\\*"),
-           player = ifelse(hof, substr(player, 1, nchar(player) - 1), player),
-           colleges=na_if(colleges,""),
-           birth_date=mdy(birth_date)) %>%
+    mutate(
+      #hall of famers suffixed with asterisk
+      hof = str_detect(player, "\\*"),
+      #remove asterisk from hall of famers
+      player = ifelse(hof, substr(player, 1, nchar(player) - 1), player),
+      #convert blank strings in college to NAs
+      colleges=na_if(colleges,""),
+      #convert birthdate to tidy friendly format
+      birth_date=mdy(birth_date)
+      ) %>%
+    #height listed as "x-y", where x is feet and y is inches
+    #separate using -, multiply feet by 12 and add inches to get height in inches
     mutate(ht_in_in=as.numeric(word(ht,sep="-"))*12+
              as.numeric(word(ht,sep="-",start=2)),.before=wt) %>%
     select(-ht)
   
-  letter_slugs=tibble(
-    slug=page %>% 
-      html_elements(xpath="//a") %>% html_attr("href")
-  ) %>% 
-    filter(str_detect(slug,"(?=.*players/)(?=.*html$)")) %>%
-    slice(1:nrow(letter_table)) %>%
-    mutate(slug=word(word(slug,sep="/",start=4),sep=".html"))
+  letter_player_ids=tibble(
+    player_id=page %>% 
+      #look for table headers
+      html_elements("th") %>%
+      #look for links in table headers
+      html_elements("a") %>% 
+      html_attr("href")) %>%
+    #hrefs in "/players/[letter]/[slug].html
+    #extract only slug portion
+    mutate(player_id=word(word(player_id,sep="/",start=4),sep=".html"))
   
-  full_letter_table=bind_cols(letter_table,letter_slugs)
+  full_letter_table=bind_cols(letter_table,letter_player_ids)
   
   return(full_letter_table)
 }
 
 get_player_directory<-function(){
-  session=nod(bbref_bow,path="players/")
-  player_letter_hyperlinks=scrape(session) %>% 
-    html_nodes("a") %>% html_attrs() %>% map_df(as_tibble_row) %>%
-    filter(str_detect(href,"/players/[a-z]/$")) %>% pull(href)
-  player_table=tibble()
-  for (letter_link in player_letter_hyperlinks){
-    letter_table=get_letter_directory_table(letter_link)
+  session = nod(bbref_bow, path = "players/")
+  player_letter_hyperlinks = tibble(
+    href = scrape(session) %>% html_elements("a") %>% html_attr("href")) %>%
+    #filter for only /players/[letter] links
+    filter(str_detect(href, "/players/[a-z]/$")) %>%
+    #extract only letter
+    mutate(href = word(href, sep = "/", start = 3)) %>% pull(href)
+  player_table = tibble()
+  for (letter_link in player_letter_hyperlinks) {
+    letter_table = get_letter_directory_table(letter_link)
     
-    player_table=bind_rows(player_table,letter_table)
+    player_table = bind_rows(player_table, letter_table)
     print(letter_link)
   }
   return(player_table)
