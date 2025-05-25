@@ -154,3 +154,20 @@ write_csv(totals, "Data/Player Totals.csv")
 write_csv(per_game, "Data/Player Per Game.csv")
 write_csv(play_by_play, "Data/Player Play By Play.csv")
 write_csv(shooting, "Data/Player Shooting.csv")
+
+draft_seasons=league_seasons %>% filter(league != "ABA")
+
+draft_picks=tibble()
+for (row in 1:nrow(draft_seasons)) {
+  curr_lg=draft_seasons$league[row]
+  curr_seas=draft_seasons$season[row]
+  draft_picks=bind_rows(
+    draft_picks,
+    get_draft_picks(league=curr_lg,
+                      season=curr_seas)
+  )
+  print(paste(curr_lg,curr_seas))
+}
+
+write_csv(draft_picks,"Data/Draft Pick History.csv")
+

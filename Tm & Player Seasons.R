@@ -232,3 +232,44 @@ get_player_directory<-function(){
   }
   return(player_table)
 }
+
+get_draft_picks<-function(season=2020,league="NBA"){
+  session = nod(bbref_bow,path=paste0("draft/", league, "_", season, ".html")) %>% scrape()
+  
+  new_season <- session %>% 
+    html_elements(css="#stats") %>%
+    html_table() %>% .[[1]] %>% row_to_names(1) %>% 
+    select(Rk:College) %>% clean_names() %>% 
+    mutate(across(rk:pk,as.numeric)) %>%
+    mutate(season=season,lg=league,.before="rk") %>%
+    rename(overall_pick=pk) %>% 
+    mutate(college=na_if(college,"")) %>%
+    #headers repeat before each round
+    filter(tm != "Tm") %>% 
+    #if other picks not related to specific round, give temp -1
+    mutate(round=case_when(college=="Other Picks"~-1,
+                           TRUE~as.numeric(word(player,2)))) %>% 
+    #fill round number down, 1st round lost in row_to_names
+    fill(round) %>% replace_na(list(round=1)) %>% 
+    mutate(round=na_if(round,-1),player=na_if(player,"")) %>%
+    #any non-player name filtered out
+    filter(str_detect(player,"(Round )|(Other Picks)",negate=TRUE)) %>%
+    filter(!is.na(player)) %>%
+    select(-rk)
+  
+  draft_player_ids=tibble(player_id=session %>% 
+                            html_elements(css="#stats") %>% 
+                            #link in table to team's specific page
+                            html_elements("a") %>% 
+                            html_attr("href")) %>%
+    #filter for only /players/[letter] links
+    filter(str_detect(player_id, "/players/[a-z]/")) %>%
+    mutate(player_id=word(word(player_id,sep="/",start=4),sep=".html"))
+  
+  full_draft_info=bind_cols(new_season,draft_player_ids) %>% 
+    arrange(round,overall_pick) %>%
+    relocate(round,.after=overall_pick) %>%
+    relocate(player_id,.after=player)
+  
+  return(full_draft_info)
+}
