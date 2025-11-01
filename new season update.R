@@ -5,7 +5,7 @@ library(polite)
 
 source("Tm & Player Seasons.R")
 
-current_seas=2025
+current_seas=2026
 
 add_new_team_seas <- function(seas = 2021, type = "per_game-team") {
   file_stat_relations=tribble(
@@ -60,7 +60,7 @@ add_new_seas <- function(seas = 2021, type = "totals") {
   file_to_update <- read_csv(filename_to_update)
   
   updated_file <- file_to_update %>% filter(season != seas) %>%
-    bind_rows(a) %>% arrange(desc(season),player)
+    bind_rows(a) %>% arrange(desc(season),player_id)
   
   write_csv(updated_file,filename_to_update)
 }
@@ -105,7 +105,22 @@ players_to_update=anti_join(pci,player_directory)
 #rookies will not have debuts
 #TO BE DONE IN FIRST UPDATE OF NOVEMBER 2026
 
-left_join(players_to_update,player_directory,by=join_by(player_id==player_id),suffix = c("_old","")) %>% 
+no_updates_needed=inner_join(pci,player_directory)
+
+updated_players=left_join(players_to_update,player_directory,
+          by=join_by(player_id==player_id),
+          #old values from players_to_update->pci
+          suffix = c("_old","")) %>% 
   select(-ends_with("_old"))
 
-curr_rookies=get_rookie_debuts(season=current_seas)
+updated_no_rookies=bind_rows(no_updates_needed,updated_players)
+
+#players not in pci -> must be rookies
+rookies_not_in_pci=anti_join(player_directory,updated_no_rookies)
+
+curr_rookies=get_rookie_debuts(season=current_seas) %>% select(-c(season,league))
+
+rookies_w_debuts=left_join(curr_rookies,rookies_not_in_pci) %>% 
+  replace_na(list(from=current_seas,to=current_seas,hof=FALSE))
+
+updated_full=bind_rows(updated_no_rookies,rookies_w_debuts) %>% arrange(from,debut,player_id)

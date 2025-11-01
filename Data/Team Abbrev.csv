@@ -1,4 +1,34 @@
 season,lg,team,abbreviation,playoffs
+2026,NBA,Atlanta Hawks,ATL,FALSE
+2026,NBA,Boston Celtics,BOS,FALSE
+2026,NBA,Brooklyn Nets,BRK,FALSE
+2026,NBA,Chicago Bulls,CHI,FALSE
+2026,NBA,Charlotte Hornets,CHO,FALSE
+2026,NBA,Cleveland Cavaliers,CLE,FALSE
+2026,NBA,Dallas Mavericks,DAL,FALSE
+2026,NBA,Denver Nuggets,DEN,FALSE
+2026,NBA,Detroit Pistons,DET,FALSE
+2026,NBA,Golden State Warriors,GSW,FALSE
+2026,NBA,Houston Rockets,HOU,FALSE
+2026,NBA,Indiana Pacers,IND,FALSE
+2026,NBA,Los Angeles Clippers,LAC,FALSE
+2026,NBA,Los Angeles Lakers,LAL,FALSE
+2026,NBA,Memphis Grizzlies,MEM,FALSE
+2026,NBA,Miami Heat,MIA,FALSE
+2026,NBA,Milwaukee Bucks,MIL,FALSE
+2026,NBA,Minnesota Timberwolves,MIN,FALSE
+2026,NBA,New Orleans Pelicans,NOP,FALSE
+2026,NBA,New York Knicks,NYK,FALSE
+2026,NBA,Oklahoma City Thunder,OKC,FALSE
+2026,NBA,Orlando Magic,ORL,FALSE
+2026,NBA,Philadelphia 76ers,PHI,FALSE
+2026,NBA,Phoenix Suns,PHO,FALSE
+2026,NBA,Portland Trail Blazers,POR,FALSE
+2026,NBA,Sacramento Kings,SAC,FALSE
+2026,NBA,San Antonio Spurs,SAS,FALSE
+2026,NBA,Toronto Raptors,TOR,FALSE
+2026,NBA,Utah Jazz,UTA,FALSE
+2026,NBA,Washington Wizards,WAS,FALSE
 2025,NBA,Atlanta Hawks,ATL,TRUE
 2025,NBA,Boston Celtics,BOS,TRUE
 2025,NBA,Brooklyn Nets,BRK,FALSE
