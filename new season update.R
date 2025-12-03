@@ -7,6 +7,13 @@ source("Tm & Player Seasons.R")
 
 current_seas=2026
 
+# #run this once during first update of season (draft info wouldn't change on month by month basis)
+# old_dph=read_csv("Data/Draft Pick History.csv") %>% filter(season != current_seas-1)
+# new_seas_draft_picks=get_draft_picks(current_seas-1)
+# new_dph=bind_rows(old_dph,new_seas_draft_picks) %>%
+#   arrange(desc(season),lg,overall_pick)
+# write_csv(new_dph,"Data/Draft Pick History.csv")
+
 add_new_team_seas <- function(seas = 2021, type = "per_game-team") {
   file_stat_relations=tribble(
     ~stat_type,~file,
@@ -103,7 +110,6 @@ players_to_update=anti_join(pci,player_directory)
 #new season means to is updated
 #measurements could change position, height, weight
 #rookies will not have debuts
-#TO BE DONE IN FIRST UPDATE OF NOVEMBER 2026
 
 no_updates_needed=inner_join(pci,player_directory)
 
@@ -116,11 +122,15 @@ updated_players=left_join(players_to_update,player_directory,
 updated_no_rookies=bind_rows(no_updates_needed,updated_players)
 
 #players not in pci -> must be rookies
-rookies_not_in_pci=anti_join(player_directory,updated_no_rookies)
-
 curr_rookies=get_rookie_debuts(season=current_seas) %>% select(-c(season,league))
 
-rookies_w_debuts=left_join(curr_rookies,rookies_not_in_pci) %>% 
+#only get rookies that have debuted since last update
+#if they were already on pci, would have been updated in players_to_update
+rookies_not_in_pci=anti_join(curr_rookies,updated_no_rookies)
+
+rookies_w_debuts=left_join(rookies_not_in_pci,player_directory) %>% 
   replace_na(list(from=current_seas,to=current_seas,hof=FALSE))
 
 updated_full=bind_rows(updated_no_rookies,rookies_w_debuts) %>% arrange(from,debut,player_id)
+
+write_csv(updated_full,"Data/Player Career Info.csv")
