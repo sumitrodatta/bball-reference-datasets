@@ -1,4 +1,58 @@
 player,player_id,team,season,lg,replaced
+Scottie Barnes,barnesc01,Team Stars,2026,NBA,FALSE
+Devin Booker,bookede01,Team Stars,2026,NBA,FALSE
+Cade Cunningham,cunnica01,Team Stars,2026,NBA,FALSE
+Jalen Duren,durenja01,Team Stars,2026,NBA,FALSE
+Anthony Edwards,edwaran01,Team Stars,2026,NBA,FALSE
+Chet Holmgren,holmgch01,Team Stars,2026,NBA,FALSE
+Jalen Johnson,johnsja05,Team Stars,2026,NBA,FALSE
+Tyrese Maxey,maxeyty01,Team Stars,2026,NBA,FALSE
+Jaylen Brown,brownja02,Team Stripes,2026,NBA,FALSE
+Jalen Brunson,brunsja01,Team Stripes,2026,NBA,FALSE
+Stephen Curry,curryst01,Team Stripes,2026,NBA,TRUE
+Kevin Durant,duranke01,Team Stripes,2026,NBA,FALSE
+De'Aaron Fox,foxde01,Team Stripes,2026,NBA,FALSE
+Brandon Ingram,ingrabr01,Team Stripes,2026,NBA,FALSE
+LeBron James,jamesle01,Team Stripes,2026,NBA,FALSE
+Kawhi Leonard,leonaka01,Team Stripes,2026,NBA,FALSE
+Donovan Mitchell,mitchdo01,Team Stripes,2026,NBA,FALSE
+Giannis Antetokounmpo,antetgi01,Team World,2026,NBA,TRUE
+Deni Avdija,avdijde01,Team World,2026,NBA,FALSE
+Luka Dončić,doncilu01,Team World,2026,NBA,FALSE
+Shai Gilgeous-Alexander,gilgesh01,Team World,2026,NBA,TRUE
+Nikola Jokić,jokicni01,Team World,2026,NBA,FALSE
+Jamal Murray,murraja01,Team World,2026,NBA,FALSE
+Norman Powell,powelno01,Team World,2026,NBA,FALSE
+Alperen Şengün,sengual01,Team World,2026,NBA,FALSE
+Pascal Siakam,siakapa01,Team World,2026,NBA,FALSE
+Karl-Anthony Towns,townska01,Team World,2026,NBA,FALSE
+Victor Wembanyama,wembavi01,Team World,2026,NBA,FALSE
+Giannis Antetokounmpo,antetgi01,Team Chuck,2025,NBA,TRUE
+Shai Gilgeous-Alexander,gilgesh01,Team Chuck,2025,NBA,FALSE
+Nikola Jokić,jokicni01,Team Chuck,2025,NBA,FALSE
+Donovan Mitchell,mitchdo01,Team Chuck,2025,NBA,FALSE
+Alperen Şengün,sengual01,Team Chuck,2025,NBA,FALSE
+Pascal Siakam,siakapa01,Team Chuck,2025,NBA,FALSE
+Karl-Anthony Towns,townska01,Team Chuck,2025,NBA,FALSE
+Victor Wembanyama,wembavi01,Team Chuck,2025,NBA,FALSE
+Trae Young,youngtr01,Team Chuck,2025,NBA,FALSE
+Jalen Brunson,brunsja01,Team Kenny,2025,NBA,FALSE
+Cade Cunningham,cunnica01,Team Kenny,2025,NBA,FALSE
+Anthony Edwards,edwaran01,Team Kenny,2025,NBA,TRUE
+Darius Garland,garlada01,Team Kenny,2025,NBA,FALSE
+Tyler Herro,herroty01,Team Kenny,2025,NBA,FALSE
+Jaren Jackson Jr.,jacksja02,Team Kenny,2025,NBA,FALSE
+Evan Mobley,mobleev01,Team Kenny,2025,NBA,FALSE
+Jalen Williams,willija06,Team Kenny,2025,NBA,FALSE
+Jaylen Brown,brownja02,Team Shaq,2025,NBA,FALSE
+Stephen Curry,curryst01,Team Shaq,2025,NBA,FALSE
+Anthony Davis,davisan02,Team Shaq,2025,NBA,TRUE
+Kevin Durant,duranke01,Team Shaq,2025,NBA,FALSE
+James Harden,hardeja01,Team Shaq,2025,NBA,FALSE
+Kyrie Irving,irvinky01,Team Shaq,2025,NBA,FALSE
+LeBron James,jamesle01,Team Shaq,2025,NBA,TRUE
+Damian Lillard,lillada01,Team Shaq,2025,NBA,FALSE
+Jayson Tatum,tatumja01,Team Shaq,2025,NBA,FALSE
 Bam Adebayo,adebaba01,East,2024,NBA,FALSE
 Giannis Antetokounmpo,antetgi01,East,2024,NBA,FALSE
 Paolo Banchero,banchpa01,East,2024,NBA,FALSE
