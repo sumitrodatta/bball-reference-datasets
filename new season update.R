@@ -117,7 +117,8 @@ updated_players=left_join(players_to_update,player_directory,
           by=join_by(player_id==player_id),
           #old values from players_to_update->pci
           suffix = c("_old","")) %>% 
-  select(-ends_with("_old"))
+  select(-ends_with("_old")) %>%
+  relocate(player,player_id,pos,ht_in_in,wt,birth_date,colleges,from,to,debut,hof)
 
 updated_no_rookies=bind_rows(no_updates_needed,updated_players)
 

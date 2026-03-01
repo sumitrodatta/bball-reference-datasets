@@ -32608,13 +32608,19 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Precious Achiuwa,achiupr01,26,SAC,C,6
 2026,NBA,Steven Adams,adamsst01,32,HOU,C,12
 2026,NBA,Bam Adebayo,adebaba01,28,MIA,C,9
+2026,NBA,Ochai Agbaji,agbajoc01,25,2TM,SG,4
+2026,NBA,Ochai Agbaji,agbajoc01,25,BRK,SG,4
 2026,NBA,Ochai Agbaji,agbajoc01,25,TOR,SG,4
 2026,NBA,Santi Aldama,aldamsa01,25,MEM,PF,5
 2026,NBA,Nickeil Alexander-Walker,alexani01,27,ATL,SG,7
 2026,NBA,Trey Alexander,alexatr01,22,NOP,SG,2
 2026,NBA,Grayson Allen,allengr01,30,PHO,SG,8
 2026,NBA,Jarrett Allen,allenja01,27,CLE,C,9
+2026,NBA,Jose Alvarado,alvarjo01,27,2TM,PG,5
 2026,NBA,Jose Alvarado,alvarjo01,27,NOP,PG,5
+2026,NBA,Jose Alvarado,alvarjo01,27,NYK,PG,5
+2026,NBA,Kyle Anderson,anderky01,32,2TM,SF,12
+2026,NBA,Kyle Anderson,anderky01,32,MEM,SF,12
 2026,NBA,Kyle Anderson,anderky01,32,UTA,SF,12
 2026,NBA,Giannis Antetokounmpo,antetgi01,31,MIL,PF,13
 2026,NBA,Thanasis Antetokounmpo,antetth01,33,MIL,SF,7
@@ -32622,28 +32628,41 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,OG Anunoby,anunoog01,28,NYK,PF,9
 2026,NBA,Deni Avdija,avdijde01,25,POR,SF,6
 2026,NBA,Deandre Ayton,aytonde01,27,LAL,C,8
+2026,NBA,Marvin Bagley III,baglema01,26,2TM,PF,8
+2026,NBA,Marvin Bagley III,baglema01,26,DAL,PF,8
 2026,NBA,Marvin Bagley III,baglema01,26,WAS,PF,8
 2026,NBA,Ace Bailey,baileac01,19,UTA,SF,1
+2026,NBA,Patrick Baldwin Jr.,baldwpa01,23,3TM,SF,4
 2026,NBA,Patrick Baldwin Jr.,baldwpa01,23,LAC,SF,4
+2026,NBA,Patrick Baldwin Jr.,baldwpa01,23,PHI,SF,4
+2026,NBA,Patrick Baldwin Jr.,baldwpa01,23,SAC,SF,4
 2026,NBA,LaMelo Ball,ballla01,24,CHO,PG,6
 2026,NBA,Lonzo Ball,balllo01,28,CLE,PG,7
 2026,NBA,Mo Bamba,bambamo01,27,TOR,C,8
 2026,NBA,Paolo Banchero,banchpa01,23,ORL,PF,4
 2026,NBA,Desmond Bane,banede01,27,ORL,SG,6
+2026,NBA,Dalano Banton,bantoda01,26,2TM,PG,5
+2026,NBA,Dalano Banton,bantoda01,26,BOS,PG,5
+2026,NBA,Dalano Banton,bantoda01,26,LAC,PG,5
 2026,NBA,Dominick Barlow,barlodo01,22,PHI,PF,4
 2026,NBA,Harrison Barnes,barneha02,33,SAS,PF,14
 2026,NBA,Scottie Barnes,barnesc01,24,TOR,PF,5
 2026,NBA,Brooks Barnhizer,barnhbr01,23,OKC,SG,1
 2026,NBA,RJ Barrett,barrerj01,25,TOR,SF,7
+2026,NBA,Charles Bassey,bassech01,25,2TM,C,5
 2026,NBA,Charles Bassey,bassech01,25,MEM,C,5
+2026,NBA,Charles Bassey,bassech01,25,PHI,C,5
 2026,NBA,Jamison Battle,battlja01,24,TOR,SF,2
 2026,NBA,Nicolas Batum,batumni01,37,LAC,PF,18
 2026,NBA,Bradley Beal,bealbr01,32,LAC,SG,14
+2026,NBA,MarJon Beauchamp,beaucma01,25,PHI,SF,4
 2026,NBA,Joan Beringer,berinjo01,19,MIN,PF,1
 2026,NBA,Saddiq Bey,beysa01,26,NOP,SF,5
 2026,NBA,Goga Bitadze,bitadgo01,26,ORL,C,7
 2026,NBA,Bismack Biyombo,biyombi01,33,SAS,C,15
 2026,NBA,Anthony Black,blackan01,22,ORL,PG,3
+2026,NBA,Leaky Black,blackle01,26,WAS,SF,2
+2026,NBA,Buddy Boeheim,boehebu01,26,OKC,SF,3
 2026,NBA,Bogdan Bogdanović,bogdabo01,33,LAC,SG,9
 2026,NBA,Adem Bona,bonaad01,22,PHI,C,2
 2026,NBA,Devin Booker,bookede01,29,PHO,SG,11
@@ -32658,7 +32677,10 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Dillon Brooks,brookdi01,30,PHO,SF,9
 2026,NBA,Johni Broome,broomjo01,23,PHI,C,1
 2026,NBA,Bruce Brown,brownbr01,29,DEN,SG,8
+2026,NBA,Darius Brown II,brownda04,26,CLE,SG,1
 2026,NBA,Jaylen Brown,brownja02,29,BOS,SF,10
+2026,NBA,Kobe Brown,brownko01,26,2TM,PF,3
+2026,NBA,Kobe Brown,brownko01,26,IND,PF,3
 2026,NBA,Kobe Brown,brownko01,26,LAC,PF,3
 2026,NBA,Jalen Brunson,brunsja01,29,NYK,PG,8
 2026,NBA,Carter Bryant,bryanca01,20,SAS,PF,1
@@ -32674,7 +32696,9 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Branden Carlson,carlsbr01,26,OKC,C,2
 2026,NBA,Bub Carrington,carrica01,20,WAS,PG,2
 2026,NBA,Devin Carter,cartede02,23,SAC,PG,2
+2026,NBA,Jevon Carter,carteje01,30,2TM,PG,8
 2026,NBA,Jevon Carter,carteje01,30,CHI,PG,8
+2026,NBA,Jevon Carter,carteje01,30,ORL,PG,8
 2026,NBA,Wendell Carter Jr.,cartewe01,26,ORL,C,8
 2026,NBA,Alex Caruso,carusal01,31,OKC,SG,9
 2026,NBA,Stephon Castle,castlst01,21,SAS,PG,2
@@ -32688,11 +32712,15 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Jaylen Clark,clarkja02,24,MIN,SG,2
 2026,NBA,Jordan Clarkson,clarkjo01,33,NYK,SG,12
 2026,NBA,Nic Claxton,claxtni01,26,BRK,C,7
+2026,NBA,Walter Clayton,claytwa01,22,2TM,PG,1
+2026,NBA,Walter Clayton,claytwa01,22,MEM,PG,1
 2026,NBA,Walter Clayton,claytwa01,22,UTA,PG,1
 2026,NBA,Nique Clifford,cliffni01,23,SAC,SG,1
 2026,NBA,Donovan Clingan,clingdo01,21,POR,C,2
 2026,NBA,Noah Clowney,clownno01,21,BRK,PF,3
+2026,NBA,Amir Coffey,coffeam01,28,2TM,SG,7
 2026,NBA,Amir Coffey,coffeam01,28,MIL,SG,7
+2026,NBA,Amir Coffey,coffeam01,28,PHO,SG,7
 2026,NBA,Isaiah Collier,colliis01,21,UTA,PG,2
 2026,NBA,John Collins,collijo01,28,LAC,PF,9
 2026,NBA,Zach Collins,colliza01,28,CHI,C,8
@@ -32722,12 +32750,18 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Mohamed Diawara,diawamo01,20,NYK,SF,1
 2026,NBA,Gradey Dick,dickgr01,22,TOR,SG,3
 2026,NBA,Hunter Dickinson,dickihu01,25,NOP,C,1
+2026,NBA,Ousmane Dieng,diengou01,22,2TM,C,4
+2026,NBA,Ousmane Dieng,diengou01,22,MIL,C,4
 2026,NBA,Ousmane Dieng,diengou01,22,OKC,C,4
+2026,NBA,Rob Dillingham,dilliro01,21,2TM,PG,2
+2026,NBA,Rob Dillingham,dilliro01,21,CHI,PG,2
 2026,NBA,Rob Dillingham,dilliro01,21,MIN,PG,2
 2026,NBA,Donte DiVincenzo,divindo01,29,MIN,SG,8
 2026,NBA,Luka Dončić,doncilu01,26,LAL,PG,8
 2026,NBA,Luguentz Dort,dortlu01,26,OKC,SF,7
+2026,NBA,Ayo Dosunmu,dosunay01,26,2TM,SG,5
 2026,NBA,Ayo Dosunmu,dosunay01,26,CHI,SG,5
+2026,NBA,Ayo Dosunmu,dosunay01,26,MIN,SG,5
 2026,NBA,Andre Drummond,drumman01,32,PHI,C,14
 2026,NBA,Kris Dunn,dunnkr01,31,LAC,PG,10
 2026,NBA,Ryan Dunn,dunnry01,23,PHO,SF,2
@@ -32738,8 +32772,11 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,VJ Edgecombe,edgecvj01,20,PHI,SG,1
 2026,NBA,Anthony Edwards,edwaran01,24,MIN,SG,6
 2026,NBA,Justin Edwards,edwarju01,22,PHI,SF,2
+2026,NBA,Keon Ellis,elliske01,26,2TM,SG,4
+2026,NBA,Keon Ellis,elliske01,26,CLE,SG,4
 2026,NBA,Keon Ellis,elliske01,26,SAC,SG,4
 2026,NBA,Joel Embiid,embiijo01,31,PHI,C,10
+2026,NBA,Tristan Enaruna,enarutr01,24,CLE,SF,1
 2026,NBA,Noa Essengue,essenno01,19,CHI,PF,1
 2026,NBA,Tyson Etienne,etienty01,26,BRK,PG,2
 2026,NBA,Drew Eubanks,eubandr01,28,SAC,C,8
@@ -32752,6 +32789,7 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Trentyn Flowers,flowetr01,20,CHI,SF,2
 2026,NBA,Simone Fontecchio,fontesi01,30,MIA,SF,4
 2026,NBA,De'Aaron Fox,foxde01,28,SAS,PG,9
+2026,NBA,Enrique Freeman,freemen01,25,MIN,PF,2
 2026,NBA,Johnny Furphy,furphjo01,21,IND,SG,2
 2026,NBA,Daniel Gafford,gaffoda01,27,DAL,C,7
 2026,NBA,Myron Gardner,gardnmy01,24,MIA,SF,1
@@ -32761,6 +32799,7 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Kyshawn George,georgky01,22,WAS,SF,2
 2026,NBA,Paul George,georgpa01,35,PHI,PF,16
 2026,NBA,Josh Giddey,giddejo01,23,CHI,PG,5
+2026,NBA,Keshon Gilbert,gilbeke01,22,WAS,PG,1
 2026,NBA,Shai Gilgeous-Alexander,gilgesh01,27,OKC,PG,8
 2026,NBA,Anthony Gill,gillan01,33,WAS,PF,6
 2026,NBA,Collin Gillespie,gilleco01,26,PHO,PG,3
@@ -32784,8 +32823,12 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,PJ Hall,hallpj01,23,CHO,C,2
 2026,NBA,PJ Hall,hallpj01,23,MEM,C,2
 2026,NBA,Tim Hardaway Jr.,hardati02,33,DEN,SG,13
+2026,NBA,James Harden,hardeja01,36,2TM,PG,17
+2026,NBA,James Harden,hardeja01,36,CLE,PG,17
 2026,NBA,James Harden,hardeja01,36,LAC,PG,17
+2026,NBA,Jaden Hardy,hardyja02,23,2TM,SG,4
 2026,NBA,Jaden Hardy,hardyja02,23,DAL,SG,4
+2026,NBA,Jaden Hardy,hardyja02,23,WAS,SG,4
 2026,NBA,Elijah Harkless,harklej01,25,UTA,SG,2
 2026,NBA,Dylan Harper,harpedy01,19,SAS,SG,1
 2026,NBA,Ron Harper Jr.,harpero02,25,BOS,SF,4
@@ -32796,11 +32839,18 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Sam Hauser,hausesa01,28,BOS,PF,5
 2026,NBA,Jordan Hawkins,hawkijo01,23,NOP,SG,3
 2026,NBA,Jaxson Hayes,hayesja02,25,LAL,C,7
+2026,NBA,Killian Hayes,hayeski01,24,SAC,PG,6
 2026,NBA,Nigel Hayes-Davis,hayesni01,31,PHO,SF,2
+2026,NBA,Scoot Henderson,hendesc01,21,POR,PG,3
+2026,NBA,Taylor Hendricks,hendrta01,22,2TM,PF,3
+2026,NBA,Taylor Hendricks,hendrta01,22,MEM,PF,3
 2026,NBA,Taylor Hendricks,hendrta01,22,UTA,PF,3
 2026,NBA,Chucky Hepburn,hepbuch01,22,TOR,PG,1
 2026,NBA,Tyler Herro,herroty01,26,MIA,SG,7
+2026,NBA,Buddy Hield,hieldbu01,33,2TM,SG,10
+2026,NBA,Buddy Hield,hieldbu01,33,ATL,SG,10
 2026,NBA,Buddy Hield,hieldbu01,33,GSW,SG,10
+2026,NBA,Blake Hinson,hinsobl01,26,UTA,SF,1
 2026,NBA,Aaron Holiday,holidaa01,29,HOU,PG,8
 2026,NBA,Jrue Holiday,holidjr01,35,POR,PG,17
 2026,NBA,Ron Holland,hollaro01,20,DET,SF,2
@@ -32809,23 +32859,35 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Al Horford,horfoal01,39,GSW,C,19
 2026,NBA,Caleb Houstan,houstca01,23,ATL,SF,4
 2026,NBA,Jett Howard,howarje01,22,ORL,SF,3
+2026,NBA,Kevin Huerter,huertke01,27,2TM,SF,8
 2026,NBA,Kevin Huerter,huertke01,27,CHI,SF,8
+2026,NBA,Kevin Huerter,huertke01,27,DET,SG,8
 2026,NBA,Jay Huff,huffja01,27,IND,C,5
 2026,NBA,Ariel Hukporti,hukpoar01,23,NYK,C,2
+2026,NBA,De'Andre Hunter,huntede01,28,2TM,SF,7
 2026,NBA,De'Andre Hunter,huntede01,28,CLE,SF,7
+2026,NBA,De'Andre Hunter,huntede01,28,SAC,SF,7
 2026,NBA,Bones Hyland,hylanbo01,25,MIN,PG,5
 2026,NBA,Oso Ighodaro,ighodos01,23,PHO,PF,2
 2026,NBA,Joe Ingles,inglejo01,38,MIN,SF,12
 2026,NBA,Brandon Ingram,ingrabr01,28,TOR,SF,10
 2026,NBA,Harrison Ingram,ingraha01,23,SAS,SF,2
 2026,NBA,Jonathan Isaac,isaacjo01,28,ORL,PF,7
+2026,NBA,Jaden Ivey,iveyja01,23,2TM,SG,4
+2026,NBA,Jaden Ivey,iveyja01,23,CHI,SG,4
 2026,NBA,Jaden Ivey,iveyja01,23,DET,SG,4
 2026,NBA,Andre Jackson Jr.,jacksan01,24,MIL,SG,3
 2026,NBA,GG Jackson II,jacksgg01,21,MEM,PF,3
+2026,NBA,Isaiah Jackson,jacksis01,24,2TM,C,5
 2026,NBA,Isaiah Jackson,jacksis01,24,IND,C,5
+2026,NBA,Isaiah Jackson,jacksis01,24,LAC,C,5
+2026,NBA,Jaren Jackson Jr.,jacksja02,26,2TM,C,8
 2026,NBA,Jaren Jackson Jr.,jacksja02,26,MEM,C,8
+2026,NBA,Jaren Jackson Jr.,jacksja02,26,UTA,C,8
 2026,NBA,Quenton Jackson,jacksqu01,27,IND,PG,4
+2026,NBA,Trayce Jackson-Davis,jackstr02,25,2TM,C,3
 2026,NBA,Trayce Jackson-Davis,jackstr02,25,GSW,C,3
+2026,NBA,Trayce Jackson-Davis,jackstr02,25,TOR,C,3
 2026,NBA,Kasparas Jakučionis,jakucka01,19,MIA,PG,1
 2026,NBA,Bronny James,jamesbr02,21,LAL,SG,2
 2026,NBA,LeBron James,jamesle01,41,LAL,SF,23
@@ -32835,6 +32897,8 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Daniss Jenkins,jenkida01,24,DET,PG,2
 2026,NBA,Ty Jerome,jeromty01,28,MEM,SG,7
 2026,NBA,Isaiah Joe,joeis01,26,OKC,SG,6
+2026,NBA,AJ Johnson,johnsaj01,21,2TM,SG,2
+2026,NBA,AJ Johnson,johnsaj01,21,DAL,SG,2
 2026,NBA,AJ Johnson,johnsaj01,21,WAS,SG,2
 2026,NBA,Cameron Johnson,johnsca02,29,DEN,SF,7
 2026,NBA,Jalen Johnson,johnsja05,24,ATL,SF,5
@@ -32854,14 +32918,19 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Kam Jones,joneska03,23,IND,SG,1
 2026,NBA,Spencer Jones,jonessp01,24,DEN,SF,2
 2026,NBA,Tre Jones,jonestr01,26,CHI,PG,6
+2026,NBA,Tyus Jones,jonesty01,29,2TM,PG,11
+2026,NBA,Tyus Jones,jonesty01,29,DAL,PG,11
 2026,NBA,Tyus Jones,jonesty01,29,ORL,PG,11
 2026,NBA,DeAndre Jordan,jordade01,37,NOP,C,18
 2026,NBA,Nikola Jović,jovicni01,22,MIA,PF,4
 2026,NBA,Johnny Juzang,juzanjo01,24,MIN,SG,4
 2026,NBA,Ryan Kalkbrenner,kalkbry01,24,CHO,C,1
 2026,NBA,Yuki Kawamura,kawamyu01,24,CHI,PG,2
+2026,NBA,Trevor Keels,keelstr01,22,MIA,SG,2
 2026,NBA,Miles Kelly,kellymi02,23,DAL,PG,1
+2026,NBA,Luke Kennard,kennalu01,29,2TM,SG,9
 2026,NBA,Luke Kennard,kennalu01,29,ATL,SG,9
+2026,NBA,Luke Kennard,kennalu01,29,LAL,SG,9
 2026,NBA,Walker Kessler,kesslwa01,24,UTA,C,4
 2026,NBA,Corey Kispert,kispeco01,26,2TM,SF,5
 2026,NBA,Corey Kispert,kispeco01,26,ATL,SF,5
@@ -32876,12 +32945,20 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Christian Koloko,kolokch01,25,LAL,C,3
 2026,NBA,Christian Koloko,kolokch01,25,MEM,C,3
 2026,NBA,Yanic Konan Niederhäuser,konanya01,22,LAC,C,1
+2026,NBA,John Konchar,konchjo01,29,2TM,SG,7
 2026,NBA,John Konchar,konchjo01,29,MEM,SG,7
+2026,NBA,John Konchar,konchjo01,29,UTA,SG,7
 2026,NBA,Luke Kornet,kornelu01,30,SAS,C,9
+2026,NBA,Vit Krejci,krejcvi01,25,2TM,PG,5
 2026,NBA,Vit Krejci,krejcvi01,25,ATL,PG,5
+2026,NBA,Vit Krejci,krejcvi01,25,POR,PG,5
+2026,NBA,Jonathan Kuminga,kuminjo01,23,2TM,PF,5
+2026,NBA,Jonathan Kuminga,kuminjo01,23,ATL,PF,5
 2026,NBA,Jonathan Kuminga,kuminjo01,23,GSW,PF,5
 2026,NBA,Kyle Kuzma,kuzmaky01,30,MIL,PF,9
 2026,NBA,Skal Labissière,labissk01,29,WAS,PF,6
+2026,NBA,Jock Landale,landajo01,30,2TM,C,5
+2026,NBA,Jock Landale,landajo01,30,ATL,C,5
 2026,NBA,Jock Landale,landajo01,30,MEM,C,5
 2026,NBA,Chaz Lanier,laniech01,24,DET,SG,1
 2026,NBA,Jake LaRavia,laravja01,24,LAL,PF,4
@@ -32899,6 +32976,7 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Brook Lopez,lopezbr01,37,LAC,C,18
 2026,NBA,Caleb Love,loveca01,24,POR,SG,1
 2026,NBA,Kevin Love,loveke01,37,UTA,PF,18
+2026,NBA,Lawson Lovering,loverla01,22,MEM,C,1
 2026,NBA,Kyle Lowry,lowryky01,39,PHI,PG,20
 2026,NBA,Khaman Maluach,maluakh01,19,PHO,C,1
 2026,NBA,Sandro Mamukelashvili,mamuksa01,26,TOR,C,5
@@ -32910,14 +32988,22 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Alijah Martin,martial01,24,TOR,SG,1
 2026,NBA,Caleb Martin,martica02,30,DAL,SF,7
 2026,NBA,Cody Martin,martico01,30,IND,SF,7
+2026,NBA,Tyrese Martin,martity01,26,2TM,SG,3
 2026,NBA,Tyrese Martin,martity01,26,BRK,SG,3
+2026,NBA,Tyrese Martin,martity01,26,PHI,SG,3
 2026,NBA,Jahmai Mashack,mashaja01,23,MEM,SG,1
 2026,NBA,Garrison Mathews,mathega01,29,IND,SG,7
+2026,NBA,Bennedict Mathurin,mathube01,23,2TM,SF,4
 2026,NBA,Bennedict Mathurin,mathube01,23,IND,SF,4
+2026,NBA,Bennedict Mathurin,mathube01,23,LAC,SF,4
 2026,NBA,Karlo Matković,matkoka01,24,NOP,PF,2
 2026,NBA,Tyrese Maxey,maxeyty01,25,PHI,PG,6
 2026,NBA,Miles McBride,mcbrimi01,25,NYK,SG,5
+2026,NBA,Jared McCain,mccaija01,21,2TM,SG,2
+2026,NBA,Jared McCain,mccaija01,21,OKC,SG,2
 2026,NBA,Jared McCain,mccaija01,21,PHI,SG,2
+2026,NBA,Mac McClung,mccluma01,27,2TM,SG,4
+2026,NBA,Mac McClung,mccluma01,27,CHI,SG,4
 2026,NBA,Mac McClung,mccluma01,27,IND,SG,4
 2026,NBA,CJ McCollum,mccolcj01,34,2TM,PG,13
 2026,NBA,CJ McCollum,mccolcj01,34,ATL,PG,13
@@ -32931,13 +33017,19 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Liam McNeeley,mcneeli01,20,CHO,SF,1
 2026,NBA,De'Anthony Melton,meltode01,27,GSW,PG,8
 2026,NBA,Sam Merrill,merrisa01,29,CLE,SG,6
+2026,NBA,Khris Middleton,middlkh01,34,2TM,SF,14
+2026,NBA,Khris Middleton,middlkh01,34,DAL,SF,14
 2026,NBA,Khris Middleton,middlkh01,34,WAS,SF,14
 2026,NBA,Brandon Miller,millebr02,23,CHO,SF,3
 2026,NBA,Emanuel Miller,milleem01,25,CHI,PF,2
 2026,NBA,Jordan Miller,millejo02,26,LAC,SF,3
+2026,NBA,Leonard Miller,millele01,22,2TM,SF,3
+2026,NBA,Leonard Miller,millele01,22,CHI,SF,3
 2026,NBA,Leonard Miller,millele01,22,MIN,SF,3
 2026,NBA,Riley Minix,minixri01,25,SAS,SF,2
+2026,NBA,Josh Minott,minotjo01,23,2TM,PF,4
 2026,NBA,Josh Minott,minotjo01,23,BOS,PF,4
+2026,NBA,Josh Minott,minotjo01,23,BRK,SF,4
 2026,NBA,Yves Missi,missiyv01,21,NOP,C,2
 2026,NBA,Ajay Mitchell,mitchaj01,23,OKC,SG,2
 2026,NBA,Davion Mitchell,mitchda01,27,MIA,PG,5
@@ -32951,12 +33043,14 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Monte Morris,morrimo01,30,IND,PG,9
 2026,NBA,Trey Murphy III,murphtr02,25,NOP,SF,5
 2026,NBA,Collin Murray-Boyles,murraco01,20,TOR,PF,1
+2026,NBA,Dejounte Murray,murrade01,29,NOP,PG,9
 2026,NBA,Jamal Murray,murraja01,28,DEN,PG,9
 2026,NBA,Keegan Murray,murrake02,25,SAC,PF,4
 2026,NBA,Kris Murray,murrakr01,25,POR,SF,3
 2026,NBA,Svi Mykhailiuk,mykhasv01,28,UTA,SF,8
 2026,NBA,Larry Nance Jr.,nancela02,33,CLE,PF,11
 2026,NBA,Pete Nance,nancepe01,25,MIL,PF,3
+2026,NBA,Grant Nelson,nelsogr02,23,BRK,NA,1
 2026,NBA,Andrew Nembhard,nembhan01,26,IND,PG,4
 2026,NBA,Ryan Nembhard,nembhry01,22,DAL,PG,1
 2026,NBA,Aaron Nesmith,nesmiaa01,26,IND,SF,6
@@ -32972,13 +33066,17 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Royce O'Neale,onealro01,32,PHO,SF,9
 2026,NBA,Kelly Oubre Jr.,oubreke01,30,PHI,SF,11
 2026,NBA,Chris Paul,paulch01,40,LAC,PG,21
+2026,NBA,Cameron Payne,payneca01,31,PHI,PG,11
 2026,NBA,Gary Payton II,paytoga02,33,GSW,SG,10
 2026,NBA,Micah Peavy,peavymi01,24,NOP,SG,1
 2026,NBA,Noah Penda,pendano01,21,ORL,SF,1
 2026,NBA,Drew Peterson,peterdr01,26,CHO,PF,3
 2026,NBA,Taelon Peter,peterta01,23,IND,SG,1
+2026,NBA,Julian Phillips,phillju01,22,2TM,SF,3
 2026,NBA,Julian Phillips,phillju01,22,CHI,SF,3
+2026,NBA,Julian Phillips,phillju01,22,MIN,SF,3
 2026,NBA,Jalen Pickett,pickeja02,26,DEN,SG,3
+2026,NBA,Scotty Pippen Jr.,pippesc02,25,MEM,PG,4
 2026,NBA,Daeqwon Plowden,plowdda01,27,SAC,SG,2
 2026,NBA,Mason Plumlee,plumlma01,35,CHO,C,13
 2026,NBA,Brandin Podziemski,podzibr01,22,GSW,SG,3
@@ -32988,7 +33086,9 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Kevin Porter Jr.,porteke02,25,MIL,PG,6
 2026,NBA,Michael Porter Jr.,portemi01,27,BRK,SF,7
 2026,NBA,Bobby Portis,portibo01,30,MIL,PF,11
+2026,NBA,Kristaps Porziņģis,porzikr01,30,2TM,C,10
 2026,NBA,Kristaps Porziņģis,porzikr01,30,ATL,C,10
+2026,NBA,Kristaps Porziņģis,porzikr01,30,GSW,C,10
 2026,NBA,Quinten Post,postqu01,25,GSW,PF,2
 2026,NBA,Micah Potter,pottemi01,27,IND,C,5
 2026,NBA,Drake Powell,poweldr01,20,BRK,SG,1
@@ -33009,8 +33109,11 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Antonio Reeves,reevean01,25,CHO,SG,2
 2026,NBA,Naz Reid,reidna01,26,MIN,C,7
 2026,NBA,Jase Richardson,richaja02,20,ORL,SG,1
+2026,NBA,Nick Richards,richani01,28,2TM,C,6
+2026,NBA,Nick Richards,richani01,28,CHI,C,6
 2026,NBA,Nick Richards,richani01,28,PHO,C,6
 2026,NBA,Will Richard,richawi02,23,GSW,SG,1
+2026,NBA,Kadary Richmond,richmka01,24,WAS,SG,1
 2026,NBA,Will Riley,rileywi01,19,WAS,SF,1
 2026,NBA,Zaccharie Risacher,risacza01,20,ATL,SF,2
 2026,NBA,Duncan Robinson,robindu01,31,DET,SF,8
@@ -33020,6 +33123,8 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Mitchell Robinson,robinmi01,27,NYK,C,8
 2026,NBA,Orlando Robinson,robinor01,25,ORL,C,4
 2026,NBA,Ryan Rollins,rolliry01,23,MIL,PG,4
+2026,NBA,Rayan Rupert,ruperra01,21,2TM,SG,3
+2026,NBA,Rayan Rupert,ruperra01,21,MEM,SG,3
 2026,NBA,Rayan Rupert,ruperra01,21,POR,SG,3
 2026,NBA,D'Angelo Russell,russeda01,29,DAL,PG,11
 2026,NBA,Domantas Sabonis,sabondo01,29,SAC,C,10
@@ -33032,10 +33137,14 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Alex Sarr,sarral01,20,WAS,C,2
 2026,NBA,Marcus Sasser,sassema01,25,DET,PG,3
 2026,NBA,Baylor Scheierman,scheiba01,25,BOS,SG,2
+2026,NBA,Dennis Schröder,schrode01,32,2TM,PG,13
+2026,NBA,Dennis Schröder,schrode01,32,CLE,PG,13
 2026,NBA,Dennis Schröder,schrode01,32,SAC,PG,13
 2026,NBA,Mark Sears,searsma01,23,MIL,PG,1
 2026,NBA,Alperen Şengün,sengual01,23,HOU,C,5
 2026,NBA,Brice Sensabaugh,sensabr01,22,UTA,SF,3
+2026,NBA,Collin Sexton,sextoco01,27,2TM,SG,8
+2026,NBA,Collin Sexton,sextoco01,27,CHI,SG,8
 2026,NBA,Collin Sexton,sextoco01,27,CHO,SG,8
 2026,NBA,Landry Shamet,shamela01,28,NYK,SG,8
 2026,NBA,Terrence Shannon Jr.,shannte01,25,MIN,SG,2
@@ -33044,9 +33153,14 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Jamal Shead,sheadja01,23,TOR,PG,2
 2026,NBA,Ben Sheppard,sheppbe01,24,IND,SG,3
 2026,NBA,Reed Sheppard,sheppre01,21,HOU,SG,2
+2026,NBA,Max Shulga,shulgma01,23,BOS,SG,1
 2026,NBA,Pascal Siakam,siakapa01,31,IND,PF,10
+2026,NBA,Anfernee Simons,simonan01,26,2TM,SG,8
 2026,NBA,Anfernee Simons,simonan01,26,BOS,SG,8
+2026,NBA,Anfernee Simons,simonan01,26,CHI,SG,8
+2026,NBA,KJ Simpson,simpskj01,23,2TM,PG,2
 2026,NBA,KJ Simpson,simpskj01,23,CHO,PG,2
+2026,NBA,KJ Simpson,simpskj01,23,DEN,PG,2
 2026,NBA,Jericho Sims,simsje01,27,MIL,C,5
 2026,NBA,Javon Small,smallja01,23,MEM,PG,1
 2026,NBA,Marcus Smart,smartma01,31,LAL,SG,12
@@ -33055,6 +33169,8 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Jabari Smith Jr.,smithja05,22,HOU,PF,4
 2026,NBA,Nick Smith Jr.,smithni01,21,LAL,SG,3
 2026,NBA,Tolu Smith,smithto05,25,DET,PF,2
+2026,NBA,Jeremy Sochan,sochaje01,22,2TM,PF,4
+2026,NBA,Jeremy Sochan,sochaje01,22,NYK,PF,4
 2026,NBA,Jeremy Sochan,sochaje01,22,SAS,PF,4
 2026,NBA,Cam Spencer,spencca01,25,MEM,SG,2
 2026,NBA,Pat Spencer,spencpa01,29,GSW,PG,3
@@ -33065,17 +33181,25 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Jae'Sean Tate,tateja01,30,HOU,SF,6
 2026,NBA,Jahmyl Telfort,telfoja01,24,LAC,PF,1
 2026,NBA,Garrett Temple,templga01,39,TOR,SG,16
+2026,NBA,Dalen Terry,terryda01,23,2TM,SG,4
 2026,NBA,Dalen Terry,terryda01,23,CHI,SG,4
+2026,NBA,Dalen Terry,terryda01,23,PHI,SG,4
 2026,NBA,Adou Thiero,thierad01,21,LAL,SF,1
+2026,NBA,Cam Thomas,thomaca02,24,2TM,SG,5
 2026,NBA,Cam Thomas,thomaca02,24,BRK,SG,5
+2026,NBA,Cam Thomas,thomaca02,24,MIL,SG,5
 2026,NBA,Amen Thompson,thompam01,23,HOU,PG,3
 2026,NBA,Ausar Thompson,thompau01,23,DET,SF,3
 2026,NBA,Ethan Thompson,thompet01,26,IND,SG,1
 2026,NBA,Klay Thompson,thompkl01,35,DAL,SF,13
 2026,NBA,Matisse Thybulle,thybuma01,28,POR,SG,7
+2026,NBA,Xavier Tillman Sr.,tillmxa01,27,2TM,C,6
 2026,NBA,Xavier Tillman Sr.,tillmxa01,27,BOS,C,6
+2026,NBA,Xavier Tillman Sr.,tillmxa01,27,CHO,C,6
 2026,NBA,Drew Timme,timmedr01,25,LAL,PF,2
 2026,NBA,Nae'Qwan Tomlin,tomlina01,25,CLE,PF,2
+2026,NBA,John Tonje,tonjejo01,24,BOS,SG,1
+2026,NBA,Nikola Topić,topicni01,20,OKC,PG,1
 2026,NBA,Jacob Toppin,toppija01,25,ATL,SF,3
 2026,NBA,Obi Toppin,toppiob01,27,IND,PF,6
 2026,NBA,Karl-Anthony Towns,townska01,30,NYK,C,11
@@ -33086,10 +33210,15 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Myles Turner,turnemy01,29,MIL,C,11
 2026,NBA,Hunter Tyson,tysonhu01,25,DEN,PF,3
 2026,NBA,Jaylon Tyson,tysonja01,23,CLE,SG,2
+2026,NBA,Stanley Umude,umudest01,26,SAS,SG,4
 2026,NBA,Jonas Valančiūnas,valanjo01,33,DEN,C,14
 2026,NBA,Jarred Vanderbilt,vandeja01,26,LAL,PF,8
 2026,NBA,Devin Vassell,vassede01,25,SAS,SG,6
+2026,NBA,Gabe Vincent,vincega01,29,2TM,PG,7
+2026,NBA,Gabe Vincent,vincega01,29,ATL,PG,7
 2026,NBA,Gabe Vincent,vincega01,29,LAL,PG,7
+2026,NBA,Nikola Vučević,vucevni01,35,2TM,C,15
+2026,NBA,Nikola Vučević,vucevni01,35,BOS,C,15
 2026,NBA,Nikola Vučević,vucevni01,35,CHI,C,15
 2026,NBA,Tristan Vukcevic,vukcetr01,22,WAS,C,3
 2026,NBA,Dean Wade,wadede01,29,CLE,PF,7
@@ -33112,30 +33241,39 @@ season,lg,player,player_id,age,team,pos,experience
 2026,NBA,Victor Wembanyama,wembavi01,22,SAS,C,3
 2026,NBA,Blake Wesley,weslebl01,22,POR,SG,4
 2026,NBA,Russell Westbrook,westbru01,37,SAC,SF,18
+2026,NBA,Coby White,whiteco01,25,2TM,SG,7
 2026,NBA,Coby White,whiteco01,25,CHI,SG,7
+2026,NBA,Coby White,whiteco01,25,CHO,SG,7
 2026,NBA,Derrick White,whitede01,31,BOS,SG,9
 2026,NBA,Cam Whitmore,whitmca01,21,WAS,SF,3
 2026,NBA,Aaron Wiggins,wiggiaa01,27,OKC,SG,5
 2026,NBA,Andrew Wiggins,wiggian01,30,MIA,SF,12
+2026,NBA,Alondes Williams,willial06,26,WAS,SG,4
 2026,NBA,Amari Williams,william01,24,BOS,PF,1
 2026,NBA,Brandon Williams,willibr03,26,DAL,PG,4
 2026,NBA,Cody Williams,willico04,21,UTA,SG,2
 2026,NBA,Grant Williams,willigr01,27,CHO,PF,7
 2026,NBA,Jalen Williams,willija06,24,OKC,SG,4
 2026,NBA,Jaylin Williams,willija07,23,OKC,PF,4
+2026,NBA,Nate Williams,willije02,26,GSW,SG,4
 2026,NBA,Kenrich Williams,willike04,31,OKC,PF,8
 2026,NBA,Mark Williams,willima07,24,PHO,C,4
 2026,NBA,Patrick Williams,willipa01,24,CHI,PF,6
 2026,NBA,Robert Williams,williro04,28,POR,C,8
+2026,NBA,Vince Williams Jr.,willivi01,25,2TM,PG,4
 2026,NBA,Vince Williams Jr.,willivi01,25,MEM,PG,4
+2026,NBA,Vince Williams Jr.,willivi01,25,UTA,SG,4
 2026,NBA,Zion Williamson,willizi01,25,NOP,PF,6
 2026,NBA,Ziaire Williams,willizi02,24,BRK,SF,5
 2026,NBA,Jalen Wilson,wilsoja03,25,BRK,PF,3
 2026,NBA,James Wiseman,wisemja01,24,IND,C,5
 2026,NBA,Danny Wolf,wolfda01,21,BRK,PF,1
+2026,NBA,Guerschon Yabusele,yabusgu01,30,2TM,C,4
+2026,NBA,Guerschon Yabusele,yabusgu01,30,CHI,C,4
 2026,NBA,Guerschon Yabusele,yabusgu01,30,NYK,C,4
 2026,NBA,Yang Hansen,yangha01,20,POR,C,1
 2026,NBA,Chris Youngblood,youngch01,23,OKC,SG,1
 2026,NBA,Jahmir Young,youngja05,25,MIA,PG,2
 2026,NBA,Trae Young,youngtr01,27,ATL,PG,8
+2026,NBA,Rocco Zikarsky,zikarro01,19,MIN,C,1
 2026,NBA,Ivica Zubac,zubaciv01,28,LAC,C,10
